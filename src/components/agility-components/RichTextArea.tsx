@@ -2,7 +2,7 @@ import { getContentItem } from "@/lib/cms/getContentItem"
 import { renderHTML, type UnloadedModuleProps } from "@agility/nextjs"
 
 
-interface RichText {
+export interface RichText {
 	textblob: string
 }
 

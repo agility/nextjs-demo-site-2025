@@ -101,7 +101,7 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isD
 
 	const metaData: Metadata = {
 		metadataBase: new URL('https://preview-tests-nov-2023.vercel.app'),
-		title: `${agilityData.sitemapNode?.title} | ${header?.siteName || ""}`,
+		title: `${agilityData.sitemapNode?.title} | ${header?.siteName || "Company"}`,
 		description: agilityData.page?.seo?.metaDescription,
 		keywords: agilityData.page?.seo?.metaKeywords,
 		openGraph: {

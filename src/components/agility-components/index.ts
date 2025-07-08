@@ -1,4 +1,9 @@
+
+import { BackgroundHero } from "./BackgroundHero";
+import { BentoSection } from "./BentoSection";
+import { LogoStrip } from "./LogoStrip";
 import NoComponentFound from "./NoComponentFound";
+
 import RichTextArea from "./RichTextArea";
 
 
@@ -7,6 +12,9 @@ import RichTextArea from "./RichTextArea";
 
 const allModules = [
 	{ name: "RichTextArea", module: RichTextArea },
+	{ name: "BackgroundHero", module: BackgroundHero },
+	{ name: "BentoSection", module: BentoSection },
+	{ name: "LogoStrip", module: LogoStrip }
 ];
 
 /**

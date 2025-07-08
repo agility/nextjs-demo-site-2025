@@ -1,5 +1,15 @@
+import { Container } from '@/components/container'
+import { GradientBackground } from '@/components/gradient'
+import { Navbar } from '@/components/header/navbar'
 import '@/styles/tailwind.css'
+import { ChevronRightIcon } from '@heroicons/react/24/solid'
+
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import type React from 'react'
+
+import { getHeaderContent } from "@/lib/cms-content/getHeaderContent"
+import { getAgilityContext } from '@/lib/cms/getAgilityContext'
 
 export const metadata: Metadata = {
   title: {
@@ -8,11 +18,17 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
+
+  // get the header content
+  const { locale, sitemap } = await getAgilityContext()
+  const header = await getHeaderContent({ sitemap, locale })
+
   return (
     <html lang="en">
       <head>
@@ -27,7 +43,20 @@ export default function RootLayout({
           href="/blog/feed.xml"
         />
       </head>
-      <body className="text-gray-950 antialiased">{children}</body>
+      <body className="text-gray-950 antialiased">
+        <main className="overflow-hidden">
+          <GradientBackground />
+          <Container>
+            {header &&
+              <Navbar header={header} />
+            }
+          </Container>
+          {children}
+
+
+        </main>
+
+      </body>
     </html>
   )
 }

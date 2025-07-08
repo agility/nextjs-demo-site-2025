@@ -1,18 +1,45 @@
+import type { ImageField } from '@agility/nextjs/types'
 import { clsx } from 'clsx'
 
-export function Gradient({
+interface GradientProps {
+  className?: string
+  backgroundType?: string
+  backgroundImage?: ImageField
+}
+
+export const Gradient = ({
   className,
-  ...props
-}: React.ComponentPropsWithoutRef<'div'>) {
-  return (
-    <div
-      {...props}
-      className={clsx(
-        className,
-        'bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] sm:bg-linear-145',
-      )}
-    />
-  )
+  backgroundType,
+  backgroundImage
+}: GradientProps) => {
+
+  if (backgroundType !== "background-image") {
+    const gradientColors = backgroundType || "yellow-pink"
+    return (
+      <div
+        className={clsx(
+          className,
+          (!gradientColors || gradientColors == "yellow-pink") ? 'bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] sm:bg-linear-145' :
+            gradientColors == "3-blues" ? 'bg-linear-115 from-[#00e5ff] from-28% via-[#4444AB] via-70% to-[#000985] sm:bg-linear-145' :
+              gradientColors == "green-blue-yellow" ? 'bg-linear-115 from-[#2A7B9B] from-28% via-[#57C785] via-70% to-[#EDDD53] sm:bg-linear-145' :
+                gradientColors == "3-reds" ? 'bg-linear-115 from-[#EDBBBB] from-28% via-[#CF1D90] via-70% to-[#FF0008] sm:bg-linear-145' : "",
+        )}
+      />
+    )
+  } else {
+    return (
+      <div
+        className={className}
+        style={{
+          backgroundImage: `url(${backgroundImage?.url}?format=auto&w=2200)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      />
+    )
+  }
 }
 
 export function GradientBackground() {
