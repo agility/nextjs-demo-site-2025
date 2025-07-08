@@ -1,12 +1,12 @@
 import { getContentItem } from "@/lib/cms/getContentItem";
 import type { ContentItem, ImageField, UnloadedModuleProps } from "@agility/nextjs";
-import { BentoCard } from "../bento-card";
 import { Container } from "../container";
 import { Keyboard } from "../keyboard";
 import { LogoCluster } from "../logo-cluster";
 import { Map } from "../map";
 import { Subheading, Heading } from "../text";
 import { getContentList } from "@/lib/cms/getContentList";
+import { AnimatedBentoCard } from "../animated-bento-card";
 
 interface IBentoSection {
 	subheading: string
@@ -97,13 +97,19 @@ export const BentoSection = async ({ module, languageCode }: UnloadedModuleProps
 						? "max-lg:rounded-t-4xl"
 						: (isLast ? "max-lg:rounded-b-4xl" : "");
 
+					// Animation delay based on index - stagger for visual interest
+					// Different delays for different rows to create a pleasing effect
+					const isFirstRow = index < 2;
+					const delay = 0.1 + (isFirstRow ? index * 0.05 : (index - 2) * 0.05 + 0.1);
+
 					return (
-						<BentoCard
+						<AnimatedBentoCard
 							key={contentID}
 							eyebrow={eyebrow}
 							title={title}
 							description={description}
 							className={`${positionClasses} ${mobileClasses}`}
+							delay={delay}
 							graphic={
 								<div
 									className="h-80 bg-cover bg-center"
@@ -114,8 +120,8 @@ export const BentoSection = async ({ module, languageCode }: UnloadedModuleProps
 						/>
 					)
 				})}
-
 			</div>
 		</Container>
 	)
 }
+

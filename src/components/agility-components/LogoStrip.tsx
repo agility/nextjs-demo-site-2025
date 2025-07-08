@@ -2,6 +2,7 @@ import { getContentItem } from "@/lib/cms/getContentItem"
 import { getContentList } from "@/lib/cms/getContentList"
 import type { ContentItem, ImageField, UnloadedModuleProps, URLField } from "@agility/nextjs"
 import { Container } from "../container"
+import Link from "next/link"
 
 interface ILogoStrip {
 	ctaDescription: string
@@ -34,8 +35,6 @@ export const LogoStrip = async ({ module, languageCode }: UnloadedModuleProps) =
 		take: 20, // adjust as needed
 	})
 
-	console.log('LogoStrip fields:', logos.items[0]?.fields)
-
 	return (
 		<Container className="mt-20">
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -55,43 +54,15 @@ export const LogoStrip = async ({ module, languageCode }: UnloadedModuleProps) =
 							/>
 						)
 					})}
-					{/*
-					<img
-						alt="Reform"
-						src="https://tailwindcss.com/plus-assets/img/logos/158x48/reform-logo-gray-900.svg"
-						width={158}
-						height={48}
-						className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-					/>
-					<img
-						alt="Tuple"
-						src="https://tailwindcss.com/plus-assets/img/logos/158x48/tuple-logo-gray-900.svg"
-						width={158}
-						height={48}
-						className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-					/>
-					<img
-						alt="SavvyCal"
-						src="https://tailwindcss.com/plus-assets/img/logos/158x48/savvycal-logo-gray-900.svg"
-						width={158}
-						height={48}
-						className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
-					/>
-					<img
-						alt="Statamic"
-						src="https://tailwindcss.com/plus-assets/img/logos/158x48/statamic-logo-gray-900.svg"
-						width={158}
-						height={48}
-						className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
-					/> */}
+
 				</div>
 				<div className="mt-16 flex justify-center">
 					<p className="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm/6 text-gray-600 ring-1 ring-gray-900/5 ring-inset">
-						<span className="hidden md:inline">Over 2500 companies use our tools to better their business.</span>
-						<a href="#" className="font-semibold text-indigo-600">
-							<span aria-hidden="true" className="absolute inset-0" /> Read our customer stories{' '}
+						<span className="hidden md:inline" data-agility-field="ctaDescription">{ctaDescription}</span>
+						<Link href={cta.href} target={cta.target} className="font-semibold text-gray-600 hover:text-gray-700" data-agility-field="cta">
+							<span aria-hidden="true" className="absolute inset-0" />{cta.text}{' '}
 							<span aria-hidden="true">&rarr;</span>
-						</a>
+						</Link>
 					</p>
 				</div>
 			</div>

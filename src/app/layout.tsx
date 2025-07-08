@@ -44,7 +44,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="text-gray-950 antialiased">
-        <main className="overflow-hidden">
+        <main >
           <GradientBackground />
           <Container>
             {header &&
