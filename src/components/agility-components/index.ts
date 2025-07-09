@@ -5,7 +5,7 @@ import { Header } from "./Header";
 import { LogoStrip } from "./LogoStrip";
 import NoComponentFound from "./NoComponentFound";
 import { PostListing } from "./post-listing/PostListing.server";
-import PostDetails from "./PostDetails";
+import PostDetails from "./post-details/PostDetails";
 
 import RichTextArea from "./RichTextArea";
 

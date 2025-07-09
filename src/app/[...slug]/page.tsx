@@ -86,7 +86,6 @@ export default async function Page({ params, searchParams }: PageProps) {
 
 	// Await searchParams if it's a Promise (Next.js 15+)
 	const resolvedSearchParams = searchParams ? await searchParams : {};
-	console.log("SEARCH PARAMS", resolvedSearchParams);
 
 	agilityData.globalData = agilityData.globalData || {};
 	agilityData.globalData["searchParams"] = resolvedSearchParams;

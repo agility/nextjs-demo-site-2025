@@ -1,7 +1,7 @@
 import { Container } from '@/components/container'
-import { GradientBackground } from '@/components/gradient'
 import { Navbar } from '@/components/header/navbar'
 import '@/styles/tailwind.css'
+import '@/styles/view-transitions.css'
 
 import type { Metadata } from 'next'
 import type React from 'react'
@@ -44,6 +44,7 @@ export default async function RootLayout({
           title="The Radiant Blog"
           href="/blog/feed.xml"
         />
+        <meta name="view-transition" content="same-origin" />
       </head>
       <body className="text-gray-950 antialiased overflow-x-hidden dark:bg-black dark:text-gray-200">
         <main>
@@ -59,7 +60,6 @@ export default async function RootLayout({
           }
 
         </main>
-
       </body>
     </html>
   )

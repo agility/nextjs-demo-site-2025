@@ -1,16 +1,17 @@
 import React from "react"
 import { AgilityPic, type UnloadedModuleProps, renderHTML } from "@agility/nextjs"
-
 import { DateTime } from "luxon"
 import type { IPost } from "@/lib/types/IPost"
-
 import { ChevronLeftIcon } from "@heroicons/react/16/solid"
 import dayjs from "dayjs"
-import image from "next/image"
 import Link from "next/link"
-import { Container } from "../container"
-import { Subheading, Heading } from "../text"
-import { Button } from "../button"
+import { Container } from "../../container"
+import { Subheading, Heading } from "../../text"
+import { Button } from "../../button"
+import { PostImage } from "./PostImage"
+
+// Export PostImage for potential reuse in other components
+export { PostImage } from "./PostImage"
 
 const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 	if (!dynamicPageItem) {
@@ -32,9 +33,7 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 	const contentID = dynamicPageItem.contentID
 
 	return (
-
 		<Container data-agility-component={contentID}>
-
 			<Subheading className="mt-16">
 				{dayjs(post.postDate).format('dddd, MMMM D, YYYY')}
 			</Subheading>
@@ -73,11 +72,9 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 				<div className="text-gray-700">
 					<div className="max-w-2xl xl:mx-auto">
 						{post.image && (
-							<AgilityPic
-								data-agility-field="image"
+							<PostImage
 								image={post.image}
-								fallbackWidth={800}
-								className="mb-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
+								contentID={contentID}
 							/>
 						)}
 
@@ -98,7 +95,6 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 				</div>
 			</div>
 		</Container>
-
 	)
 }
 

@@ -28,7 +28,6 @@ export const PostListing = async ({ globalData }: UnloadedModuleProps) => {
 	if (typeof categoryParam === 'string' && categoryParam.trim() !== '') {
 		category = categoryParam
 	}
-	console.log('PostListing', globalData, { page, category })
 	const { sitemap, locale } = await getAgilityContext()
 
 	const postsResult = await getPostListing({

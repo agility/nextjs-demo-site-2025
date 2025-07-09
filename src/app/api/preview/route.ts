@@ -28,7 +28,6 @@ export async function GET(request: NextRequest) {
 		slug
 	});
 
-	console.log("validationResp", validationResp)
 
 	if (validationResp.error) {
 		return NextResponse.json({ message: validationResp.message }, { status: 401 });

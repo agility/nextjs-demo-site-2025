@@ -1,0 +1,21 @@
+/* View Transitions for Next.js with React ViewTransition API */
+@view-transition {
+  navigation: auto;
+}
+
+/* Only apply view transitions if the browser supports them */
+@supports (view-transition-name: none) {
+  /* Configure smooth transitions for all view transitions */
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Smooth transitions for the entire page content */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

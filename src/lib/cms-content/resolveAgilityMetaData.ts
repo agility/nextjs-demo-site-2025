@@ -16,10 +16,10 @@ interface Props {
 	parent: ResolvingMetadata
 }
 
-export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isDevelopmentMode, isPreview, parent }: Props): Promise<Metadata> => {
+export const resolveAgilityMetaData = async ({ agilityData, locale, parent }: Props): Promise<Metadata> => {
 
 
-	const header = await getHeaderContent({ locale, sitemap })
+	const header = await getHeaderContent({ locale })
 	const ogImages = (await parent).openGraph?.images || []
 
 	//#region *** resolve open graph stuff from dynamic pages ***

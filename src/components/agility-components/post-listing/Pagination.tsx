@@ -26,7 +26,6 @@ export async function Pagination({ page, category, totalPosts, postsPerPage }: P
 	let hasNextPage = page * postsPerPage < totalPosts
 	let nextPageUrl = hasNextPage ? url(page + 1) : undefined
 	let pageCount = Math.ceil(totalPosts / postsPerPage)
-	console.log('pageCount', pageCount, 'totalPosts', totalPosts, 'postsPerPage', postsPerPage)
 	if (pageCount < 2) {
 		return
 	}
