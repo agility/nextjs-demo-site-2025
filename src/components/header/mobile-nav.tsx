@@ -36,7 +36,7 @@ export function MobileNav({ links, showMobileNav, onClose }: Props) {
 			<AnimatePresence>
 				{showMobileNav && (
 					<motion.div
-						className="fixed inset-0 bg-black/25 backdrop-blur-sm z-40 lg:hidden"
+						className="fixed inset-0 bg-black/25 dark:bg-black/50 backdrop-blur-sm z-40 lg:hidden"
 						initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
 						animate={{ opacity: 1, backdropFilter: 'blur(6px)' }}
 						exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
@@ -50,7 +50,7 @@ export function MobileNav({ links, showMobileNav, onClose }: Props) {
 			<AnimatePresence>
 				{showMobileNav && (
 					<motion.div
-						className="fixed top-0 right-0 h-full z-50 bg-white/90 backdrop-blur-xl shadow-lg w-[250px] lg:hidden"
+						className="fixed top-0 right-0 h-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-lg w-[250px] lg:hidden"
 						initial={{ x: '100%', backdropFilter: 'blur(0px)' }}
 						animate={{ x: 0, backdropFilter: 'blur(12px)' }}
 						exit={{ x: '100%', backdropFilter: 'blur(0px)' }}
@@ -63,10 +63,10 @@ export function MobileNav({ links, showMobileNav, onClose }: Props) {
 									setTimeout(() => onClose(), 400);
 								}
 							}}
-							className="absolute top-4 right-4 p-2 rounded-full hover:bg-blue-50/70 active:bg-blue-100/80 active:scale-95 transition-all touch-manipulation"
+							className="absolute top-4 right-4 p-2 rounded-full hover:bg-blue-50/70 dark:hover:bg-gray-700/70 active:bg-blue-100/80 dark:active:bg-gray-600/80 active:scale-95 transition-all touch-manipulation"
 							aria-label="Close navigation"
 						>
-							<XMarkIcon className="h-6 w-6 text-gray-700" />
+							<XMarkIcon className="h-6 w-6 text-gray-700 dark:text-gray-200" />
 						</button>
 						<div className="flex flex-col gap-6 py-16 px-6">
 							{links.map(({ link }, linkIndex) => (
@@ -83,7 +83,7 @@ export function MobileNav({ links, showMobileNav, onClose }: Props) {
 									<Link
 										href={link.href}
 										target={link.target}
-										className="text-base font-medium text-gray-950 block py-2 px-3 -mx-3 rounded-lg hover:bg-blue-50/60 active:bg-blue-100/70 active:scale-97 transition-all touch-manipulation"
+										className="text-base font-medium text-gray-950 dark:text-gray-100 block py-2 px-3 -mx-3 rounded-lg hover:bg-blue-50/60 dark:hover:bg-gray-700/60 active:bg-blue-100/70 dark:active:bg-gray-600/70 active:scale-97 transition-all touch-manipulation"
 										onClick={(e) => handleLinkClick(e, link.href)}
 									>
 										{link.text}

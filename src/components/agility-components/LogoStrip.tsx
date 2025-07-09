@@ -47,18 +47,18 @@ export const LogoStrip = async ({ module, languageCode }: UnloadedModuleProps) =
 								key={index}
 								alt={title}
 								src={logo.url}
-
+								width={158}
 								height={48}
-								className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+								className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:brightness-0 dark:invert"
 							/>
 						)
 					})}
 
 				</div>
 				<div className="mt-16 flex justify-center">
-					<p className="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm/6 text-gray-600 ring-1 ring-gray-900/5 ring-inset">
+					<p className="relative rounded-full bg-gray-50 dark:bg-gray-800 px-4 py-1.5 text-sm/6 text-gray-600 dark:text-gray-300 ring-1 ring-gray-900/5 dark:ring-white/10 ring-inset">
 						<span className="hidden md:inline" data-agility-field="ctaDescription">{ctaDescription}</span>
-						<Link href={cta.href} target={cta.target} className="font-semibold text-gray-600 hover:text-gray-700" data-agility-field="cta">
+						<Link href={cta.href} target={cta.target} className="font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" data-agility-field="cta">
 							<span aria-hidden="true" className="absolute inset-0" />{cta.text}{' '}
 							<span aria-hidden="true">&rarr;</span>
 						</Link>

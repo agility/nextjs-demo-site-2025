@@ -14,6 +14,7 @@ import type { IHeaderData } from '@/lib/cms-content/getHeaderContent'
 import { DesktopNav } from './desktop-nav'
 import { MobileNav } from './mobile-nav'
 import { BannerLink } from './banner-link'
+import { DarkModeToggle } from './dark-mode-toggle'
 import { useState } from 'react'
 
 const links = [
@@ -40,7 +41,7 @@ export function Navbar({ header }: Props) {
           <PlusGridRow className="relative flex justify-between">
             <div className="relative flex gap-6">
               <PlusGridItem className="p-3">
-                <Link href="/" title="Home" className='flex items-center gap-2 text-gray-900 hover:text-gray-800 text-xl'>
+                <Link href="/" title="Home" className='flex items-center gap-2 text-gray-900 dark:text-gray-100 hover:text-gray-800 dark:hover:text-gray-200 text-xl'>
                   <Logo className="h-9 hover:animate-spin" logo={header.logo} />
                   <span >{header.siteName}</span>
                 </Link>
@@ -55,14 +56,22 @@ export function Navbar({ header }: Props) {
                 </div>
               )}
             </div>
-            <DesktopNav links={header.links} />
-            <button
-              className="flex size-12 items-center justify-center self-center rounded-lg data-hover:bg-black/5 lg:hidden"
-              aria-label="Open main menu"
-              onClick={() => setShowMobileNav(!showMobileNav)}
-            >
-              <Bars2Icon className="size-6" />
-            </button>
+            <div className="flex items-center gap-4">
+              <DesktopNav links={header.links} />
+              <div className="hidden lg:flex">
+                <DarkModeToggle />
+              </div>
+            </div>
+            <div className="flex items-center gap-2 lg:hidden">
+              <DarkModeToggle />
+              <button
+                className="flex size-12 items-center justify-center self-center rounded-lg data-hover:bg-black/5 dark:data-hover:bg-white/5"
+                aria-label="Open main menu"
+                onClick={() => setShowMobileNav(!showMobileNav)}
+              >
+                <Bars2Icon className="size-6 text-gray-900 dark:text-gray-100" />
+              </button>
+            </div>
           </PlusGridRow>
         </PlusGrid>
         <MobileNav links={header.links}

@@ -12,7 +12,6 @@ interface AnimatedBentoCardProps {
 	description: ReactNode;
 	className?: string;
 	graphic: ReactNode;
-	dark?: boolean;
 	fade?: ('top' | 'bottom')[];
 }
 
@@ -23,7 +22,6 @@ export const AnimatedBentoCard = ({
 	description,
 	className,
 	graphic,
-	dark,
 	fade = []
 }: AnimatedBentoCardProps) => {
 	const ref = useRef<HTMLDivElement>(null)
@@ -50,7 +48,7 @@ export const AnimatedBentoCard = ({
 					title={title}
 					description={description}
 					className="h-full"
-					dark={dark}
+
 					fade={fade}
 					graphic={
 						<motion.div

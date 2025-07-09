@@ -16,10 +16,9 @@ export function Heading({
   return (
     <Element
       {...props}
-      data-dark={dark ? 'true' : undefined}
       className={clsx(
         className,
-        'text-4xl font-medium tracking-tighter text-pretty text-gray-950 data-dark:text-white sm:text-6xl',
+        'text-4xl font-medium tracking-tighter text-pretty text-gray-950 dark:text-white sm:text-6xl',
       )}
     />
   )
@@ -34,10 +33,10 @@ export function Subheading({
   return (
     <Element
       {...props}
-      data-dark={dark ? 'true' : undefined}
+
       className={clsx(
         className,
-        'font-mono text-xs/5 font-semibold tracking-widest text-gray-500 uppercase data-dark:text-gray-400',
+        'font-mono text-xs/5 font-semibold tracking-widest text-gray-500 uppercase dark:text-gray-400',
       )}
     />
   )
