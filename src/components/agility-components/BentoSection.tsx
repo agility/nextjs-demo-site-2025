@@ -7,6 +7,7 @@ import { Map } from "../map";
 import { Subheading, Heading } from "../text";
 import { getContentList } from "@/lib/cms/getContentList";
 import { AnimatedBentoCard } from "../animated-bento-card";
+import { clsx } from "clsx";
 
 interface IBentoSection {
 	subheading: string
@@ -62,36 +63,6 @@ export const BentoSection = async ({ module, languageCode }: UnloadedModuleProps
 					const isSecond = index === 1;
 					const isEven = itemsCount % 2 === 0;
 
-					// Determine appropriate classes based on position
-					let positionClasses = '';
-
-					if (itemsCount <= 2) {
-						// If we only have 1 or 2 items, make them span 3 columns each
-						positionClasses = isFirst
-							? "lg:col-span-3 lg:rounded-tl-4xl"
-							: "lg:col-span-3 lg:rounded-tr-4xl";
-					} else if (index < 2) {
-						// First row - large cards (3 columns each)
-						positionClasses = isFirst
-							? "lg:col-span-3 lg:rounded-tl-4xl"
-							: "lg:col-span-3 lg:rounded-tr-4xl";
-					} else {
-						// Second row - smaller cards (2 columns each)
-						if (isLast && !isEven && index % 3 === 2) {
-							// Last card in an odd-count collection (needing special treatment)
-							positionClasses = "lg:col-span-2 lg:rounded-br-4xl";
-						} else if (index === 2) {
-							// First card in second row
-							positionClasses = "lg:col-span-2 lg:rounded-bl-4xl";
-						} else if (isLast && (index === 4 || (itemsCount === 3 && index === 2))) {
-							// Last card in the grid
-							positionClasses = "lg:col-span-2 lg:rounded-br-4xl";
-						} else {
-							// Middle card in second row
-							positionClasses = "lg:col-span-2";
-						}
-					}
-
 					// Mobile specific classes
 					const mobileClasses = isFirst
 						? "max-lg:rounded-t-4xl"
@@ -108,11 +79,25 @@ export const BentoSection = async ({ module, languageCode }: UnloadedModuleProps
 							eyebrow={eyebrow}
 							title={title}
 							description={description}
-							className={`${positionClasses} ${mobileClasses}`}
+							className={clsx("ring-1 ring-black/5 dark:ring-white/15 bg-white dark:bg-gray-800 shadow-xs overflow-hidden rounded-lg",
+								// Position classes based on card position
+								itemsCount <= 2
+									? (isFirst ? "lg:col-span-3 lg:rounded-tl-4xl" : "lg:col-span-3 lg:rounded-tr-4xl")
+									: index < 2
+										? (isFirst ? "lg:col-span-3 lg:rounded-tl-4xl" : "lg:col-span-3 lg:rounded-tr-4xl")
+										: (isLast && !isEven && index % 3 === 2)
+											? "lg:col-span-2 lg:rounded-br-4xl"
+											: (index === 2)
+												? "lg:col-span-2 lg:rounded-bl-4xl"
+												: (isLast && (index === 4 || (itemsCount === 3 && index === 2)))
+													? "lg:col-span-2 lg:rounded-br-4xl"
+													: "lg:col-span-2",
+								mobileClasses
+							)}
 							delay={delay}
 							graphic={
 								<div
-									className="h-80 bg-cover bg-center"
+									className="h-80 bg-cover bg-center dark:grayscale"
 									style={{ backgroundImage: `url(${graphic.url})` }}
 								/>
 							}

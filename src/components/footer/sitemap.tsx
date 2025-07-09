@@ -2,7 +2,7 @@ import { Link } from '../link'
 import type { IFooter } from '@/lib/cms-content/getFooterContent'
 
 function SitemapHeading({ children }: { children: React.ReactNode }) {
-	return <h3 className="text-sm/6 font-medium text-gray-950/50">{children}</h3>
+	return <h3 className="text-sm/6 font-medium text-gray-950/50 dark:text-gray-50/50">{children}</h3>
 }
 
 function SitemapLinks({ children }: { children: React.ReactNode }) {
@@ -14,7 +14,7 @@ function SitemapLink(props: React.ComponentPropsWithoutRef<typeof Link>) {
 		<li>
 			<Link
 				{...props}
-				className="font-medium text-gray-950 data-hover:text-gray-950/75"
+				className="font-medium text-gray-950 dark:text-gray-50 data-hover:text-gray-950/75 dark:data-hover:text-gray-50/75"
 			/>
 		</li>
 	)

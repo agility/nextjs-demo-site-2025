@@ -20,7 +20,7 @@ export const Footer = ({ footerData, logo, siteName }: FooterProps) => {
 	return (
 		<footer className='mt-20'>
 			<Gradient className="relative" backgroundType='grays'>
-				<div className="absolute inset-2 rounded-4xl bg-white/80" />
+				<div className="absolute inset-2 rounded-4xl bg-white/80 dark:bg-gray-950/80" />
 				<Container>
 					<CallToAction footerData={footerData} />
 					<PlusGrid className="pb-16">
@@ -28,7 +28,7 @@ export const Footer = ({ footerData, logo, siteName }: FooterProps) => {
 							<div className="grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
 								<div className="col-span-2 flex">
 									<PlusGridItem className="pt-6 lg:pb-6 ">
-										<div className='flex items-center gap-2 text-gray-900 hover:text-gray-800 text-lg'>
+										<div className='flex items-center gap-2 text-gray-900 hover:text-gray-800 dark:text-gray-100 dark:hover:text-gray-200 text-lg'>
 											<Logo className="h-9 hover:animate-spin" logo={logo} />
 											<span >{siteName}</span>
 										</div>

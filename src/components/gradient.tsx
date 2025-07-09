@@ -30,7 +30,7 @@ export const Gradient = ({
                 gradientColors == "3-reds" ?
                   'bg-linear-115 from-[#EDBBBB] from-28% via-[#CF1D90] via-70% to-[#FF0008] dark:from-[#a98383] dark:via-[#8f1463] dark:to-[#b80006] sm:bg-linear-145' :
                   gradientColors == "grays" ?
-                    'bg-linear-115 from-white/90 from-28% via-gray-300/80 via-70% to-gray-600/50 dark:from-white/15 dark:via-gray-500/25 dark:to-gray-600/50 backdrop-blur-[2px] sm:bg-linear-145' : "",
+                    'bg-linear-115 from-white from-28% via-gray-300 via-70% to-gray-600 dark:from-gray-400/30 dark:via-gray-400/20 dark:to-gray-400/15 backdrop-blur-[2px] sm:bg-linear-145' : "",
         )}
       >{children}</div>
     )

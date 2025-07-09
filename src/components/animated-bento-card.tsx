@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import { BentoCard } from './bento-card'
 import type { ReactNode } from 'react'
+import clsx from 'clsx'
 
 interface AnimatedBentoCardProps {
 	delay?: number;
@@ -31,7 +32,7 @@ export const AnimatedBentoCard = ({
 	})
 
 	return (
-		<div ref={ref} className={`overflow-hidden ${className}`}>
+		<div ref={ref} className={clsx(`overflow-hidden`, className)}>
 			<motion.div
 				initial={{ opacity: 0, y: 50 }}
 				animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}

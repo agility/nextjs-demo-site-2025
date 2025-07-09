@@ -11,11 +11,11 @@ export function CallToAction({ footerData }: CallToActionProps) {
 		<div className="relative pt-20 pb-16 text-center sm:py-24">
 			<hgroup>
 				<Subheading>{footerData.ctaSubheading}</Subheading>
-				<p className="mt-6 text-3xl font-medium tracking-tight text-gray-950 sm:text-5xl">
+				<p className="mt-6 text-3xl font-medium tracking-tight text-gray-950 dark:text-gray-50 sm:text-5xl">
 					{footerData.ctaHeading}
 				</p>
 			</hgroup>
-			<p className="mx-auto mt-6 max-w-xs text-sm/6 text-gray-500">
+			<p className="mx-auto mt-6 max-w-xs text-sm/6 text-gray-500 dark:text-gray-400">
 				{footerData.ctaDescription}
 			</p>
 			<div className="mt-6">
