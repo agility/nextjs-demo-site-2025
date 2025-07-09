@@ -2,14 +2,15 @@ import { Container } from '@/components/container'
 import { GradientBackground } from '@/components/gradient'
 import { Navbar } from '@/components/header/navbar'
 import '@/styles/tailwind.css'
-import { ChevronRightIcon } from '@heroicons/react/24/solid'
 
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import type React from 'react'
 
 import { getHeaderContent } from "@/lib/cms-content/getHeaderContent"
 import { getAgilityContext } from '@/lib/cms/getAgilityContext'
+
+import { getFooterContent } from '@/lib/cms-content/getFooterContent'
+import { Footer } from '@/components/footer/footer'
 
 export const metadata: Metadata = {
   title: {
@@ -26,8 +27,9 @@ export default async function RootLayout({
 
 
   // get the header content
-  const { locale, sitemap } = await getAgilityContext()
-  const header = await getHeaderContent({ sitemap, locale })
+  const { locale } = await getAgilityContext()
+  const header = await getHeaderContent({ locale })
+  const footer = await getFooterContent({ locale })
 
   return (
     <html lang="en">
@@ -52,7 +54,9 @@ export default async function RootLayout({
             }
           </Container>
           {children}
-
+          {footer && header &&
+            <Footer footerData={footer} logo={header.logo} siteName={header.siteName} />
+          }
 
         </main>
 

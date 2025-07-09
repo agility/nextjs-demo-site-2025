@@ -3,9 +3,26 @@
 import { clsx } from 'clsx'
 import { motion } from "motion/react"
 
-export function Logo({ className }: { className?: string }) {
+import type { ImageField } from '@agility/nextjs'
 
+interface LogoProps {
+  className?: string
+  logo?: ImageField
+}
 
+export function Logo({ className, logo }: LogoProps) {
+  // If a logo is provided from CMS, use that
+  if (logo && logo.url) {
+    return <img
+      src={logo.url}
+      alt={logo.label || "Logo"}
+      className={className}
+      width={logo.width}
+      height={logo.height}
+    />
+  }
+
+  // Fallback to the SVG logo
   return (
     <motion.svg
       variants={{ idle: {}, active: {} }}

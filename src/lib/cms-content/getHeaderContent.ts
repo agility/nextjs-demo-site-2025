@@ -30,17 +30,13 @@ interface IHeader {
 
 interface Props {
 	locale: string
-	sitemap: string
 }
 
 /**
  * Get the site header content from the main `siteheader` content item,
- * as well as the nested sitemap for our navigation links.
+ * We are using nested linked content lists for the navigation structure.
  *
- * Most solutions use nested linked content lists for navigation, but for simplicity, we are using the sitemap here.
- *
- *
- * @param {Props} { locale, sitemap }
+ * @param {Props} { locale }
  * @return {*}
  */
 export const getHeaderContent = async ({ locale }: Props) => {

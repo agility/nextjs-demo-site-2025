@@ -41,12 +41,12 @@ export function Navbar({ header }: Props) {
             <div className="relative flex gap-6">
               <PlusGridItem className="p-3">
                 <Link href="/" title="Home" className='flex items-center gap-2 text-gray-900 hover:text-gray-800 text-xl'>
-                  <img src={header.logo.url} alt={header.siteName} className="h-9 hover:animate-spin" />
+                  <Logo className="h-9 hover:animate-spin" logo={header.logo} />
                   <span >{header.siteName}</span>
                 </Link>
               </PlusGridItem>
               {header.bannerLink && (
-                <div className="hidden lg:block">
+                <div className="hidden lg:flex items-center">
                   <BannerLink
                     href={header.bannerLink.href}
                     text={header.bannerLink.text}
