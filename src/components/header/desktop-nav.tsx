@@ -25,6 +25,7 @@ import {
 	XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { DarkModeToggle } from "./dark-mode-toggle"
 
 
 interface Props {
@@ -36,6 +37,7 @@ export function DesktopNav({ links }: Props) {
 	return (
 
 		<PopoverGroup as="nav" className="hidden lg:flex">
+
 			{links.map(({ link, subNavLinks, bottomLink1, bottomLink2 }, index) => (
 				<React.Fragment key={`${link.href}-${index}`}>
 					{
@@ -145,6 +147,9 @@ export function DesktopNav({ links }: Props) {
 					}
 				</React.Fragment>
 			))}
+			<PlusGridItem className="relative flex justify-center px-2 items-center" >
+				<DarkModeToggle />
+			</PlusGridItem>
 		</PopoverGroup>
 
 	)

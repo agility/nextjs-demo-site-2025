@@ -45,7 +45,7 @@ export default async function RootLayout({
           href="/blog/feed.xml"
         />
       </head>
-      <body className="text-gray-950 antialiased overflow-x-hidden">
+      <body className="text-gray-950 antialiased overflow-x-hidden dark:bg-black dark:text-gray-200">
         <main>
           {/* <GradientBackground /> */}
           <Container>

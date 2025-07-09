@@ -33,20 +33,26 @@ export const BackgroundHero = async ({ module, languageCode }: UnloadedModulePro
 
 	return (
 		<div className="relative -mt-36 z-0" data-agility-component={contentID}>
-			<Gradient className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-black/5 ring-inset" backgroundType={backgroundType} backgroundImage={backgroundImage} />
+			<Gradient
+				className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-black/5 dark:ring-white/10 ring-inset"
+				backgroundType={backgroundType}
+				backgroundImage={backgroundImage}
+			/>
 			<Container className="relative">
 
 				<div className="pt-48 pb-24 sm:pt-52 sm:pb-32 md:pt-64 md:pb-48">
 					<h1 className={clsx("font-display text-6xl/[0.9] font-medium tracking-tight text-balance sm:text-8xl/[0.8] md:text-9xl/[0.8]",
-						backgroundType === "background-image" ? "text-gray-100 text-shadow-lg" : "text-gray-950",
-
-
+						backgroundType === "background-image"
+							? "text-gray-100 text-shadow-lg"
+							: "text-gray-950 dark:text-gray-50",
 					)}
 						data-agility-field="heading">
 						{heading}
 					</h1>
 					<p className={clsx("mt-8 max-w-lg text-xl/7 font-medium sm:text-2xl/8",
-						backgroundType === "background-image" ? "text-gray-50/95 text-shadow-lg" : "text-gray-950/75",
+						backgroundType === "background-image"
+							? "text-gray-50/95 text-shadow-lg"
+							: "text-gray-950/75 dark:text-gray-200/90",
 					)}
 						data-agility-field="description">
 						{description}

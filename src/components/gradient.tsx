@@ -14,36 +14,64 @@ export const Gradient = ({
   backgroundImage,
   children
 }: GradientProps) => {
-
+  console.log("Gradient component rendered with backgroundType:", backgroundType, "and backgroundImage:", backgroundImage)
   if (backgroundType !== "background-image") {
     const gradientColors = backgroundType || "yellow-pink"
     return (
       <div
         className={clsx(
           className,
-          (!gradientColors || gradientColors == "yellow-pink") ? 'bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] sm:bg-linear-145' :
-            gradientColors == "3-blues" ? 'bg-linear-115 from-[#00e5ff] from-28% via-[#4444AB] via-70% to-[#000985] sm:bg-linear-145' :
-              gradientColors == "green-blue-yellow" ? 'bg-linear-115 from-[#2A7B9B] from-28% via-[#57C785] via-70% to-[#EDDD53] sm:bg-linear-145' :
-                gradientColors == "3-reds" ? 'bg-linear-115 from-[#EDBBBB] from-28% via-[#CF1D90] via-70% to-[#FF0008] sm:bg-linear-145' :
-                  gradientColors == "grays" ? 'bg-linear-115 from-[#f8f9fa] from-28% via-[#adb5bd] via-70% to-[#343a40] sm:bg-linear-145' : "",
+          (!gradientColors || gradientColors == "yellow-pink") ?
+            'bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] dark:from-[#8a7a3b] dark:via-[#a3428a] dark:to-[#6a29ab] sm:bg-linear-145' :
+            gradientColors == "3-blues" ?
+              'bg-linear-115 from-[#00e5ff] from-28% via-[#4444AB] via-70% to-[#000985] dark:from-[#00a9bd] dark:via-[#373782] dark:to-[#000761] sm:bg-linear-145' :
+              gradientColors == "green-blue-yellow" ?
+                'bg-linear-115 from-[#2A7B9B] from-28% via-[#57C785] via-70% to-[#EDDD53] dark:from-[#1d5469] dark:via-[#408c5f] dark:to-[#a69b37] sm:bg-linear-145' :
+                gradientColors == "3-reds" ?
+                  'bg-linear-115 from-[#EDBBBB] from-28% via-[#CF1D90] via-70% to-[#FF0008] dark:from-[#a98383] dark:via-[#8f1463] dark:to-[#b80006] sm:bg-linear-145' :
+                  gradientColors == "grays" ?
+                    'bg-linear-115 from-white/90 from-28% via-gray-300/70 via-70% to-gray-600/50 dark:from-white/5 dark:via-gray-500/15 dark:to-gray-700/30 backdrop-blur-[2px] sm:bg-linear-145' : "",
         )}
       >{children}</div>
     )
   } else {
     return (
-      <div
-        className={className}
-        style={{
-          backgroundImage: `url(${backgroundImage?.url}?format=auto&w=2200)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-        }}
-      >{children}</div>
+      <>
+        <div
+          className={className}
+          style={{
+            backgroundImage: `url(${backgroundImage?.url}?format=auto&w=2200)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+          }}
+        >{children}</div>
+        {/* Overlay for better contrast with the background image in both modes */}
+        <div className="absolute inset-0 z-0 bg-white/10 dark:bg-black/30 backdrop-blur-[1px]" />
+        <div className="relative z-10">{children}</div>
+      </>
+
+      // <div className={clsx(className, "relative")}>
+      //   <div
+      //     className="absolute inset-0 z-0"
+      //     style={{
+      //       backgroundImage: `url(${backgroundImage?.url}?format=auto&w=2200)`,
+      //       backgroundSize: 'cover',
+      //       backgroundPosition: 'center',
+      //       backgroundRepeat: 'no-repeat',
+      //       backgroundAttachment: 'fixed',
+      //     }}
+      //   />
+      //   {/* Overlay for better contrast with the background image in both modes */}
+      //   <div className="absolute inset-0 z-0 bg-white/10 dark:bg-gray-900/60 backdrop-blur-[1px]" />
+      //   <div className="relative z-10">{children}</div>
+      // </div>
     )
   }
 }
+
+
 
 export function GradientBackground() {
   return (
@@ -51,7 +79,7 @@ export function GradientBackground() {
       <div
         className={clsx(
           'absolute -top-44 -right-60 h-60 w-xl transform-gpu md:right-0',
-          'bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff]',
+          'bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] dark:from-[#8a7a3b] dark:via-[#a3428a] dark:to-[#6a29ab]',
           'rotate-[-10deg] rounded-full blur-3xl',
         )}
       />
