@@ -32,7 +32,7 @@ export default async function RootLayout({
   const footer = await getFooterContent({ locale })
 
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <head>
         <link
           rel="stylesheet"
@@ -45,9 +45,9 @@ export default async function RootLayout({
           href="/blog/feed.xml"
         />
       </head>
-      <body className="text-gray-950 antialiased">
-        <main >
-          <GradientBackground />
+      <body className="text-gray-950 antialiased overflow-x-hidden">
+        <main>
+          {/* <GradientBackground /> */}
           <Container>
             {header &&
               <Navbar header={header} />

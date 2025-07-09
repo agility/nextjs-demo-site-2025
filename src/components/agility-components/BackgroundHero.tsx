@@ -30,6 +30,7 @@ export const BackgroundHero = async ({ module, languageCode }: UnloadedModulePro
 		contentID: module.contentid,
 		languageCode,
 	})
+
 	return (
 		<div className="relative -mt-36 z-0" data-agility-component={contentID}>
 			<Gradient className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-black/5 ring-inset" backgroundType={backgroundType} backgroundImage={backgroundImage} />

@@ -34,7 +34,6 @@ export const LogoStrip = async ({ module, languageCode }: UnloadedModuleProps) =
 		languageCode,
 		take: 20, // adjust as needed
 	})
-
 	return (
 		<Container className="mt-20">
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
