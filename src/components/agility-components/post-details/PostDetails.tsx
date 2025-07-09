@@ -48,7 +48,7 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 									className="aspect-square size-6 rounded-full object-cover"
 								/>
 							)}
-							<div className="text-sm/5 text-gray-700">
+							<div className="text-sm/5 text-gray-700 dark:text-gray-300">
 								{post.author.fields.name}
 							</div>
 						</div>
@@ -59,14 +59,14 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 							<Link
 								key={post.category.contentID}
 								href={`/blog?category=${post.category.fields.name}`}
-								className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500"
+								className="rounded-full border border-dotted border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-2 text-sm/6 font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
 							>
 								{post.category.fields.name}
 							</Link>
 						</div>
 					)}
 				</div>
-				<div className="text-gray-700">
+				<div className="text-gray-700 dark:text-gray-300">
 					<div className="max-w-2xl xl:mx-auto">
 						{post.image && (
 							<PostImage
@@ -78,7 +78,7 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 						<div
 							data-agility-field="content"
 							data-agility-html="true"
-							className="prose max-w-full mb-20"
+							className="prose dark:prose-invert max-w-full mb-20"
 							dangerouslySetInnerHTML={renderHTML(post.content)}
 						/>
 
