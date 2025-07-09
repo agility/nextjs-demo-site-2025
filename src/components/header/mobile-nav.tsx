@@ -3,6 +3,7 @@ import { DisclosureButton, DisclosurePanel } from "@headlessui/react"
 import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 
 
@@ -17,6 +18,7 @@ interface Props {
 
 export function MobileNav({ links, showMobileNav, onClose }: Props) {
 
+	const router = useRouter()
 
 	const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
 		// Prevent immediate navigation
@@ -25,8 +27,8 @@ export function MobileNav({ links, showMobileNav, onClose }: Props) {
 		// Delay the navigation and closing to show the pressed animation
 		setTimeout(() => {
 			if (onClose) onClose();
-			// Navigate after showing the animation
-			window.location.href = href;
+			// Navigate after showing the animation using Next.js router
+			router.push(href);
 		}, 400);
 	}
 
