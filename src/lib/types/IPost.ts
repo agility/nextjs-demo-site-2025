@@ -4,12 +4,12 @@ import type { ICategory } from "./ICategory"
 import type { ITag } from "./ITag"
 
 export interface IPost {
-	title: string
+	heading: string
 	slug: string
-	date: string
+	postDate: string
 	content: string
 	image: ImageField
 	category: ContentItem<ICategory>
 	author: ContentItem<IAuthor>
-	tags: [ContentItem<ITag>]
+	tags: ContentItem<ITag>[]
 }

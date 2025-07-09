@@ -1,8 +1,11 @@
 
 import { BackgroundHero } from "./BackgroundHero";
 import { BentoSection } from "./BentoSection";
+import { Header } from "./Header";
 import { LogoStrip } from "./LogoStrip";
 import NoComponentFound from "./NoComponentFound";
+import { PostListing } from "./post-listing/PostListing.server";
+import PostDetails from "./PostDetails";
 
 import RichTextArea from "./RichTextArea";
 
@@ -14,7 +17,10 @@ const allModules = [
 	{ name: "RichTextArea", module: RichTextArea },
 	{ name: "BackgroundHero", module: BackgroundHero },
 	{ name: "BentoSection", module: BentoSection },
-	{ name: "LogoStrip", module: LogoStrip }
+	{ name: "Header", module: Header },
+	{ name: "LogoStrip", module: LogoStrip },
+	{ name: "PostListing", module: PostListing },
+	{ name: "PostDetails", module: PostDetails }
 ];
 
 /**

@@ -1,0 +1,74 @@
+import { Link } from '@/components/link'
+import { type IPostMin } from '@/lib/cms-content/getPostListing'
+import { AgilityPic } from '@agility/nextjs'
+
+interface PostsProps {
+	page: number
+	category?: string
+	posts: IPostMin[]
+}
+
+export async function Posts({ page, category, posts }: PostsProps) {
+	if (posts.length === 0) {
+		return <p className="mt-6 text-gray-500 dark:text-gray-400">No posts found.</p>
+	}
+
+	return (
+		<div className="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+			{posts.map((post) => (
+				<Link
+					key={post.contentID}
+					href={post.url}
+					className="group block"
+				>
+					<article className="relative isolate flex flex-col gap-8 lg:flex-row transition-all duration-200 ease-in-out hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-gray-800/50 rounded-3xl p-6 -m-6 focus-within:ring-2 focus-within:ring-gray-500 focus-within:ring-offset-2 dark:focus-within:ring-offset-gray-900">
+						<div className="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
+							<AgilityPic
+								image={post.image}
+								fallbackWidth={200}
+								className="absolute inset-0 size-full rounded-2xl bg-gray-50 dark:bg-gray-800 object-cover transition-transform duration-200 ease-in-out group-hover:scale-105"
+							/>
+							<div className="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 dark:ring-white/10 ring-inset" />
+						</div>
+						<div className="flex-1">
+							<div className="flex items-center gap-x-4 text-xs">
+								<time className="text-gray-500 dark:text-gray-400">
+									{post.date}
+								</time>
+								{post.category && (
+									<span className="relative z-10 rounded-full bg-gray-50 dark:bg-gray-800 px-3 py-1.5 font-medium text-gray-600 dark:text-gray-300 group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-200">
+										{post.category}
+									</span>
+								)}
+							</div>
+							<div className="relative max-w-xl">
+								<h3 className="mt-3 text-lg/6 font-semibold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-200">
+									{post.title}
+								</h3>
+								<p className="mt-5 text-sm/6 text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-200">{post.excerpt}</p>
+							</div>
+							{post.author && (
+								<div className="mt-6 flex border-t border-gray-900/5 dark:border-white/10 pt-6">
+									<div className="relative flex items-center gap-x-4">
+										{post.authorImage && (
+											<img
+												alt=""
+												src={post.authorImage.url}
+												className="size-10 rounded-full bg-gray-50 dark:bg-gray-800 object-cover transition-transform duration-200 ease-in-out group-hover:scale-110"
+											/>
+										)}
+										<div className="text-sm/6">
+											<p className="font-semibold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-200">
+												{post.author}
+											</p>
+										</div>
+									</div>
+								</div>
+							)}
+						</div>
+					</article>
+				</Link>
+			))}
+		</div>
+	)
+}

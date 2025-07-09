@@ -12,7 +12,7 @@ import InlineError from "@/components/InlineError"
 
 export const revalidate = 60
 export const runtime = "nodejs"
-export const dynamic = "force-static"
+//export const dynamic = "force-static"
 
 /**
  * Generate the list of pages that we want to generate a build time.
@@ -77,17 +77,25 @@ export async function generateMetadata(
 		parent,
 	});
 }
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params, searchParams }: PageProps) {
 
 	const agilityData = await getAgilityPage({ params });
 	if (!agilityData.page) notFound();
 
 	const AgilityPageTemplate = getPageTemplate(agilityData.pageTemplateName || "");
 
+	// Await searchParams if it's a Promise (Next.js 15+)
+	const resolvedSearchParams = searchParams ? await searchParams : {};
+	console.log("SEARCH PARAMS", resolvedSearchParams);
+
+	agilityData.globalData = agilityData.globalData || {};
+	agilityData.globalData["searchParams"] = resolvedSearchParams;
+
+
 	return (
 		<div data-agility-page={agilityData.page?.pageID} data-agility-dynamic-content={agilityData.sitemapNode.contentID}>
 			{AgilityPageTemplate ? (
-				<AgilityPageTemplate {...agilityData} />
+				<AgilityPageTemplate {...agilityData} searchParams={resolvedSearchParams} />
 			) : (
 				<InlineError message={`No template found for page template name: ${agilityData.pageTemplateName}`} />
 			)}

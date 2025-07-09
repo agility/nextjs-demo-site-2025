@@ -12,6 +12,9 @@ export interface IPostMin {
 	url: string
 	category: string
 	image: ImageField
+	author: string
+	authorImage: ImageField | null
+	excerpt: string
 }
 
 interface LoadPostsProp {
@@ -50,32 +53,45 @@ export const getPostListing = async ({ sitemap, locale, skip, take }: LoadPostsP
 		const dynamicUrls = resolvePostUrls(sitemapNodes, rawPosts.items)
 
 		const posts: IPostMin[] = rawPosts.items.map((post: any) => {
-			//category
-			const category = post.fields.category?.fields.title || "Uncategorized"
 
-			// date
-			const date = DateTime.fromJSDate(new Date(post.fields.date)).toFormat("LLL. dd, yyyy")
-
-			// url
+			const category = post.fields.category?.fields.name || "Uncategorized"
+			const author = post.fields.author?.fields.name || ""
+			const authorImage = post.fields.author?.fields.headShot || null
+			const date = DateTime.fromJSDate(new Date(post.fields.postDate)).toFormat("LLL. dd, yyyy")
 			const url = dynamicUrls[post.contentID] || "#"
 
-			// post image src
-			let imageSrc = post.fields.image.url
-
-			// post image alt
-			let imageAlt = post.fields.image?.label || null
+			//to get the excerpt, we can use the first 250 characters of the post "content" field
+			//but we also have to convert it from HTML to plain text
+			//we also want to ensure we end on a complete sentence, so we will truncate it to the last period before the 250th character
+			//if there is no content, we will use an empty string
+			//and append "..." to the end
+			//this is a simple way to get an excerpt, but it may not be perfect
+			let excerpt = post.fields.content || ""
+			excerpt = excerpt.replace(/<[^>]*>/g, "") // remove HTML tags
+			if (excerpt.length > 250) {
+				const lastPeriodIndex = excerpt.lastIndexOf(".", 250)
+				if (lastPeriodIndex !== -1) {
+					excerpt = excerpt.substring(0, lastPeriodIndex + 1)
+				} else {
+					excerpt = excerpt.substring(0, 250) + "..."
+				}
+			}
 
 			return {
 				contentID: post.contentID,
-				title: post.fields.title,
+				title: post.fields.heading,
 				date,
 				url,
 				category,
-				image: post.fields.image
+				image: post.fields.image,
+				author,
+				authorImage,
+				excerpt
 			}
 		})
 
 		return {
+			totalCount: rawPosts.totalCount,
 			posts,
 		}
 	} catch (error) {
