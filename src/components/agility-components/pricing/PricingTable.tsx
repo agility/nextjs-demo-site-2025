@@ -142,7 +142,7 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 							<Subheading data-agility-field="subtitle">{subtitle}</Subheading>
 						)}
 						{title && (
-							<h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl" data-agility-field="title">
+							<h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl" data-agility-field="title">
 								{title}
 							</h2>
 						)}
@@ -179,15 +179,13 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 						<tr className="sm:hidden">
 							<td className="p-0">
 								<div className="relative inline-block">
-									<Menu>
-										<MenuButton className="flex items-center justify-between gap-2 font-medium">
-											{selectedTier.name}
-											<ChevronUpDownIcon className="size-4 fill-gray-900" />
-										</MenuButton>
-										<MenuItems
-											anchor="bottom start"
-											className="min-w-(--button-width) rounded-lg bg-white p-1 shadow-lg ring-1 ring-gray-200 [--anchor-gap:6px] [--anchor-offset:-4px] [--anchor-padding:10px]"
-										>
+									<Menu>									<MenuButton className="flex items-center justify-between gap-2 font-medium text-gray-900 dark:text-gray-100">
+										{selectedTier.name}
+										<ChevronUpDownIcon className="size-4 fill-gray-900 dark:fill-gray-100" />
+									</MenuButton>									<MenuItems
+										anchor="bottom start"
+										className="min-w-(--button-width) rounded-lg bg-white dark:bg-gray-800 p-1 shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 [--anchor-gap:6px] [--anchor-offset:-4px] [--anchor-padding:10px]"
+									>
 											{tiers.map((tier) => (
 												<MenuItem key={tier.name}>
 													<Link
@@ -196,7 +194,7 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 														data-selected={
 															tier === selectedTier ? true : undefined
 														}
-														className="group flex items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-200"
+														className="group flex items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-200 dark:data-focus:bg-gray-700 text-gray-900 dark:text-gray-100"
 													>
 														{tier.name}
 														<CheckIcon className="hidden size-4 group-data-selected:block" />
@@ -204,9 +202,8 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 												</MenuItem>
 											))}
 										</MenuItems>
-									</Menu>
-									<div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
-										<ChevronUpDownIcon className="size-4 fill-gray-900" />
+									</Menu>								<div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+										<ChevronUpDownIcon className="size-4 fill-gray-900 dark:fill-gray-100" />
 									</div>
 								</div>
 							</td>
@@ -242,7 +239,7 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 										colSpan={4}
 										className="px-0 pt-10 pb-0 group-first-of-type:pt-5"
 									>
-										<div className="-mx-4 rounded-lg bg-gray-50 px-4 py-3 text-sm/6 font-semibold">
+										<div className="-mx-4 rounded-lg bg-gray-50 dark:bg-gray-800 px-4 py-3 text-sm/6 font-semibold text-gray-900 dark:text-gray-100">
 											{section}
 										</div>
 									</th>
@@ -252,11 +249,11 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 									.map(({ name }) => (
 										<tr
 											key={name}
-											className="border-b border-gray-100 last:border-none"
+											className="border-b border-gray-100 dark:border-gray-700 last:border-none"
 										>
 											<th
 												scope="row"
-												className="px-0 py-4 text-sm/6 font-normal text-gray-600"
+												className="px-0 py-4 text-sm/6 font-normal text-gray-600 dark:text-gray-400"
 											>
 												{name}
 											</th>
@@ -289,7 +286,7 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 																</span>
 															</>
 														) : (
-															<div className="text-sm/6">{value}</div>
+															<div className="text-sm/6 text-gray-900 dark:text-gray-100">{value}</div>
 														)}
 													</td>
 												)
