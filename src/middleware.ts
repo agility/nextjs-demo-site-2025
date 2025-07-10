@@ -5,7 +5,7 @@ import { getDynamicPageURL } from "@agility/nextjs/node"
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
 
-
+	console.log("Middleware running for request:", request.nextUrl.pathname)
 	/*****************************
 	 * *** AGILITY MIDDLEWARE ***
 	 * 1: Check if this is a preview request,
@@ -60,6 +60,6 @@ export const config = {
 		 * - _next/image (image optimization files)
 		 * - favicon.ico (favicon file)
 		 */
-		'/((?!api|_next/static|_next/image|favicon.ico).*)',
+		'/((?!api|_next/static|_next/image|favicon.ico|*.json).*)',
 	],
 }
