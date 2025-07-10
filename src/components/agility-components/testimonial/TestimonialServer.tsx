@@ -12,7 +12,6 @@ interface ITestimonialComponent {
 export const Testimonial = async ({ module, languageCode }: UnloadedModuleProps) => {
 	const {
 		fields: {
-			quote,
 			testimonial,
 			backgroundPattern = "/dot-texture.svg"
 		},
@@ -24,7 +23,7 @@ export const Testimonial = async ({ module, languageCode }: UnloadedModuleProps)
 	})
 
 	return <TestimonialClient
-		quote={quote}
+		quote={testimonial.fields.quote}
 		authorName={testimonial.fields.name}
 		authorTitle={testimonial.fields.title}
 		authorImage={testimonial.fields.image}
