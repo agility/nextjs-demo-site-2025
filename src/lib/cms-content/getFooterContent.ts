@@ -72,7 +72,7 @@ export const getFooterContent = async ({ locale }: Props): Promise<IFooter | nul
 		That's ok for this use case, since footers are not updated often.
 		*/
 
-		let footer = await getContentList({
+		let footer = await getContentList<IFooterItem>({
 			referenceName: "footer",
 			languageCode: locale,
 			take: 1,

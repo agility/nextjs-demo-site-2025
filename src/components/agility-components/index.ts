@@ -6,6 +6,10 @@ import { LogoStrip } from "./LogoStrip";
 import NoComponentFound from "./NoComponentFound";
 import { PostListing } from "./post-listing/PostListing.server";
 import PostDetails from "./post-details/PostDetails";
+import { PricingCards } from "./pricing/PricingCards";
+import { PricingTable } from "./pricing/PricingTable";
+import { FrequentlyAskedQuestions } from "./pricing/FrequentlyAskedQuestions";
+import { Testimonial } from "./pricing/Testimonial";
 
 import RichTextArea from "./RichTextArea";
 
@@ -20,7 +24,11 @@ const allModules = [
 	{ name: "Header", module: Header },
 	{ name: "LogoStrip", module: LogoStrip },
 	{ name: "PostListing", module: PostListing },
-	{ name: "PostDetails", module: PostDetails }
+	{ name: "PostDetails", module: PostDetails },
+	{ name: "PricingCards", module: PricingCards },
+	{ name: "PricingTable", module: PricingTable },
+	{ name: "FrequentlyAskedQuestions", module: FrequentlyAskedQuestions },
+	{ name: "Testimonial", module: Testimonial }
 ];
 
 /**

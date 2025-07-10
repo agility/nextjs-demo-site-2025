@@ -3,6 +3,7 @@ import { type ContentList } from "@agility/content-fetch"
 import { type ImageField } from "@agility/nextjs"
 import { getContentList } from "@/lib/cms/getContentList"
 import { getSitemapFlat } from "@/lib/cms/getSitemapFlat"
+import { type IPost } from "../types/IPost"
 
 export interface IPostMin {
 
@@ -40,7 +41,7 @@ export const getPostListing = async ({ sitemap, locale, skip, take }: LoadPostsP
 		})
 
 		// get posts...
-		let rawPosts: ContentList = await getContentList({
+		let rawPosts: ContentList = await getContentList<IPost>({
 			referenceName: "posts",
 			languageCode: locale,
 			contentLinkDepth: 2,
