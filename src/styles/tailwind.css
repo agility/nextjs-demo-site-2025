@@ -8,6 +8,34 @@
   --radius-4xl: 2rem;
 }
 
+/* Hide scrollbar for webkit browsers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth scrolling for carousel */
+.carousel-container {
+  scroll-behavior: smooth;
+}
+
+/* Navigation dots styling */
+.carousel-dot {
+  transition: all 0.2s ease-in-out;
+}
+
+.carousel-dot:hover {
+  transform: scale(1.1);
+}
+
+.carousel-dot.active {
+  transform: scale(1.25);
+}
+
 @keyframes move-x {
   0% {
     transform: translateX(var(--move-x-from));
