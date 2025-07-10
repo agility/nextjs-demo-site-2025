@@ -35,62 +35,62 @@ interface PricingTier {
 	features: Feature[]
 }
 
-const pricingTable = [
-	{
-		name: 'Starter',
-		href: '/contact-us',
-		features: [
-			{ section: 'Features', name: 'Accounts', value: 3 },
-			{ section: 'Features', name: 'Deal progress boards', value: 5 },
-			{ section: 'Features', name: 'Sourcing platforms', value: 'Select' },
-			{ section: 'Features', name: 'Contacts', value: 100 },
-			{ section: 'Features', name: 'AI assisted outreach', value: false },
-			{ section: 'Analysis', name: 'Competitor analysis', value: false },
-			{ section: 'Analysis', name: 'Dashboard reporting', value: false },
-			{ section: 'Analysis', name: 'Community insights', value: false },
-			{ section: 'Analysis', name: 'Performance analysis', value: false },
-			{ section: 'Support', name: 'Email support', value: true },
-			{ section: 'Support', name: '24 / 7 call center support', value: false },
-			{ section: 'Support', name: 'Dedicated account manager', value: false },
-		],
-	},
-	{
-		name: 'Growth',
-		href: '#',
-		features: [
-			{ section: 'Features', name: 'Accounts', value: 10 },
-			{ section: 'Features', name: 'Deal progress boards', value: 'Unlimited' },
-			{ section: 'Features', name: 'Sourcing platforms', value: '100+' },
-			{ section: 'Features', name: 'Contacts', value: 1000 },
-			{ section: 'Features', name: 'AI assisted outreach', value: true },
-			{ section: 'Analysis', name: 'Competitor analysis', value: '5 / month' },
-			{ section: 'Analysis', name: 'Dashboard reporting', value: true },
-			{ section: 'Analysis', name: 'Community insights', value: true },
-			{ section: 'Analysis', name: 'Performance analysis', value: true },
-			{ section: 'Support', name: 'Email support', value: true },
-			{ section: 'Support', name: '24 / 7 call center support', value: true },
-			{ section: 'Support', name: 'Dedicated account manager', value: false },
-		],
-	},
-	{
-		name: 'Enterprise',
-		href: '#',
-		features: [
-			{ section: 'Features', name: 'Accounts', value: 'Unlimited' },
-			{ section: 'Features', name: 'Deal progress boards', value: 'Unlimited' },
-			{ section: 'Features', name: 'Sourcing platforms', value: '100+' },
-			{ section: 'Features', name: 'Contacts', value: 'Unlimited' },
-			{ section: 'Features', name: 'AI assisted outreach', value: true },
-			{ section: 'Analysis', name: 'Competitor analysis', value: 'Unlimited' },
-			{ section: 'Analysis', name: 'Dashboard reporting', value: true },
-			{ section: 'Analysis', name: 'Community insights', value: true },
-			{ section: 'Analysis', name: 'Performance analysis', value: true },
-			{ section: 'Support', name: 'Email support', value: true },
-			{ section: 'Support', name: '24 / 7 call center support', value: true },
-			{ section: 'Support', name: 'Dedicated account manager', value: true },
-		],
-	},
-]
+// const pricingTable = [
+// 	{
+// 		name: 'Starter',
+// 		href: '/contact-us',
+// 		features: [
+// 			{ section: 'Features', name: 'Accounts', value: 3 },
+// 			{ section: 'Features', name: 'Deal progress boards', value: 5 },
+// 			{ section: 'Features', name: 'Sourcing platforms', value: 'Select' },
+// 			{ section: 'Features', name: 'Contacts', value: 100 },
+// 			{ section: 'Features', name: 'AI assisted outreach', value: false },
+// 			{ section: 'Analysis', name: 'Competitor analysis', value: false },
+// 			{ section: 'Analysis', name: 'Dashboard reporting', value: false },
+// 			{ section: 'Analysis', name: 'Community insights', value: false },
+// 			{ section: 'Analysis', name: 'Performance analysis', value: false },
+// 			{ section: 'Support', name: 'Email support', value: true },
+// 			{ section: 'Support', name: '24 / 7 call center support', value: false },
+// 			{ section: 'Support', name: 'Dedicated account manager', value: false },
+// 		],
+// 	},
+// 	{
+// 		name: 'Growth',
+// 		href: '#',
+// 		features: [
+// 			{ section: 'Features', name: 'Accounts', value: 10 },
+// 			{ section: 'Features', name: 'Deal progress boards', value: 'Unlimited' },
+// 			{ section: 'Features', name: 'Sourcing platforms', value: '100+' },
+// 			{ section: 'Features', name: 'Contacts', value: 1000 },
+// 			{ section: 'Features', name: 'AI assisted outreach', value: true },
+// 			{ section: 'Analysis', name: 'Competitor analysis', value: '5 / month' },
+// 			{ section: 'Analysis', name: 'Dashboard reporting', value: true },
+// 			{ section: 'Analysis', name: 'Community insights', value: true },
+// 			{ section: 'Analysis', name: 'Performance analysis', value: true },
+// 			{ section: 'Support', name: 'Email support', value: true },
+// 			{ section: 'Support', name: '24 / 7 call center support', value: true },
+// 			{ section: 'Support', name: 'Dedicated account manager', value: false },
+// 		],
+// 	},
+// 	{
+// 		name: 'Enterprise',
+// 		href: '#',
+// 		features: [
+// 			{ section: 'Features', name: 'Accounts', value: 'Unlimited' },
+// 			{ section: 'Features', name: 'Deal progress boards', value: 'Unlimited' },
+// 			{ section: 'Features', name: 'Sourcing platforms', value: '100+' },
+// 			{ section: 'Features', name: 'Contacts', value: 'Unlimited' },
+// 			{ section: 'Features', name: 'AI assisted outreach', value: true },
+// 			{ section: 'Analysis', name: 'Competitor analysis', value: 'Unlimited' },
+// 			{ section: 'Analysis', name: 'Dashboard reporting', value: true },
+// 			{ section: 'Analysis', name: 'Community insights', value: true },
+// 			{ section: 'Analysis', name: 'Performance analysis', value: true },
+// 			{ section: 'Support', name: 'Email support', value: true },
+// 			{ section: 'Support', name: '24 / 7 call center support', value: true },
+// 			{ section: 'Support', name: 'Dedicated account manager', value: true },
+// 		],
+// 	},
+// ]
 
 export const PricingTable = async ({ module, languageCode, globalData }: UnloadedModuleProps) => {
 	const {
@@ -110,7 +110,7 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 	try {
 		// Validate featuresJSON is a valid JSON string}
 
-		console.log("PricingTable module fields:", featuresJSON)
+
 		// Transform the tiers data
 		tiers = JSON.parse(featuresJSON)
 	} catch (error) {

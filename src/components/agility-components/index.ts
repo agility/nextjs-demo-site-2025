@@ -9,7 +9,7 @@ import PostDetails from "./post-details/PostDetails";
 import { PricingCards } from "./pricing/PricingCards";
 import { PricingTable } from "./pricing/PricingTable";
 import { FrequentlyAskedQuestions } from "./pricing/FrequentlyAskedQuestions";
-import { Testimonial } from "./pricing/Testimonial";
+import { Testimonial } from "./testimonial/TestimonialServer";
 
 import RichTextArea from "./RichTextArea";
 
