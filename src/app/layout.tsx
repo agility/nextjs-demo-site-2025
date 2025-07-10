@@ -11,6 +11,7 @@ import { getAgilityContext } from '@/lib/cms/getAgilityContext'
 
 import { getFooterContent } from '@/lib/cms-content/getFooterContent'
 import { Footer } from '@/components/footer/footer'
+import PreviewBar from '@/components/agility-components/PreviewBar'
 
 export const metadata: Metadata = {
   title: {
@@ -25,9 +26,8 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
 
-
+  const { locale, isDevelopmentMode, isPreview } = await getAgilityContext()
   // get the header content
-  const { locale } = await getAgilityContext()
   const header = await getHeaderContent({ locale })
   const footer = await getFooterContent({ locale })
 
@@ -60,6 +60,9 @@ export default async function RootLayout({
           }
 
         </main>
+        <PreviewBar
+          {...{ isDevelopmentMode, isPreview }}
+        />
       </body>
     </html>
   )
