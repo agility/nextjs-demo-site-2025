@@ -10,6 +10,7 @@ import { PricingCards } from "./pricing/PricingCards";
 import { PricingTable } from "./pricing/PricingTable";
 import { FrequentlyAskedQuestions } from "./pricing/FrequentlyAskedQuestions";
 import { Testimonial } from "./testimonial/TestimonialServer";
+import { Testimonials } from "./testimonials/TestimonialsServer";
 
 import RichTextArea from "./RichTextArea";
 
@@ -28,7 +29,8 @@ const allModules = [
 	{ name: "PricingCards", module: PricingCards },
 	{ name: "PricingTable", module: PricingTable },
 	{ name: "FrequentlyAskedQuestions", module: FrequentlyAskedQuestions },
-	{ name: "Testimonial", module: Testimonial }
+	{ name: "Testimonial", module: Testimonial },
+	{ name: "Testimonials", module: Testimonials }
 ];
 
 /**
