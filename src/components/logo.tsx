@@ -13,13 +13,13 @@ interface LogoProps {
 export function Logo({ className, logo }: LogoProps) {
   // If a logo is provided from CMS, use that
   if (logo && logo.url) {
-    return <img
+    return <div className='p-1 bg-white/30 rounded-full'><img
       src={logo.url}
       alt={logo.label || "Logo"}
       className={className}
       width={logo.width}
       height={logo.height}
-    />
+    /></div>
   }
 
   // Fallback to the SVG logo
