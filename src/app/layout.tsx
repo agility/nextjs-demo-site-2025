@@ -12,6 +12,7 @@ import { getAgilityContext } from '@/lib/cms/getAgilityContext'
 import { getFooterContent } from '@/lib/cms-content/getFooterContent'
 import { Footer } from '@/components/footer/footer'
 import PreviewBar from '@/components/preview-bar'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: {
@@ -60,9 +61,12 @@ export default async function RootLayout({
           }
 
         </main>
+        {/* Preview indicator - normally not needed in production, but we show it here for illustration purposes */}
         <PreviewBar
           {...{ isDevelopmentMode, isPreview }}
         />
+        {/* Web Studio SDK */}
+        <Script src="https://unpkg.com/@agility/web-studio-sdk@latest/dist/index.js" />
       </body>
     </html>
   )
