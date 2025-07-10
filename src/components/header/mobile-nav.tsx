@@ -1,22 +1,27 @@
 import type { ILink } from "@/lib/cms-content/getHeaderContent"
+import type { ImageField } from "@agility/nextjs"
 import { DisclosureButton, DisclosurePanel } from "@headlessui/react"
 import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { Logo } from "../logo"
+import { PlusGridItem } from "../plus-grid"
 
 
 
 interface Props {
 	links: ILink[]
 	showMobileNav: boolean
+	siteName?: string
+	logo?: ImageField
 	onClose?: () => void
 }
 
 
 
 
-export function MobileNav({ links, showMobileNav, onClose }: Props) {
+export function MobileNav({ links, showMobileNav, onClose, siteName, logo }: Props) {
 
 	const router = useRouter()
 
@@ -65,12 +70,24 @@ export function MobileNav({ links, showMobileNav, onClose }: Props) {
 									setTimeout(() => onClose(), 400);
 								}
 							}}
-							className="absolute top-4 right-4 p-2 rounded-full hover:bg-blue-50/70 dark:hover:bg-gray-700/70 active:bg-blue-100/80 dark:active:bg-gray-600/80 active:scale-95 transition-all touch-manipulation"
+							className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-50/70 dark:hover:bg-gray-700/70 active:bg-gray-100/80 dark:active:bg-gray-600/80 active:scale-95 transition-all touch-manipulation"
 							aria-label="Close navigation"
 						>
 							<XMarkIcon className="h-6 w-6 text-gray-700 dark:text-gray-200" />
 						</button>
+
 						<div className="flex flex-col gap-6 py-16 px-6">
+							<div>
+
+								<Link
+									href="/"
+									title="Home" className='flex items-center gap-2 text-xl font-medium text-gray-950 dark:text-gray-100 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50/60 dark:hover:bg-gray-700/60 active:bg-gray-100/70 dark:active:bg-gray-600/70 active:scale-97 transition-all touch-manipulation'
+									onClick={(e) => handleLinkClick(e, "/")}>
+									<Logo className="h-9 hover:animate-spin" logo={logo} />
+									<span >{siteName}</span>
+								</Link>
+
+							</div>
 							{links.map(({ link }, linkIndex) => (
 								<motion.div
 									initial={{ opacity: 0, y: -20 }}
@@ -85,7 +102,7 @@ export function MobileNav({ links, showMobileNav, onClose }: Props) {
 									<Link
 										href={link.href}
 										target={link.target}
-										className="text-base font-medium text-gray-950 dark:text-gray-100 block py-2 px-3 -mx-3 rounded-lg hover:bg-blue-50/60 dark:hover:bg-gray-700/60 active:bg-blue-100/70 dark:active:bg-gray-600/70 active:scale-97 transition-all touch-manipulation"
+										className="text-base font-medium text-gray-950 dark:text-gray-100 block py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50/60 dark:hover:bg-gray-700/60 active:bg-gray-100/70 dark:active:bg-gray-600/70 active:scale-97 transition-all touch-manipulation"
 										onClick={(e) => handleLinkClick(e, link.href)}
 									>
 										{link.text}

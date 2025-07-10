@@ -4,6 +4,7 @@ import clsx from "clsx"
 import Image from "next/image"
 import React, { useState } from "react"
 import { FaInfoCircle, FaGithub, FaEye, FaTimes, FaChevronDown, FaChevronUp, FaSpinner } from "react-icons/fa"
+import { Button } from "./button"
 
 interface Props {
 	isPreview: boolean | undefined
@@ -15,7 +16,7 @@ interface Props {
  **/
 const PreviewBar = ({ isPreview, isDevelopmentMode }: Props) => {
 	const [open, setOpen] = useState(false)
-	const [isPreviewRequested, setisPreviewRequested] = useState(false)
+
 
 	// handle view function to determine preview / live mode
 	const handleView = () => {
@@ -34,22 +35,26 @@ const PreviewBar = ({ isPreview, isDevelopmentMode }: Props) => {
 	}
 
 	return (
-		<div className="fixed top-6 left-6 z-50 flex flex-col items-end">
+		<div className="fixed top-[40%] right-0.5 z-50 flex flex-col items-end">
 			{/* Collapsed floating button */}
 			{!open && (
-				<button
-					className={clsx(`rounded-full shadow-lg bg-gray-400 text-white w-14 h-14 flex items-center justify-center border-2 border-white  transition-all duration-200 relative`,
-						`dark:border-gray-700 dark:bg-gray-900 hover:scale-105`)}
-					onClick={() => setOpen(true)}
-					title={isPreview ? 'Preview Mode' : 'Live Mode'}
-				>
-					<img src="https://static.agilitycms.com/brand/agility-triangle-yellow.svg" alt="Agility Website | Preview Mode" width={28} height={28} className="w-7 h-7" />
+				<>
+					<button
+						className={clsx(`cursor-pointer rounded-full shadow-lg bg-gray-400 text-white w-10 h-10 flex items-center justify-center border-2 border-white transition-all duration-300 relative overflow-hidden group`,
+							`dark:border-gray-700 dark:bg-gray-900 hover:scale-110 hover:shadow-xl`,
+							`before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 hover:before:translate-x-[100%]`)}
+						onClick={() => setOpen(true)}
+						title={isPreview ? 'Preview Mode' : 'Live Mode'}
+					>
+						<img src="https://static.agilitycms.com/brand/agility-triangle-yellow.svg" alt="Agility Website | Preview Mode" width={20} height={20} className="w-5 h-5" />
+
+					</button>
 					{isPreview && (
-						<div className="absolute -top-1 p-0.5 -right-1 dark:bg-gray-600 bg-gray-200 rounded-full flex items-center justify-center">
-							<FaEye className="w-4 h-4 text-gray-500 dark:text-gray-200" />
+						<div className="absolute -top-0.5 p-0.5 -right-0.5 dark:bg-gray-600 bg-gray-200 rounded-full flex items-center justify-center">
+							<FaEye className="w-3 h-3 text-gray-500 dark:text-gray-200" />
 						</div>
 					)}
-				</button>
+				</>
 			)}
 
 			{/* Expanded toolbar */}
@@ -67,18 +72,17 @@ const PreviewBar = ({ isPreview, isDevelopmentMode }: Props) => {
 							</p>
 						</div>
 						<div className="flex flex-col gap-3">
-							<button
-								className="w-full flex items-center gap-2 justify-center py-3 px-4 rounded-md bg-agility text-white font-semibold text-base hover:bg-agility/90 transition disabled:bg-gray-700 dark:bg-gray-500 dark:hover:bg-gray-600 dark:disabled:bg-gray-700"
-								onClick={handleView}
-								aria-disabled={isPreviewRequested}
-								disabled={isPreviewRequested}
-							>
-								{isPreviewRequested && <FaSpinner className="animate-spin" />}
-								{isPreview ? 'Exit Preview' : 'Enter Preview'}
-							</button>
+							{isPreview &&
+								<Button
+									variant="outline"
+									onClick={handleView}
+								>
+									Exit Preview
+								</Button>
+							}
 							<div className="flex gap-4 justify-between mt-2">
 								<a href="https://agilitycms.com/docs" target="_blank" rel="noreferrer" title="Agility Docs" className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 hover:underline"><FaInfoCircle />Agility Docs</a>
-								<a href="https://github.com/agility/agilitycms-nextjs-starter" target="_blank" rel="noreferrer" title="View on GitHub" className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 hover:underline"><FaGithub />View Source on GitHub</a>
+								<a href="https://github.com/agility/nextjs-demo-site-2025" target="_blank" rel="noreferrer" title="View on GitHub" className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 hover:underline"><FaGithub />View Source on GitHub</a>
 							</div>
 						</div>
 					</div>

@@ -76,6 +76,8 @@ export function Navbar({ header }: Props) {
         </PlusGrid>
         <MobileNav links={header.links}
           showMobileNav={showMobileNav}
+          siteName={header.siteName}
+          logo={header.logo}
           onClose={() => setShowMobileNav(false)} />
       </header>
     </>

@@ -11,7 +11,7 @@ import { getAgilityContext } from '@/lib/cms/getAgilityContext'
 
 import { getFooterContent } from '@/lib/cms-content/getFooterContent'
 import { Footer } from '@/components/footer/footer'
-import PreviewBar from '@/components/agility-components/PreviewBar'
+import PreviewBar from '@/components/preview-bar'
 
 export const metadata: Metadata = {
   title: {
@@ -46,7 +46,7 @@ export default async function RootLayout({
         />
         <meta name="view-transition" content="same-origin" />
       </head>
-      <body className="text-gray-950 antialiased overflow-x-hidden dark:bg-black dark:text-gray-200">
+      <body className="text-gray-950 antialiased overflow-x-hidden dark:bg-black dark:text-gray-200 transition-colors">
         <main>
           {/* <GradientBackground /> */}
           <Container>
