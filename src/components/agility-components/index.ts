@@ -2,6 +2,7 @@
 import { BackgroundHero } from "./BackgroundHero";
 import { BentoSection } from "./BentoSection";
 import { Header } from "./Header";
+import { Hero } from "./Hero";
 import { LogoStrip } from "./LogoStrip";
 import NoComponentFound from "./NoComponentFound";
 import { PostListing } from "./post-listing/PostListing.server";
@@ -23,6 +24,7 @@ const allModules = [
 	{ name: "BackgroundHero", module: BackgroundHero },
 	{ name: "BentoSection", module: BentoSection },
 	{ name: "Header", module: Header },
+	{ name: "Hero", module: Hero },
 	{ name: "LogoStrip", module: LogoStrip },
 	{ name: "PostListing", module: PostListing },
 	{ name: "PostDetails", module: PostDetails },
