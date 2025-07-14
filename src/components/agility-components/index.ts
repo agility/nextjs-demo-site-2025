@@ -1,6 +1,6 @@
-
 import { BackgroundHero } from "./BackgroundHero";
 import { BentoSection } from "./BentoSection";
+import { CompanyStats } from "./company-stats";
 import { Header } from "./Header";
 import { Hero } from "./Hero";
 import { LogoStrip } from "./LogoStrip";
@@ -24,6 +24,7 @@ const allModules = [
 	{ name: "RichTextArea", module: RichTextArea },
 	{ name: "BackgroundHero", module: BackgroundHero },
 	{ name: "BentoSection", module: BentoSection },
+	{ name: "CompanyStats", module: CompanyStats },
 	{ name: "Header", module: Header },
 	{ name: "Hero", module: Hero },
 	{ name: "LogoStrip", module: LogoStrip },
