@@ -15,6 +15,7 @@ import { Testimonials } from "./testimonials/TestimonialsServer";
 
 import RichTextArea from "./RichTextArea";
 import { TeamListing } from "./TeamListing";
+import { ABTestHero } from "./ABTestHero";
 
 
 // All of the Agility Page Module Components that are in use in this site need to be imported into this index file.
@@ -27,6 +28,7 @@ const allModules = [
 	{ name: "CompanyStats", module: CompanyStats },
 	{ name: "Header", module: Header },
 	{ name: "Hero", module: Hero },
+	{ name: "ABTestHero", module: ABTestHero },
 	{ name: "LogoStrip", module: LogoStrip },
 	{ name: "PostListing", module: PostListing },
 	{ name: "PostDetails", module: PostDetails },
