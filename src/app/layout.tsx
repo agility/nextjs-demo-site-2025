@@ -47,7 +47,9 @@ export default async function RootLayout({
         />
         <meta name="view-transition" content="same-origin" />
       </head>
-      <body className="text-gray-950 antialiased overflow-x-hidden dark:bg-black dark:text-gray-200 transition-colors">
+      <body
+        data-agility-guid={process.env.AGILITY_GUID}
+        className="text-gray-950 antialiased overflow-x-hidden dark:bg-black dark:text-gray-200 transition-colors">
         <main>
           {/* <GradientBackground /> */}
           <Container>
