@@ -31,10 +31,17 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 
 	return (
 		<Container data-agility-component={contentID}>
-			<Subheading className="mt-16">
+			<Subheading
+				className="mt-16"
+				data-agility-field="postDate"
+			>
 				{dayjs(post.postDate).format('dddd, MMMM D, YYYY')}
 			</Subheading>
-			<Heading as="h1" className="mt-2">
+			<Heading
+				as="h1"
+				className="mt-2"
+				data-agility-field="heading"
+			>
 				{post.heading}
 			</Heading>
 			<div className="mt-16 grid grid-cols-1 gap-8 pb-24 lg:grid-cols-[15rem_1fr] xl:grid-cols-[15rem_1fr_15rem]">
@@ -72,6 +79,7 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 							<PostImage
 								image={post.image}
 								contentID={contentID}
+								data-agility-field="image"
 							/>
 						)}
 
