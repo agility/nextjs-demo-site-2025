@@ -13,6 +13,8 @@ import { getFooterContent } from '@/lib/cms-content/getFooterContent'
 import { Footer } from '@/components/footer/footer'
 import PreviewBar from '@/components/preview-bar'
 import Script from 'next/script'
+import { getAudienceListing } from '@/lib/cms-content/getAudienceListing'
+import { getRegionListing } from '@/lib/cms-content/getRegionListing'
 
 export const metadata: Metadata = {
   title: {
@@ -31,6 +33,9 @@ export default async function RootLayout({
   // get the header content
   const header = await getHeaderContent({ locale })
   const footer = await getFooterContent({ locale })
+
+  const audiences = await getAudienceListing({ locale, skip: 0, take: 10 })
+  const regions = await getRegionListing({ locale, skip: 0, take: 10 })
 
   return (
     <html lang="en" className="overflow-x-hidden">
@@ -65,7 +70,7 @@ export default async function RootLayout({
         </main>
         {/* Preview indicator - normally not needed in production, but we show it here for illustration purposes */}
         <PreviewBar
-          {...{ isDevelopmentMode, isPreview }}
+          {...{ isDevelopmentMode, isPreview, audiences, regions }}
         />
         {/* Web Studio SDK */}
         <Script src="https://unpkg.com/@agility/web-studio-sdk@latest/dist/index.js" />

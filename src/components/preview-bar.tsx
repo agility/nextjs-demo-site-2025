@@ -2,20 +2,81 @@
 
 import clsx from "clsx"
 import Image from "next/image"
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { FaInfoCircle, FaGithub, FaEye, FaTimes, FaChevronDown, FaChevronUp, FaSpinner } from "react-icons/fa"
 import { Button } from "./button"
+import type { IAudience } from "@/lib/types/IAudience"
+import type { IRegion } from "@/lib/types/IRegion"
+import { useSearchParams, useRouter } from "next/navigation"
+
 
 interface Props {
 	isPreview: boolean | undefined
 	isDevelopmentMode: boolean | undefined
+	audiences?: IAudience[]
+	regions?: IRegion[]
 }
 
 /**
  * This is a preview bar that is enabled by default to handle viewing content in preview & live mode, remove this for production use.
  **/
-const PreviewBar = ({ isPreview, isDevelopmentMode }: Props) => {
+const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = [] }: Props) => {
 	const [open, setOpen] = useState(false)
+	const [showAudienceDropdown, setShowAudienceDropdown] = useState(false)
+	const [showRegionDropdown, setShowRegionDropdown] = useState(false)
+	const audienceDropdownRef = useRef<HTMLDivElement>(null)
+	const regionDropdownRef = useRef<HTMLDivElement>(null)
+	const searchParams = useSearchParams()
+	const router = useRouter()
+
+	// Get selected audience and region from query params
+	const selectedAudienceName = searchParams.get('audience')
+	const selectedRegionName = searchParams.get('region')
+
+	const selectedAudience = selectedAudienceName
+		? audiences.find(a => a.name === selectedAudienceName) || null
+		: null
+
+	const selectedRegion = selectedRegionName
+		? regions.find(r => r.name === selectedRegionName) || null
+		: null
+
+	// Function to update query params
+	const updateQueryParams = (audienceName: string | null, regionName: string | null) => {
+		const params = new URLSearchParams(searchParams)
+
+		if (audienceName) {
+			params.set('audience', audienceName)
+		} else {
+			params.delete('audience')
+		}
+
+		if (regionName) {
+			params.set('region', regionName)
+		} else {
+			params.delete('region')
+		}
+
+		const newUrl = `${window.location.pathname}?${params.toString()}`
+		router.push(newUrl)
+	}
+
+	// Close dropdowns when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (audienceDropdownRef.current && !audienceDropdownRef.current.contains(event.target as Node)) {
+				setShowAudienceDropdown(false)
+			}
+			if (regionDropdownRef.current && !regionDropdownRef.current.contains(event.target as Node)) {
+				setShowRegionDropdown(false)
+			}
+		}
+
+		document.addEventListener('mousedown', handleClickOutside)
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [])
 
 
 	// handle view function to determine preview / live mode
@@ -40,9 +101,13 @@ const PreviewBar = ({ isPreview, isDevelopmentMode }: Props) => {
 			{!open && (
 				<>
 					<button
-						className={clsx(`cursor-pointer rounded-full shadow-lg bg-gray-400 text-white w-10 h-10 flex items-center justify-center border-2 border-white transition-all duration-300 relative overflow-hidden group`,
-							`dark:border-gray-700 dark:bg-gray-900 hover:scale-110 hover:shadow-xl`,
-							`before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 hover:before:translate-x-[100%]`)}
+						className={clsx(`cursor-pointer rounded-full shadow-lg bg-gray-400 text-white w-10 h-10 flex items-center justify-center border-2 transition-all duration-300 relative overflow-hidden group`,
+							`dark:bg-gray-900 hover:scale-110 hover:shadow-xl`,
+							`before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 hover:before:translate-x-[100%]`,
+							(selectedAudience || selectedRegion)
+								? 'border-blue-500 dark:border-blue-400'
+								: 'border-white dark:border-gray-700'
+						)}
 						onClick={() => setOpen(true)}
 						title={isPreview ? 'Preview Mode' : 'Live Mode'}
 					>
@@ -60,18 +125,129 @@ const PreviewBar = ({ isPreview, isDevelopmentMode }: Props) => {
 			{/* Expanded toolbar */}
 			{open && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-					<div className="w-[420px] max-w-[95vw] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 flex flex-col gap-4 animate-fade-in relative">
+					<div className="w-[480px] max-w-[95vw] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 flex flex-col gap-4 animate-fade-in relative">
 						<button onClick={() => setOpen(false)} className="absolute top-3 right-3 rounded-full p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition"><FaTimes className="w-6 h-6 text-gray-700 dark:text-gray-200" /></button>
 						<div className="flex items-center gap-3 mb-2">
 							<img src="https://static.agilitycms.com/layout/img/logo-original.svg" alt="Agility CMS" className="h-7" />
 							<span className={`text-sm px-3 py-1 rounded font-bold ${isPreview ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'}`}>{isPreview ? 'Preview' : 'Live'}</span>
 						</div>
-						<div className="flex flex-col gap-3">
+
+
+						{/* Audience and Region Pickers */}
+						{(audiences.length > 0 || regions.length > 0) && (
+							<div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+								<h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">Preview As</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+									{/* Audience Picker */}
+									{audiences.length > 0 && (
+										<div className="relative" ref={audienceDropdownRef}>
+											<label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">
+												Audience
+											</label>
+											<button
+												className="w-full px-3 py-2 text-left bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-between"
+												onClick={() => setShowAudienceDropdown(!showAudienceDropdown)}
+											>
+												<span className="text-sm text-gray-700 dark:text-gray-200">
+													{selectedAudience ? selectedAudience.name : 'All Audiences'}
+												</span>
+												{showAudienceDropdown ? <FaChevronUp className="w-3 h-3" /> : <FaChevronDown className="w-3 h-3" />}
+											</button>
+											{showAudienceDropdown && (
+												<div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg z-10 max-h-40 overflow-y-auto">
+													<button
+														className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
+														onClick={() => {
+															updateQueryParams(null, selectedRegionName)
+															setShowAudienceDropdown(false)
+														}}
+													>
+														All Audiences
+													</button>
+													{audiences.map((audience, index) => (
+														<button
+															key={index}
+															className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
+															onClick={() => {
+																updateQueryParams(audience.name, selectedRegionName)
+																setShowAudienceDropdown(false)
+															}}
+														>
+															{audience.name}
+														</button>
+													))}
+												</div>
+											)}
+										</div>
+									)}
+
+									{/* Region Picker */}
+									{regions.length > 0 && (
+										<div className="relative" ref={regionDropdownRef}>
+											<label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">
+												Region
+											</label>
+											<button
+												className="w-full px-3 py-2 text-left bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-between"
+												onClick={() => setShowRegionDropdown(!showRegionDropdown)}
+											>
+												<span className="text-sm text-gray-700 dark:text-gray-200">
+													{selectedRegion ? selectedRegion.name : 'All Regions'}
+												</span>
+												{showRegionDropdown ? <FaChevronUp className="w-3 h-3" /> : <FaChevronDown className="w-3 h-3" />}
+											</button>
+											{showRegionDropdown && (
+												<div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg z-10 max-h-40 overflow-y-auto">
+													<button
+														className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
+														onClick={() => {
+															updateQueryParams(selectedAudienceName, null)
+															setShowRegionDropdown(false)
+														}}
+													>
+														All Regions
+													</button>
+													{regions.map((region, index) => (
+														<button
+															key={index}
+															className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
+															onClick={() => {
+																updateQueryParams(selectedAudienceName, region.name)
+																setShowRegionDropdown(false)
+															}}
+														>
+															{region.name}
+														</button>
+													))}
+												</div>
+											)}
+										</div>
+									)}
+								</div>
+
+								{/* Current Selection Display */}
+								{(selectedAudience || selectedRegion) && (
+									<div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+										<div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">Current Preview Context</div>
+										<div className="text-sm text-blue-700 dark:text-blue-300">
+											{selectedAudience && selectedRegion
+												? `${selectedAudience.name} • ${selectedRegion.name}`
+												: selectedAudience
+													? `${selectedAudience.name} • All Regions`
+													: `All Audiences • ${selectedRegion?.name}`
+											}
+										</div>
+									</div>
+								)}
+							</div>
+						)}
+
+						<div className="flex flex-col gap-3 mt-3">
+
 							<p className="text-base text-gray-700 dark:text-gray-200">
 								This website is in <span className="font-bold">{isPreview ? 'Preview' : 'Live'}</span> Mode
 							</p>
-						</div>
-						<div className="flex flex-col gap-3">
+
 							{isPreview &&
 								<Button
 									variant="outline"
