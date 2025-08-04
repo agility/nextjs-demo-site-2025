@@ -15,6 +15,7 @@ import PreviewBar from '@/components/preview-bar'
 import Script from 'next/script'
 import { getAudienceListing } from '@/lib/cms-content/getAudienceListing'
 import { getRegionListing } from '@/lib/cms-content/getRegionListing'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: {
@@ -69,9 +70,11 @@ export default async function RootLayout({
 
         </main>
         {/* Preview indicator - normally not needed in production, but we show it here for illustration purposes */}
-        <PreviewBar
-          {...{ isDevelopmentMode, isPreview, audiences, regions }}
-        />
+        <Suspense fallback={null}>
+          <PreviewBar
+            {...{ isDevelopmentMode, isPreview, audiences, regions }}
+          />
+        </Suspense>
         {/* Web Studio SDK */}
         <Script src="https://unpkg.com/@agility/web-studio-sdk@latest/dist/index.js" />
       </body>
