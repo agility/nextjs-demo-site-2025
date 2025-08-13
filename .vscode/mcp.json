@@ -1,7 +1,7 @@
 {
 	"servers": {
-		"agility-cms-mcp-server": {
-			"url": "http://localhost:3000/api/mcp",
+		"agility-cms-mcp": {
+			"url": "https://mcp.agilitycms.com/api/mcp",
 			"type": "http"
 		}
 	},

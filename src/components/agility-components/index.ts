@@ -17,6 +17,7 @@ import RichTextArea from "./RichTextArea";
 import { TeamListing } from "./TeamListing";
 import { ABTestHero } from "./ABTestHero";
 import { Carousel } from "./carousel/Carousel";
+import { ContactUs } from "./contact-us";
 
 
 // All of the Agility Page Module Components that are in use in this site need to be imported into this index file.
@@ -40,6 +41,7 @@ const allModules = [
 	{ name: "Testimonials", module: Testimonials },
 	{ name: "TeamListing", module: TeamListing }
 	, { name: "Carousel", module: Carousel }
+	, { name: "ContactUs", module: ContactUs }
 ];
 
 /**

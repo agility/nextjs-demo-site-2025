@@ -53,6 +53,7 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 									image={post.author.fields.headShot}
 									fallbackWidth={64}
 									className="aspect-square size-6 rounded-full object-cover"
+
 								/>
 							)}
 							<div className="text-sm/5 text-gray-700 dark:text-gray-300">
