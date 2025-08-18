@@ -49,14 +49,14 @@ export const Hero = async ({ module, languageCode }: UnloadedModuleProps) => {
 						isImageLeft ? "lg:order-2" : "lg:order-1"
 					)}>
 						<h1
-							className="font-display text-3xl/[1.1] font-medium tracking-tight text-balance sm:text-4xl/[1.1] md:text-5xl/[1.1] text-gray-950 dark:text-gray-50"
+							className="font-display text-3xl/[1.1] font-medium tracking-tight text-balance sm:text-4xl/[1.1] md:text-5xl/[1.1] text-gray-950 dark:text-white"
 							data-agility-field="heading"
 						>
 							{heading}
 						</h1>
 
 						<p
-							className="mt-6 text-lg/7 font-medium text-gray-950/75 dark:text-gray-200/90 sm:text-xl/8"
+							className="mt-6 text-lg/7 font-medium text-gray-950/75 dark:text-gray-300 sm:text-xl/8"
 							data-agility-field="description"
 						>
 							{description}
@@ -80,7 +80,7 @@ export const Hero = async ({ module, languageCode }: UnloadedModuleProps) => {
 						"order-1 lg:order-none",
 						isImageLeft ? "lg:order-1" : "lg:order-2"
 					)}>
-						<div className="relative">
+						<div className="relative dark:saturate-0">
 							<AgilityPic
 								data-agility-field="image"
 								image={image}
