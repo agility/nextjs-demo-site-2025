@@ -39,7 +39,7 @@ export const PersonalizedLogoStrip = async ({ module, languageCode, globalData }
 
 
 	const searchParams = globalData?.["searchParams"]
-	console.log("globalData:", globalData)
+
 	if (searchParams) {
 		//check the personalization stuff and filter the list of customers
 		const audienceContentID = await getAudienceContentID(searchParams, languageCode )
