@@ -3,7 +3,7 @@ import { BentoSection } from "./BentoSection";
 import { CompanyStats } from "./company-stats";
 import { Header } from "./Header";
 import { Hero } from "./Hero";
-import { LogoStrip } from "./LogoStrip";
+import { LogoStrip } from "./logo-strip/LogoStrip";
 import NoComponentFound from "./NoComponentFound";
 import { PostListing } from "./post-listing/PostListing.server";
 import PostDetails from "./post-details/PostDetails";
@@ -18,6 +18,7 @@ import { TeamListing } from "./TeamListing";
 import { ABTestHero } from "./ABTestHero";
 import { Carousel } from "./carousel/Carousel";
 import { ContactUs } from "./contact-us";
+import { PersonalizedLogoStrip } from "./personalized-logo-strip/PersonalizedLogoStrip";
 
 
 // All of the Agility Page Module Components that are in use in this site need to be imported into this index file.
@@ -42,6 +43,7 @@ const allModules = [
 	{ name: "TeamListing", module: TeamListing }
 	, { name: "Carousel", module: Carousel }
 	, { name: "ContactUs", module: ContactUs }
+	, { name: "PersonalizedLogoStrip", module: PersonalizedLogoStrip }
 ];
 
 /**

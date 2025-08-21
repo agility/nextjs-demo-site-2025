@@ -7,7 +7,7 @@ import { FaInfoCircle, FaGithub, FaEye, FaTimes, FaChevronDown, FaChevronUp, FaS
 import { Button } from "./button"
 import type { IAudience } from "@/lib/types/IAudience"
 import type { IRegion } from "@/lib/types/IRegion"
-import { useSearchParams, useRouter } from "next/navigation"
+import { useAudienceRegionParams } from "@/lib/hooks/useAudienceRegionParams"
 
 
 interface Props {
@@ -26,40 +26,19 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 	const [showRegionDropdown, setShowRegionDropdown] = useState(false)
 	const audienceDropdownRef = useRef<HTMLDivElement>(null)
 	const regionDropdownRef = useRef<HTMLDivElement>(null)
-	const searchParams = useSearchParams()
-	const router = useRouter()
 
-	// Get selected audience and region from query params
-	const selectedAudienceName = searchParams.get('audience')
-	const selectedRegionName = searchParams.get('region')
-
-	const selectedAudience = selectedAudienceName
-		? audiences.find(a => a.name === selectedAudienceName) || null
-		: null
-
-	const selectedRegion = selectedRegionName
-		? regions.find(r => r.name === selectedRegionName) || null
-		: null
-
-	// Function to update query params
-	const updateQueryParams = (audienceName: string | null, regionName: string | null) => {
-		const params = new URLSearchParams(searchParams)
-
-		if (audienceName) {
-			params.set('audience', audienceName)
-		} else {
-			params.delete('audience')
-		}
-
-		if (regionName) {
-			params.set('region', regionName)
-		} else {
-			params.delete('region')
-		}
-
-		const newUrl = `${window.location.pathname}?${params.toString()}`
-		router.push(newUrl)
-	}
+	// Use the custom hook for managing audience/region query params
+	const {
+		selectedAudience,
+		selectedRegion,
+		selectedAudienceName,
+		selectedRegionName,
+		setAudience,
+		setRegion,
+		clearAll,
+		hasSelection,
+		displayName
+	} = useAudienceRegionParams(audiences, regions)
 
 	// Close dropdowns when clicking outside
 	useEffect(() => {
@@ -104,7 +83,7 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 						className={clsx(`cursor-pointer rounded-full shadow-lg bg-gray-400 text-white w-10 h-10 flex items-center justify-center border-2 transition-all duration-300 relative overflow-hidden group`,
 							`dark:bg-gray-900 hover:scale-110 hover:shadow-xl`,
 							`before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 hover:before:translate-x-[100%]`,
-							(selectedAudience || selectedRegion)
+							hasSelection
 								? 'border-blue-500 dark:border-blue-400'
 								: 'border-white dark:border-gray-700'
 						)}
@@ -158,7 +137,7 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 													<button
 														className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
 														onClick={() => {
-															updateQueryParams(null, selectedRegionName)
+															setAudience(null)
 															setShowAudienceDropdown(false)
 														}}
 													>
@@ -169,7 +148,7 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 															key={index}
 															className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
 															onClick={() => {
-																updateQueryParams(audience.name, selectedRegionName)
+																setAudience(audience)
 																setShowAudienceDropdown(false)
 															}}
 														>
@@ -201,7 +180,7 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 													<button
 														className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
 														onClick={() => {
-															updateQueryParams(selectedAudienceName, null)
+															setRegion(null)
 															setShowRegionDropdown(false)
 														}}
 													>
@@ -212,7 +191,7 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 															key={index}
 															className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
 															onClick={() => {
-																updateQueryParams(selectedAudienceName, region.name)
+																setRegion(region)
 																setShowRegionDropdown(false)
 															}}
 														>
@@ -226,16 +205,21 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 								</div>
 
 								{/* Current Selection Display */}
-								{(selectedAudience || selectedRegion) && (
+								{hasSelection && (
 									<div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-										<div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">Current Preview Context</div>
-										<div className="text-sm text-blue-700 dark:text-blue-300">
-											{selectedAudience && selectedRegion
-												? `${selectedAudience.name} • ${selectedRegion.name}`
-												: selectedAudience
-													? `${selectedAudience.name} • All Regions`
-													: `All Audiences • ${selectedRegion?.name}`
-											}
+										<div className="flex items-center justify-between">
+											<div>
+												<div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">Current Preview Context</div>
+												<div className="text-sm text-blue-700 dark:text-blue-300">
+													{displayName}
+												</div>
+											</div>
+											<button
+												onClick={clearAll}
+												className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 underline"
+											>
+												Clear All
+											</button>
 										</div>
 									</div>
 								)}

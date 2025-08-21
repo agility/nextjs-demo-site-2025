@@ -1,7 +1,7 @@
 "use client"
 
 import type { ContentItem, ImageField, URLField } from "@agility/nextjs"
-import { Container } from "../container"
+import { Container } from "../../container"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
