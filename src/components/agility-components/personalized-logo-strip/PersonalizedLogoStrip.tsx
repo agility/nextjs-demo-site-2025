@@ -34,7 +34,7 @@ export const PersonalizedLogoStrip = async ({ module, languageCode, globalData }
 	let customers = await getContentList<ICustomerProfile>({
 		referenceName: logosReferenceName,
 		languageCode,
-		take: 20, // adjust as needed
+		take: 250, // grab all of them so we can do the filtering here... TODO - do this filtering here...
 	})
 
 
