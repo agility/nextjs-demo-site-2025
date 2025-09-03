@@ -30,6 +30,7 @@ export const PersonalizedBackgroundHero = async ({ module, languageCode, globalD
 		referenceName: personalizedHeroItemsReferenceName,
 		languageCode,
 		take: 50,
+		contentLinkDepth: 2,
 	})
 
 	// Default content from main component
@@ -46,13 +47,13 @@ export const PersonalizedBackgroundHero = async ({ module, languageCode, globalD
 	const searchParams = globalData?.["searchParams"]
 	if (searchParams) {
 		const audienceContentID = await getAudienceContentID(searchParams, languageCode)
-
+		console.log("Audience Content ID:", audienceContentID)
 		if (audienceContentID) {
 			// Find personalized content for this audience
 			const personalizedContent = personalizedHeroItems.items.find(
-				item => item.fields.audience?.contentID === audienceContentID
+				item => item.fields.audienceDropdown?.contentID === audienceContentID
 			)
-
+			console.log("personalizedHeroItems:", personalizedHeroItems.items.map(i => i.fields))
 			if (personalizedContent) {
 				// Use personalized content, falling back to default for any missing fields
 				selectedContent = {

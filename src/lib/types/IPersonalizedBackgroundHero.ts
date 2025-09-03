@@ -18,5 +18,5 @@ export interface IPersonalizedBackgroundHeroItem {
 	cta2?: URLField
 	backgroundType?: string
 	backgroundImage?: ImageField
-	audience?: { contentID: number; fields: IAudience }
+	audienceDropdown?: { contentID: number; fields: IAudience }
 }

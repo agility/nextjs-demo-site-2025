@@ -19,6 +19,7 @@ import { ABTestHero } from "./ABTestHero";
 import { Carousel } from "./carousel/Carousel";
 import { ContactUs } from "./contact-us";
 import { PersonalizedLogoStrip } from "./personalized-logo-strip/PersonalizedLogoStrip";
+import { PersonalizedBackgroundHero } from "./PersonalizedBackgroundHero";
 
 
 // All of the Agility Page Module Components that are in use in this site need to be imported into this index file.
@@ -44,6 +45,7 @@ const allModules = [
 	, { name: "Carousel", module: Carousel }
 	, { name: "ContactUs", module: ContactUs }
 	, { name: "PersonalizedLogoStrip", module: PersonalizedLogoStrip }
+	, { name: "PersonalizedBackgroundHero", module: PersonalizedBackgroundHero }
 ];
 
 /**
