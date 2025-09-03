@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Agility-CMS__get_available_instances"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
