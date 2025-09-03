@@ -1,0 +1,330 @@
+# Cursor AI Rules for Agility CMS Next.js Project
+
+## Project Overview
+This is a Next.js 15.3.5 project with TypeScript, Tailwind CSS v4, and Agility CMS integration. The project demonstrates modern web development patterns with CMS-driven content management.
+
+## Core Architecture
+- **Framework**: Next.js 15.3.5 with App Router
+- **Language**: TypeScript with strict typing
+- **Styling**: Tailwind CSS v4 (CSS file-based approach)
+- **CMS**: Agility CMS with @agility/nextjs v15.0.7
+- **Animation**: Motion library (Framer Motion alternative)
+- **State**: React 19.1.0 with modern hooks
+- **Icons**: Heroicons v2 + React Icons
+- **Dev Tools**: Turbopack, ESLint, Prettier
+
+## File Structure & Organization
+```
+src/
+├── app/                    # Next.js App Router pages
+├── components/            # Reusable UI components
+│   ├── agility-components/ # CMS-connected components
+│   ├── agility-pages/     # Page-level components
+│   └── ui/               # Base UI components
+├── lib/                   # Utilities and configurations
+│   ├── cms/              # Agility CMS integration
+│   ├── types/            # TypeScript definitions
+│   └── utils/            # Helper functions
+└── styles/               # Global styles and Tailwind
+```
+
+## Cursor AI Optimization Patterns
+
+### 1. TypeScript Excellence
+- Always use strict typing with `ContentItem<T>` for CMS data
+- Define comprehensive interfaces for all content models
+- Use discriminated unions for different content types
+- Leverage TypeScript's inference capabilities
+
+```typescript
+// Example: Strong typing for CMS content
+interface IBentoCard {
+  title: string;
+  description: string;
+  image?: ImageField;
+  link?: LinkField;
+  contentType: 'text' | 'image' | 'link';
+}
+
+// Use with ContentItem wrapper
+const card: ContentItem<IBentoCard> = await getContentItem<IBentoCard>({...});
+```
+
+### 2. Component Architecture
+- Follow the "composition over inheritance" principle
+- Use React.forwardRef for components that need refs
+- Implement proper prop spreading and forwarding
+- Use React.memo for performance-critical components
+
+```typescript
+// Example: Optimized component structure
+const BentoCard = React.memo(React.forwardRef<HTMLDivElement, BentoCardProps>(
+  ({ title, description, image, className, ...props }, ref) => {
+    return (
+      <div ref={ref} className={clsx("bento-card", className)} {...props}>
+        {/* Component content */}
+      </div>
+    );
+  }
+));
+```
+
+### 3. Performance Optimization
+- Implement proper loading states and error boundaries
+- Use React.Suspense for code splitting
+- Optimize images with Next.js Image component
+- Implement proper memoization for expensive operations
+
+```typescript
+// Example: Performance-optimized data fetching
+const useContentItem = <T>(contentID: number, languageCode: string) => {
+  return useMemo(async () => {
+    return await getContentItem<T>({ contentID, languageCode });
+  }, [contentID, languageCode]);
+};
+```
+
+### 4. Tailwind CSS v4 Best Practices
+- Use CSS custom properties for dynamic values
+- Leverage CSS file-based approach (no config file)
+- Implement responsive design with mobile-first approach
+- Use semantic class names and consistent spacing
+
+```css
+/* Example: Modern Tailwind v4 approach */
+.bento-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-width, 300px), 1fr));
+}
+
+@media (min-width: 1024px) {
+  .bento-grid {
+    --min-width: 400px;
+  }
+}
+```
+
+## Agility CMS Integration Patterns
+
+### Content Fetching
+```typescript
+// Single content item
+const { fields } = await getContentItem<IContentType>({
+  contentID: module.contentid,
+  languageCode,
+});
+
+// Content lists with pagination
+const items = await getContentList<IContentType>({
+  referenceName: 'referenceName',
+  languageCode,
+  take: 20,
+  skip: 0,
+  sort: 'sortOrder',
+  filter: 'status[eq]Published'
+});
+
+// Nested content relationships
+const { fields: { nestedRef } } = await getContentItem<IParentType>({...});
+const nestedItems = await getContentList<INestedType>({
+  referenceName: nestedRef.referencename,
+  languageCode
+});
+```
+
+### Component Props Interface
+```typescript
+interface UnloadedModuleProps {
+  module: {
+    contentid: number;
+    modulename: string;
+    [key: string]: any;
+  };
+  languageCode: string;
+  sitemapNode?: SitemapNode;
+}
+```
+
+### CMS Field Attributes
+```typescript
+// Add these attributes for Agility CMS inline editing
+<div data-agility-component={contentID}>
+  <h2 data-agility-field="title">{fields.title}</h2>
+  <div data-agility-field="description">{fields.description}</div>
+</div>
+```
+
+## Animation & Motion Patterns
+
+### Staggered Animations
+```typescript
+// Calculate delays for grid items
+const getStaggerDelay = (index: number, baseDelay: number = 0.1) => {
+  return index * baseDelay;
+};
+
+// Use in Motion components
+<Motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: getStaggerDelay(index) }}
+>
+  {content}
+</Motion.div>
+```
+
+### Responsive Animation
+```typescript
+// Conditional animations based on viewport
+const isMobile = useMediaQuery('(max-width: 768px)');
+
+const animationVariants = {
+  initial: { opacity: 0, y: isMobile ? 10 : 20 },
+  animate: { opacity: 1, y: 0 }
+};
+```
+
+## Error Handling & Validation
+
+### Content Validation
+```typescript
+// Validate required CMS fields
+const validateContent = (fields: any): fields is IContentType => {
+  return fields.title && fields.description;
+};
+
+// Use in components
+if (!validateContent(fields)) {
+  return <div>Content not available</div>;
+}
+```
+
+### Error Boundaries
+```typescript
+// Implement error boundaries for CMS components
+class CMSErrorBoundary extends React.Component {
+  // Error boundary implementation
+}
+```
+
+## Development Workflow
+
+### Code Generation
+- Use Cursor's AI to generate TypeScript interfaces from CMS models
+- Leverage AI for component boilerplate generation
+- Use AI assistance for Tailwind CSS class combinations
+- Generate test cases for complex components
+
+### Refactoring Assistance
+- Ask Cursor to suggest performance improvements
+- Use AI to identify code duplication
+- Leverage AI for TypeScript type improvements
+- Get suggestions for better component composition
+
+### Documentation
+- Use Cursor to generate JSDoc comments
+- Ask AI to explain complex code patterns
+- Generate README updates for new components
+- Create component usage examples
+
+## Common Component Patterns
+
+### Responsive Grid Components
+```typescript
+const ResponsiveGrid = ({ children, columns = { sm: 1, md: 2, lg: 3 } }) => {
+  const gridClasses = clsx(
+    'grid gap-6',
+    `grid-cols-${columns.sm}`,
+    `md:grid-cols-${columns.md}`,
+    `lg:grid-cols-${columns.lg}`
+  );
+
+  return <div className={gridClasses}>{children}</div>;
+};
+```
+
+### Loading States
+```typescript
+const LoadingSkeleton = ({ className }: { className?: string }) => (
+  <div className={clsx('animate-pulse bg-gray-200 rounded', className)}>
+    <div className="h-4 bg-gray-300 rounded mb-2"></div>
+    <div className="h-3 bg-gray-300 rounded w-3/4"></div>
+  </div>
+);
+```
+
+### Conditional Rendering
+```typescript
+const ConditionalContent = ({
+  condition,
+  fallback,
+  children
+}: ConditionalContentProps) => {
+  if (!condition) return fallback || null;
+  return <>{children}</>;
+};
+```
+
+## Testing & Quality Assurance
+
+### Component Testing
+- Test CMS data integration
+- Verify responsive behavior
+- Test animation triggers
+- Validate accessibility features
+
+### Performance Testing
+- Monitor bundle size impact
+- Test with large content sets
+- Verify lazy loading behavior
+- Check animation performance
+
+## Accessibility & SEO
+
+### Semantic HTML
+- Use proper heading hierarchy
+- Implement ARIA labels where needed
+- Ensure keyboard navigation
+- Provide alt text for images
+
+### SEO Optimization
+- Implement proper meta tags
+- Use structured data where applicable
+- Optimize for Core Web Vitals
+- Ensure proper heading structure
+
+## Troubleshooting Common Issues
+
+### CMS Integration Issues
+- Verify content model field names
+- Check reference name spelling
+- Ensure proper language code
+- Validate content item IDs
+
+### Styling Issues
+- Check Tailwind CSS class conflicts
+- Verify CSS custom properties
+- Ensure responsive breakpoints
+- Check dark mode variants
+
+### Performance Issues
+- Monitor bundle size
+- Check for unnecessary re-renders
+- Verify image optimization
+- Review animation performance
+
+## Future Development
+
+### Scalability Considerations
+- Plan for content model evolution
+- Consider component composition patterns
+- Plan for internationalization
+- Design for performance at scale
+
+### Maintenance
+- Regular dependency updates
+- Performance monitoring
+- Accessibility audits
+- SEO optimization reviews
+
+Remember: Always prioritize type safety, performance, and user experience when developing with Cursor AI assistance.
