@@ -1,0 +1,2 @@
+export { PersonalizedBackgroundHero } from "./PersonalizedBackgroundHero";
+
