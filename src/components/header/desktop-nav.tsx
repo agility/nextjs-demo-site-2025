@@ -46,7 +46,7 @@ export function DesktopNav({ links }: Props) {
 							<Popover as="div" className={"group/item relative flex"}>
 								<PlusGridItem className="relative flex " >
 
-									<PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 dark:text-gray-100 cursor-pointer px-4 py-3 relative group ">
+									<PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 dark:text-gray-100 cursor-pointer px-4 py-3 relative group">
 										<span className="flex items-center text-base font-medium  transition-colors duration-200 relative ">
 											<span className="relative z-10">{link.text}</span>
 
@@ -62,11 +62,11 @@ export function DesktopNav({ links }: Props) {
 								<PopoverPanel
 
 									transition
-									className="absolute left-1/2 z-10 mt-14 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white/30 dark:bg-gray-800/30 backdrop-blur-lg shadow-lg ring-1 ring-gray-900/5 dark:ring-gray-100/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+									className="absolute left-1/2 z-10 mt-14 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white dark:bg-slate-700 backdrop-blur-lg shadow-lg ring-1 ring-gray-900/5 dark:ring-gray-100/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
 								>
 									{({ close }) => (
 										<>
-											<div className="p-4 bg-gray-300/20 dark:bg-gray-700/20 backdrop-blur-sm text-center">
+											<div className="p-4 bg-gray-300/70 dark:bg-slate-600 backdrop-blur-sm text-center">
 												<Link
 													href={link.href}
 													target={link.target}
@@ -100,7 +100,7 @@ export function DesktopNav({ links }: Props) {
 													</Link>
 												))}
 											</div>
-											<div className="grid grid-cols-2 divide-x divide-gray-900/10 dark:divide-gray-100/10 bg-gray-300/20 dark:bg-gray-700/20 backdrop-blur-sm">
+											<div className="grid grid-cols-2 divide-x divide-gray-900/10 dark:divide-gray-100/10 bg-gray-300/20 dark:bg-slate-600 backdrop-blur-sm">
 												{bottomLink1 && (
 													<Link
 														href={bottomLink1.href}

@@ -3,6 +3,7 @@ import { Button } from "../button"
 import { Container } from "../container"
 import { Gradient } from "../gradient"
 import { getContentItem } from "@/lib/cms/getContentItem"
+import { isFirstComponentInPage } from "@/lib/utils/pageZoneUtils"
 import type { ImageField, UnloadedModuleProps, URLField } from "@agility/nextjs"
 
 
@@ -22,7 +23,7 @@ interface IGradientHero {
  * @param {UnloadedModuleProps} props - The properties passed to the component.
  * @returns {JSX.Element} The rendered hero section.
  */
-export const BackgroundHero = async ({ module, languageCode }: UnloadedModuleProps) => {
+export const BackgroundHero = async ({ module, languageCode, page }: UnloadedModuleProps) => {
 	const {
 		fields: { heading, description, cta1, cta2, backgroundType, backgroundImage },
 		contentID,
@@ -31,8 +32,11 @@ export const BackgroundHero = async ({ module, languageCode }: UnloadedModulePro
 		languageCode,
 	})
 
+	//check the page object to see if this component is the TOP component
+	const isFirstComponent = isFirstComponentInPage(module, page)
+
 	return (
-		<div className="relative -mt-36 z-0" data-agility-component={contentID}>
+		<div className={clsx("relative z-0", isFirstComponent ? "-mt-36" : "mt-20")} data-agility-component={contentID}>
 			<Gradient
 				className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-black/5 dark:ring-white/10 ring-inset"
 				backgroundType={backgroundType}
