@@ -8,7 +8,7 @@ import type { UnloadedModuleProps } from "@agility/nextjs"
 import type { IPersonalizedBackgroundHero, IPersonalizedBackgroundHeroItem } from "@/lib/types/IPersonalizedBackgroundHero"
 import { getAudienceContentID } from "@/lib/utils/audienceRegionUtils"
 
-export const PersonalizedBackgroundHero = async ({ module, languageCode, globalData }: UnloadedModuleProps) => {
+export const PersonalizedBackgroundHero = async ({ module, languageCode, globalData, page }: UnloadedModuleProps) => {
 	const {
 		fields: {
 			heading,
@@ -47,13 +47,13 @@ export const PersonalizedBackgroundHero = async ({ module, languageCode, globalD
 	const searchParams = globalData?.["searchParams"]
 	if (searchParams) {
 		const audienceContentID = await getAudienceContentID(searchParams, languageCode)
-		console.log("Audience Content ID:", audienceContentID)
+
 		if (audienceContentID) {
 			// Find personalized content for this audience
 			const personalizedContent = personalizedHeroItems.items.find(
 				item => item.fields.audienceDropdown?.contentID === audienceContentID
 			)
-			console.log("personalizedHeroItems:", personalizedHeroItems.items.map(i => i.fields))
+
 			if (personalizedContent) {
 				// Use personalized content, falling back to default for any missing fields
 				selectedContent = {
@@ -68,8 +68,16 @@ export const PersonalizedBackgroundHero = async ({ module, languageCode, globalD
 		}
 	}
 
+	//check the page object to see if this component is the TOP component
+	let isFirstComponent = false
+	const item = page.zones["main-content-zone"][0] as any
+	if (item.item.contentid === module.contentid) {
+		//it's the top component
+		isFirstComponent = true
+	}
+
 	return (
-		<div className="relative -mt-36 z-0" data-agility-component={contentID}>
+		<div className={clsx("relative z-0", isFirstComponent ? "-mt-36" : "mt-20")} data-agility-component={contentID}>
 			<Gradient
 				className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-black/5 dark:ring-white/10 ring-inset"
 				backgroundType={selectedContent.backgroundType}
@@ -77,7 +85,7 @@ export const PersonalizedBackgroundHero = async ({ module, languageCode, globalD
 			/>
 			<Container className="relative">
 				<div className="pt-48 pb-24 sm:pt-52 sm:pb-32 md:pt-64 md:pb-48">
-					<h1 className={clsx("font-display text-6xl/[0.9] font-medium tracking-tight text-balance sm:text-8xl/[0.8] md:text-9xl/[0.8]",
+					<h1 className={clsx("font-display text-6xl/[0.9] font-medium tracking-tight text-balance sm:text-7xl/[0.8] md:text-8xl/[0.8]",
 						selectedContent.backgroundType === "background-image"
 							? "text-gray-100 text-shadow-lg"
 							: "text-gray-950 dark:text-gray-50",

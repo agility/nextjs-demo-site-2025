@@ -52,9 +52,12 @@ export function BannerLink({ href, text, target }: BannerLinkProps) {
       <Link
         href={href}
         target={target}
-        className="flex items-center gap-1 rounded-full hover:text-shadow-xs bg-gray-900/50 dark:bg-gray-700/50 px-3 py-0.5 text-sm/6 font-medium text-white dark:text-gray-200 data-hover:bg-gray-950/30 dark:data-hover:bg-gray-600/30 transition-all shine-effect"
+        className="flex items-center gap-1 rounded-full hover:text-shadow-xs bg-gray-900/50 dark:bg-gray-700/50 px-3 py-0.5 text-sm/6 font-medium text-white dark:text-gray-200 data-hover:bg-gray-950/30 dark:data-hover:bg-gray-600/30 transition-all shine-effect "
+        title={text}
       >
-        {text}
+        <span className='line-clamp-1'>
+          {text}
+        </span>
         <ChevronRightIcon className="size-4" />
       </Link>
     </div>

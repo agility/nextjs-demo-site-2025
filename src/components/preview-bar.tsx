@@ -39,7 +39,6 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 		hasSelection,
 		displayName
 	} = useAudienceRegionParams(audiences, regions)
-
 	// Close dropdowns when clicking outside
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -98,6 +97,14 @@ const PreviewBar = ({ isPreview, isDevelopmentMode, audiences = [], regions = []
 							<FaEye className="w-3 h-3 text-gray-500 dark:text-gray-200" />
 						</div>
 					)}
+					{selectedAudience &&
+						<div
+							title={`Audience: ${selectedAudience.name}`}
+							className="absolute -bottom-0.5 p-0.5 -right-0.5 dark:bg-gray-600 bg-gray-200 rounded-full flex items-center justify-center overflow-clip">
+							<img src={selectedAudience.icon.url} alt={selectedAudience.icon.label} width={12} height={12} className="inline w-3 h-3" />
+						</div>
+					}
+
 				</>
 			)}
 
