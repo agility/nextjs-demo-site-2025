@@ -4,6 +4,7 @@ import { Container } from "../container"
 import { Gradient } from "../gradient"
 import { getContentItem } from "@/lib/cms/getContentItem"
 import { getContentList } from "@/lib/cms/getContentList"
+import { isFirstComponentInPage } from "@/lib/utils/pageZoneUtils"
 import type { UnloadedModuleProps } from "@agility/nextjs"
 import type { IPersonalizedBackgroundHero, IPersonalizedBackgroundHeroItem } from "@/lib/types/IPersonalizedBackgroundHero"
 import { getAudienceContentID } from "@/lib/utils/audienceRegionUtils"
@@ -69,12 +70,7 @@ export const PersonalizedBackgroundHero = async ({ module, languageCode, globalD
 	}
 
 	//check the page object to see if this component is the TOP component
-	let isFirstComponent = false
-	const item = page.zones["main-content-zone"][0] as any
-	if (item.item.contentid === module.contentid) {
-		//it's the top component
-		isFirstComponent = true
-	}
+	const isFirstComponent = isFirstComponentInPage(module, page)
 
 	return (
 		<div className={clsx("relative z-0", isFirstComponent ? "-mt-36" : "mt-20")} data-agility-component={contentID}>
