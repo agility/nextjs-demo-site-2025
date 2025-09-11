@@ -15,6 +15,10 @@ declare global {
 			NEXT_PUBLIC_POSTHOG_KEY: string
 			NEXT_PUBLIC_POSTHOG_HOST: string
 
+			//Algolia Environment Variables
+			ALGOLIA_APP_ID: string
+			ALGOLIA_SEARCH_API_KEY: string
+
 			// Node.js Environment Variables
 			NODE_ENV: 'development' | 'production' | 'test'
 		}
