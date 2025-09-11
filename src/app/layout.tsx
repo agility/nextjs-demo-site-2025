@@ -16,6 +16,7 @@ import Script from 'next/script'
 import { getAudienceListing } from '@/lib/cms-content/getAudienceListing'
 import { getRegionListing } from '@/lib/cms-content/getRegionListing'
 import { Suspense } from 'react'
+import FloatingAISearch from '@/components/FloatingAISearch'
 
 export const metadata: Metadata = {
   title: {
@@ -69,6 +70,10 @@ export default async function RootLayout({
           }
 
         </main>
+        
+        {/* Floating AI Search */}
+        <FloatingAISearch />
+        
         {/* Preview indicator - normally not needed in production, but we show it here for illustration purposes */}
         <Suspense fallback={null}>
           <PreviewBar

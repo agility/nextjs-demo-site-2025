@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@agility/nextjs": "^15.0.7",
+    "@ai-sdk/azure": "^2.0.28",
+    "@ai-sdk/ui-utils": "^1.2.11",
     "@headlessui/react": "^2.1.1",
     "@heroicons/react": "^2.1.4",
+    "ai": "^5.0.40",
+    "algoliasearch": "^5.37.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
     "feed": "^4.2.2",
@@ -24,7 +28,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
-    "react-use-measure": "^2.1.1"
+    "react-use-measure": "^2.1.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@agility/content-fetch": "^2.0.9",

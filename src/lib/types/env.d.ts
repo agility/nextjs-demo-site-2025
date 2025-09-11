@@ -19,6 +19,14 @@ declare global {
 			ALGOLIA_APP_ID: string
 			ALGOLIA_SEARCH_API_KEY: string
 
+			//Azure OpenAI Environment Variables
+			AZURE_AI_RESOURCE: string
+			AZURE_AI_DEPLOYMENT: string
+			AZURE_AI_KEY: string
+			AZURE_AI_API_VERSION: string
+
+
+
 			// Node.js Environment Variables
 			NODE_ENV: 'development' | 'production' | 'test'
 		}

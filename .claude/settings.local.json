@@ -4,7 +4,9 @@
       "mcp__Agility-CMS__get_available_instances",
       "mcp__Agility-CMS__get_content_models",
       "mcp__Agility-CMS__get_component_models",
-      "mcp__Agility-CMS__get_component_model_details"
+      "mcp__Agility-CMS__get_component_model_details",
+      "Bash(npm run build:*)",
+      "WebFetch(domain:ai-sdk.dev)"
     ],
     "deny": [],
     "ask": []
