@@ -6,7 +6,8 @@
       "mcp__Agility-CMS__get_component_models",
       "mcp__Agility-CMS__get_component_model_details",
       "Bash(npm run build:*)",
-      "WebFetch(domain:ai-sdk.dev)"
+      "WebFetch(domain:ai-sdk.dev)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []

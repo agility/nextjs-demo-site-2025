@@ -16,7 +16,7 @@ import Script from 'next/script'
 import { getAudienceListing } from '@/lib/cms-content/getAudienceListing'
 import { getRegionListing } from '@/lib/cms-content/getRegionListing'
 import { Suspense } from 'react'
-import FloatingAISearch from '@/components/FloatingAISearch'
+import FloatingAISearch from '@/components/ai-search/FloatingAISearch'
 
 export const metadata: Metadata = {
   title: {
