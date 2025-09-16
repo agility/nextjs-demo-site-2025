@@ -102,8 +102,6 @@ Keep responses informative and helpful. Use the search tool results to provide a
 		return defaultConfig
 	}
 
-	console.log("AI Search Config - showAISearch:", contentItem.fields.showAISearch)
-
 	// Return configuration with CMS values or fallback to defaults
 	return {
 		aiSearchHelp: contentItem.fields.aiSearchHelp || defaultConfig.aiSearchHelp,

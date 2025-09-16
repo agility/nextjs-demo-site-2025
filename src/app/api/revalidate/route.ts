@@ -1,19 +1,23 @@
+
+
 import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import agilitySDK from "@agility/content-fetch"
+import type { SitemapNode } from "@/lib/types/SitemapNode";
 
 interface IRevalidateRequest {
 	state: string,
 	instanceGuid: string
-	languageCode: string
+	languageCode?: string
 	referenceName?: string
 	contentID?: number
 	contentVersionID?: number
 	pageID?: number
 	pageVersionID?: number
-	changeDateUTC: string
+	changeDateUTC?: string
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
 
 	//parse the body
 	const data = await req.json() as IRevalidateRequest
@@ -22,6 +26,33 @@ export async function POST(req: NextRequest) {
 	//only process publish events
 	if (data.state === "Published") {
 
+		let sitemapFlat: {
+			[path: string]: SitemapNode
+		} = {}
+
+		//grab the sitemap flat so we can revalidate the full path if needed
+		if (data.contentID || data.pageID) {
+			const apiKey = process.env.AGILITY_API_FETCH_KEY
+
+			const agilityClient = agilitySDK.getApi({
+				guid: process.env.AGILITY_GUID,
+				apiKey
+			})
+
+			const languageCode = process.env.AGILITY_LOCALES || "en-us"
+
+			//don't cache the sitemap here... we want to get the latest
+			agilityClient.config.fetchConfig = {
+				cache: "no-store"
+			}
+
+
+			sitemapFlat = await agilityClient.getSitemapFlat({
+				channelName: process.env.AGILITY_SITEMAP || "website",
+				languageCode
+			})
+		}
+
 		//revalidate the correct tags based on what changed
 		if (data.referenceName) {
 			//content item change
@@ -29,7 +60,21 @@ export async function POST(req: NextRequest) {
 			const listTag = `agility-content-${data.contentID}-${data.languageCode}`
 			revalidateTag(itemTag)
 			revalidateTag(listTag)
-			console.log("Revalidating content tags:", itemTag, listTag)
+
+			console.info("Revalidating content tags:", itemTag, listTag)
+
+			//grab the sitemap and check if this content is in there so we can revalidate a full path
+			if (sitemapFlat) {
+				const sitemapNode = Object.values(sitemapFlat).find(s => s.contentID === data.contentID)
+				if (sitemapNode) {
+					const path = sitemapNode.path
+					revalidatePath(path)
+					console.info("Revalidating path:", path)
+
+				}
+			}
+
+
 		} else if (data.pageID !== undefined && data.pageID > 0) {
 			//page change
 			const pageTag = `agility-page-${data.pageID}-${data.languageCode}`
@@ -42,11 +87,32 @@ export async function POST(req: NextRequest) {
 			revalidateTag(sitemapTagFlat)
 			revalidateTag(sitemapTagNested)
 
-			console.log("Revalidating page and sitemap tags:", pageTag, sitemapTagFlat, sitemapTagNested)
+			console.info("Revalidating page and sitemap tags:", pageTag, sitemapTagFlat, sitemapTagNested)
+
+			if (sitemapFlat) {
+				const sitemapNode = Object.values(sitemapFlat).find(s => s.pageID === data.pageID)
+				if (sitemapNode) {
+					const path = sitemapNode.path
+					revalidatePath(path)
+					console.info("Revalidating path:", path)
+
+				}
+			}
+		}
+	} else if (data.contentID === undefined && data.pageID === undefined) {
+		//if no content or page id is provided, it's for a URL redirection
+		//trigger the rebuild hook for netlify's rebuild...
+		const hookUrl = process.env.BUILD_HOOK_URL
+		if (hookUrl) {
+			await fetch(hookUrl, {
+				method: 'POST'
+			})
 		}
 	}
 
-	return NextResponse.json({ message: "OK" }, { status: 200 });
+	return new Response(`OK`, {
+		status: 200
+	})
 
 
 }

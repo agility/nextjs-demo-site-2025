@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { getDynamicPageURL } from "@agility/nextjs/node"
+import { checkRedirect } from '@/lib/cms-content/checkRedirect'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -16,6 +16,8 @@ export async function middleware(request: NextRequest) {
 
 	const previewQ = request.nextUrl.searchParams.get("AgilityPreview")
 	let contentIDStr = request.nextUrl.searchParams.get("ContentID") as string || ""
+
+	const ext = request.nextUrl.pathname.includes(".") ? request.nextUrl.pathname.split('.').pop() : null
 
 	if (request.nextUrl.searchParams.has("agilitypreviewkey")) {
 		//*** this is a preview request ***
@@ -45,21 +47,54 @@ export async function middleware(request: NextRequest) {
 			return NextResponse.rewrite(dynredirectUrl)
 
 		}
+	} else if ((!ext || ext.length === 0)) {
+		//check for a redirect
+		const redirection = await checkRedirect({ path: request.nextUrl.pathname })
+
+		if (redirection) {
+			//redirect to the destination url
+			//cache the redirect for 10 minutes
+			if (redirection.destinationUrl.startsWith("/")) {
+				//handle relative paths
+				const url = request.nextUrl.clone()
+				url.pathname = redirection.destinationUrl
+				return NextResponse.redirect(url, {
+					status: redirection.statusCode,
+					headers: {
+						"Cache-Control": "public,maxage=600, stale-while-revalidate"
+					}
+				})
+			} else {
+				//handle absolute paths
+				return NextResponse.redirect(redirection.destinationUrl, {
+					status: redirection.statusCode,
+					headers: {
+						"Cache-Control": "public,maxage=3600, stale-while-revalidate"
+					}
+				})
+			}
+		}
 	}
+
 }
 
 
 
 export const config = {
-
+	// https://nextjs.org/docs/messages/edge-dynamic-code-evaluation
+	// unstable_allowDynamic: [
+	// 	'**/node_modules/lodash/lodash.js',
+	// 	'**/node_modules/reflect-metadata/Reflect.js',
+	// ],
 	matcher: [
 		/*
 		 * Match all request paths except for the ones starting with:
 		 * - api (API routes)
+		 * - assets (public assets)
 		 * - _next/static (static files)
 		 * - _next/image (image optimization files)
 		 * - favicon.ico (favicon file)
 		 */
-		'/((?!api|_next/static|_next/image|favicon.ico).*)',
+		'/((?!api|assets|_next/static|_next/image|favicon.ico).*)',
 	],
 }
