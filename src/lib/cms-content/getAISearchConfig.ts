@@ -7,6 +7,9 @@ interface IAISearchConfig {
 	aISearchSummarySystemPrompt: string
 	maxTokens: string
 	temperature: string
+	defaultPrompt1: string
+	defaultPrompt2: string
+	defaultPrompt3: string
 }
 
 export interface IAISearchConfigData {
@@ -15,6 +18,7 @@ export interface IAISearchConfigData {
 	systemPrompt: string
 	maxTokens: number
 	temperature: number
+	defaultPrompts: string[] // Array of up to 3 default search prompts
 }
 
 interface Props {
@@ -73,7 +77,8 @@ Response format:
 
 Keep responses informative and helpful. Use the search tool results to provide accurate summaries and information.`,
 		maxTokens: 2000,
-		temperature: 0.3
+		temperature: 0.3,
+		defaultPrompts: []
 	}
 
 	// set up content item
@@ -103,11 +108,18 @@ Keep responses informative and helpful. Use the search tool results to provide a
 	}
 
 	// Return configuration with CMS values or fallback to defaults
+	const defaultPrompts = [
+		contentItem.fields.defaultPrompt1,
+		contentItem.fields.defaultPrompt2,
+		contentItem.fields.defaultPrompt3
+	].filter(prompt => prompt && prompt.trim() !== '') // Only include non-empty prompts
+
 	return {
 		aiSearchHelp: contentItem.fields.aiSearchHelp || defaultConfig.aiSearchHelp,
 		showAISearch: (contentItem.fields.showAISearch ?? "false") === "true",
 		systemPrompt: contentItem.fields.aISearchSummarySystemPrompt || defaultConfig.systemPrompt,
 		maxTokens: parseInt(contentItem.fields.maxTokens) || defaultConfig.maxTokens,
 		temperature: parseTemperature(contentItem.fields.temperature),
+		defaultPrompts: defaultPrompts
 	} as IAISearchConfigData
 }

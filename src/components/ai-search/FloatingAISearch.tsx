@@ -7,9 +7,10 @@ import AISearchModal from './AISearchModal'
 
 interface FloatingAISearchProps {
   placeholder?: string
+  defaultPrompts?: string[]
 }
 
-export default function FloatingAISearch({ placeholder = "Ask me anything about our products and services..." }: FloatingAISearchProps) {
+export default function FloatingAISearch({ placeholder = "Ask me anything about our products and services...", defaultPrompts = [] }: FloatingAISearchProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function FloatingAISearch({ placeholder = "Ask me anything about 
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsModalOpen(true)}
-          className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
           aria-label="Open AI Search"
         >
           <SparklesIcon className="h-6 w-6 text-white" />
@@ -67,6 +68,7 @@ export default function FloatingAISearch({ placeholder = "Ask me anything about 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         placeholder={placeholder}
+        defaultPrompts={defaultPrompts}
       />
     </>
   )

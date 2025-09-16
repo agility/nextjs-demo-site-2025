@@ -14,9 +14,10 @@ interface AISearchModalProps {
   isOpen: boolean
   onClose: () => void
   placeholder?: string
+  defaultPrompts?: string[]
 }
 
-export default function AISearchModal({ isOpen, onClose, placeholder }: AISearchModalProps) {
+export default function AISearchModal({ isOpen, onClose, placeholder, defaultPrompts = [] }: AISearchModalProps) {
 
   const { messages, sendMessage, status, error, setMessages } = useChat({
     onToolCall: async (toolCall) => {
@@ -105,6 +106,7 @@ export default function AISearchModal({ isOpen, onClose, placeholder }: AISearch
               loading={loading}
               isOpen={isOpen}
               placeholder={placeholder}
+              defaultPrompts={defaultPrompts}
             />
 
             {/* Results */}

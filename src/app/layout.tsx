@@ -76,7 +76,10 @@ export default async function RootLayout({
 
         {/* Floating AI Search */}
         {aiConfig.showAISearch &&
-          <FloatingAISearch placeholder={aiConfig.aiSearchHelp} />
+          <FloatingAISearch
+            placeholder={aiConfig.aiSearchHelp}
+            defaultPrompts={aiConfig.defaultPrompts}
+          />
         }
 
         {/* Preview indicator - normally not needed in production, but we show it here for illustration purposes */}
