@@ -16,6 +16,8 @@ import Script from 'next/script'
 import { getAudienceListing } from '@/lib/cms-content/getAudienceListing'
 import { getRegionListing } from '@/lib/cms-content/getRegionListing'
 import { Suspense } from 'react'
+import FloatingAISearch from '@/components/ai-search/FloatingAISearch'
+import { getAISearchConfig } from '@/lib/cms-content/getAISearchConfig'
 
 export const metadata: Metadata = {
   title: {
@@ -37,6 +39,10 @@ export default async function RootLayout({
 
   const audiences = await getAudienceListing({ locale, skip: 0, take: 10 })
   const regions = await getRegionListing({ locale, skip: 0, take: 10 })
+
+  const aiConfig = await getAISearchConfig({ locale })
+
+  console.log("AI Search Config: showAISearch:", aiConfig.showAISearch)
 
   return (
     <html lang="en" className="overflow-x-hidden">
@@ -69,6 +75,12 @@ export default async function RootLayout({
           }
 
         </main>
+
+        {/* Floating AI Search */}
+        {aiConfig.showAISearch &&
+          <FloatingAISearch placeholder={aiConfig.aiSearchHelp} />
+        }
+
         {/* Preview indicator - normally not needed in production, but we show it here for illustration purposes */}
         <Suspense fallback={null}>
           <PreviewBar

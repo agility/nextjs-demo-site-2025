@@ -6,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	//get the flat sitemap from Agility CMS and output it
 	const sitemap = await getSitemapFlat({
 		channelName: process.env.AGILITY_SITEMAP || "website",
-		languageCode: process.env.AGILITY_LOCALES || "en-ca"
+		languageCode: process.env.AGILITY_LOCALES || "en-us"
 	})
 
 	return Object.keys(sitemap).filter((path) => {
