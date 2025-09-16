@@ -5,7 +5,11 @@ import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import AISearchModal from './AISearchModal'
 
-export default function FloatingAISearch() {
+interface FloatingAISearchProps {
+  placeholder?: string
+}
+
+export default function FloatingAISearch({ placeholder = "Ask me anything about our products and services..." }: FloatingAISearchProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
@@ -15,7 +19,7 @@ export default function FloatingAISearch() {
         event.preventDefault()
         setIsModalOpen(true)
       }
-      
+
       // Close modal on Escape
       if (event.key === 'Escape' && isModalOpen) {
         setIsModalOpen(false)
@@ -43,7 +47,7 @@ export default function FloatingAISearch() {
           aria-label="Open AI Search"
         >
           <SparklesIcon className="h-6 w-6 text-white" />
-          
+
           {/* Tooltip */}
           <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block">
             <div className="bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
@@ -62,6 +66,7 @@ export default function FloatingAISearch() {
       <AISearchModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        placeholder={placeholder}
       />
     </>
   )

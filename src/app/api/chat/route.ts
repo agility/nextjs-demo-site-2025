@@ -2,6 +2,7 @@ import { createAzure } from '@ai-sdk/azure'
 import { convertToModelMessages, streamText, tool, stepCountIs, type UIMessage } from 'ai'
 import { algoliasearch } from 'algoliasearch'
 import { z } from 'zod'
+import { getAISearchConfig } from '@/lib/cms-content/getAISearchConfig'
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30
@@ -45,8 +46,19 @@ export async function POST(req: Request) {
 			)
 		}
 
+		// Fetch AI configuration from Agility CMS (always returns values)
+		const aiConfig = await getAISearchConfig({ locale: 'en-us' })
+
+		// Check if AI search is enabled
+		if (!aiConfig.showAISearch) {
+			return Response.json(
+				{ error: 'AI search is currently disabled' },
+				{ status: 503 }
+			)
+		}
+
 		const searchTool = tool({
-			description: 'Search for content on the Galaxy Tech website to help answer user questions. Use this tool to find relevant articles, blog posts, documentation, and other resources related to sales, CRM, deal closing, and business productivity.',
+			description: 'Search for content on this website to help answer user questions. Use this tool to find relevant content.',
 			inputSchema: z.object({
 				query: z.string().describe('The search query to find relevant content. Should be a concise search term, not too long.'),
 				limit: z.number().optional().describe('Maximum number of results to return (default: 10)'),
@@ -139,7 +151,8 @@ export async function POST(req: Request) {
 			},
 		})
 
-		const systemPrompt = `You are Galaxy Tech's AI search assistant for the Galaxy Tech website - a platform that helps businesses close every deal. You help users find information specifically from Galaxy Tech's website content through search.
+		// Use custom system prompt from Agility CMS if available, otherwise use default
+		const defaultSystemPrompt = `You are Galaxy Tech's AI search assistant for the Galaxy Tech website - a platform that helps businesses close every deal. You help users find information specifically from Galaxy Tech's website content through search.
 
 				Your role:
 				- You are an expert on Galaxy Tech's products, features, pricing, and services
@@ -154,7 +167,12 @@ export async function POST(req: Request) {
 		4. If no relevant results are found, suggest alternative search terms or topics
 		5. Be conversational but professional - you represent the Galaxy Tech brand
 
-				Keep responses informative but concise, no longer than 25 words. Use the search tool results to provide a summary.`
+				Keep responses informative but concise, no longer than 25 words. Use the search tool results to provide a summary.`;
+
+		// Use system prompt from Agility CMS (defaults are already applied)
+		const systemPrompt = aiConfig.systemPrompt
+		const temperature = aiConfig.temperature
+		const maxOutputTokens = aiConfig.maxTokens
 
 		try {
 
@@ -163,8 +181,8 @@ export async function POST(req: Request) {
 				system: systemPrompt,
 				messages: convertToModelMessages(messages),
 				tools: { search: searchTool },
-				temperature: 0.3,
-				maxOutputTokens: 2000,
+				temperature: temperature,
+				maxOutputTokens: maxOutputTokens,
 				toolChoice: 'auto', // Let the model decide when to use tools
 				stopWhen: stepCountIs(5), // Allow up to 5 steps for multi-step tool calls
 
