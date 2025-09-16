@@ -1,11 +1,7 @@
 
 
-import filteredRedirects from "@/../data/redirections-bloom-filter.json"
 import allRedirects from "@/../data/redirections.json"
 import type { Redirection, RedirectionsMap } from "../cms/getRedirections"
-
-import { ScalableBloomFilter } from "bloom-filters"
-const bloomFilter = ScalableBloomFilter.fromJSON(filteredRedirects as any)
 
 /**
  * Check if a path should be redirected.
@@ -19,8 +15,6 @@ export const checkRedirect = async ({ path }: { path: string }): Promise<Redirec
 	//if the path is the root, obviously don't redirect
 	if (path === "/") return null
 
-	//check if the path is in the bloom filter
-	if (!bloomFilter.has(path.toLowerCase())) return null
 
 	//get the redirections
 	const redirections = allRedirects as RedirectionsMap

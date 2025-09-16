@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { checkRedirect } from '@/lib/cms-content/checkRedirect'
+import { checkRedirect } from './lib/cms-content/checkRedirect'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -49,6 +49,8 @@ export async function middleware(request: NextRequest) {
 		}
 	} else if ((!ext || ext.length === 0)) {
 		//check for a redirect
+
+
 		const redirection = await checkRedirect({ path: request.nextUrl.pathname })
 
 		if (redirection) {
@@ -81,11 +83,6 @@ export async function middleware(request: NextRequest) {
 
 
 export const config = {
-	// https://nextjs.org/docs/messages/edge-dynamic-code-evaluation
-	// unstable_allowDynamic: [
-	// 	'**/node_modules/lodash/lodash.js',
-	// 	'**/node_modules/reflect-metadata/Reflect.js',
-	// ],
 	matcher: [
 		/*
 		 * Match all request paths except for the ones starting with:
