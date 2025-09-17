@@ -14,7 +14,7 @@ interface PostImageProps {
 export const PostImage: React.FC<PostImageProps> = ({
 	image,
 	contentID,
-	className = "mb-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
+	className = "mb-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl dark:grayscale"
 }) => {
 	return (
 		<ViewTransition name={createPostImageTransitionName(contentID)}>

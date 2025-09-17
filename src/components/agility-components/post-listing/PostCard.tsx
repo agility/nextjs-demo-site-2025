@@ -21,8 +21,15 @@ export function PostCard({ post }: PostCardProps) {
 					<ViewTransition name={createPostImageTransitionName(post.contentID)}>
 						<AgilityPic
 							image={post.image}
-							fallbackWidth={200}
-							className="size-full rounded-2xl bg-gray-50 dark:bg-gray-800 object-cover transition-transform duration-200 ease-in-out group-hover:scale-105"
+							fallbackWidth={400}
+							className="absolute inset-0 w-full h-full rounded-2xl bg-gray-50 dark:bg-gray-800 object-cover transition-transform duration-200 ease-in-out group-hover:scale-105 dark:grayscale"
+							sources={[
+								{ media: "(max-width: 639px)", width: 640 },
+								{ media: "(max-width: 767px)", width: 800 },
+								{ media: "(max-width: 1023px)", width: 1200 },
+
+
+							]}
 						/>
 					</ViewTransition>
 					<div className="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 dark:ring-white/10 ring-inset" />
@@ -51,7 +58,7 @@ export function PostCard({ post }: PostCardProps) {
 									<img
 										alt=""
 										src={post.authorImage.url}
-										className="size-10 rounded-full bg-gray-50 dark:bg-gray-800 object-cover transition-transform duration-200 ease-in-out group-hover:scale-110"
+										className="size-10 rounded-full bg-gray-50 dark:bg-gray-800 object-cover transition-transform duration-200 ease-in-out group-hover:scale-110 dark:grayscale"
 									/>
 								)}
 								<div className="text-sm/6">

@@ -79,7 +79,7 @@ function TestimonialCard({
 			<img
 				alt=""
 				src={img}
-				className="absolute inset-x-0 top-0 aspect-square w-full object-cover"
+				className="absolute inset-x-0 top-0 aspect-square w-full object-cover dark:grayscale"
 			/>
 			<div
 				aria-hidden="true"
@@ -100,7 +100,7 @@ function TestimonialCard({
 				<figcaption className="mt-6 border-t border-white/20 pt-6">
 					<p className="text-sm/6 font-medium text-white">{name}</p>
 					<p className="text-sm/6 font-medium">
-						<span className="bg-linear-to-r from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] bg-clip-text text-transparent">
+						<span className="bg-linear-to-r from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] bg-clip-text text-transparent dark:bg-none dark:text-gray-300">
 							{title}
 						</span>
 					</p>
@@ -120,7 +120,7 @@ function CallToAction({ ctaText, ctaLink }: { ctaText: string, ctaLink: URLField
 				<Link
 					href={ctaLink.href}
 					target={ctaLink.target}
-					className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600"
+					className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600 dark:text-gray-300"
 					data-agility-field="ctaButtonText"
 				>
 					{ctaLink.text}

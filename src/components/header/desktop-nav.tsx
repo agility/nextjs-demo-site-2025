@@ -88,7 +88,7 @@ export function DesktopNav({ links }: Props) {
 														onClick={() => close()} // Close the popover when the link is clicked
 													>
 														<div className="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-white/30 dark:bg-gray-700/30 group-hover:bg-gray-50/30 dark:group-hover:bg-gray-600/30 group-hover:shadow-md transition-all duration-200">
-															<img src={icon?.url} alt={icon?.label} aria-hidden="true" className="size-6 text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-all duration-200" />
+															<img src={icon?.url} alt={icon?.label} aria-hidden="true" className="size-6 text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-all duration-200 dark:grayscale" />
 														</div>
 														<div className="flex-auto">
 															<span className="block font-semibold text-gray-900 dark:text-gray-100 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-200">

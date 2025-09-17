@@ -64,7 +64,7 @@ export const TestimonialClient = ({ quote, authorName, authorTitle, authorImage,
 												}}
 												alt={authorImage.label || authorName}
 												src={authorImage.url}
-												className="aspect-3/4 w-full object-cover"
+												className="aspect-3/4 w-full object-cover dark:grayscale"
 												data-agility-field="authorImage"
 											/>
 										)}
@@ -113,7 +113,7 @@ export const TestimonialClient = ({ quote, authorName, authorTitle, authorImage,
 										{authorName}
 									</p>
 									<p className="text-sm/6 font-medium transition-all duration-300 hover:scale-105" data-agility-field="authorTitle">
-										<span className="bg-gradient-to-r from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] bg-clip-text text-transparent">
+										<span className="bg-gradient-to-r from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] bg-clip-text text-transparent dark:bg-none dark:text-gray-300">
 											{authorTitle}
 										</span>
 									</p>

@@ -116,7 +116,7 @@ export const ABTestHeroClient = ({ experimentKey, selectedVariant, userId, conte
 						"order-1 lg:order-none",
 						isImageLeft ? "lg:order-1" : "lg:order-2"
 					)}>
-						<div className="relative">
+						<div className="relative dark:saturate-0">
 							<AgilityPic
 								data-agility-field="image"
 								image={image}

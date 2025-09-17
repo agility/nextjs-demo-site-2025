@@ -49,10 +49,10 @@ export const FrequentlyAskedQuestions = async ({ module, languageCode }: Unloade
 				<div className="mx-auto mt-16 mb-32 max-w-xl space-y-12" data-agility-field="faqs">
 					{faqs.map((faq, index) => (
 						<dl key={index}>
-							<dt className="text-sm font-semibold">
+							<dt className="text-sm font-semibold text-gray-900 dark:text-white">
 								{faq.question}
 							</dt>
-							<dd className="mt-4 text-sm/6 text-gray-600">
+							<dd className="mt-4 text-sm/6 text-gray-600 dark:text-gray-300">
 								{faq.answer}
 							</dd>
 						</dl>

@@ -121,7 +121,7 @@ function TestimonialCard({
       <img
         alt=""
         src={img}
-        className="absolute inset-x-0 top-0 aspect-square w-full object-cover"
+        className="absolute inset-x-0 top-0 aspect-square w-full object-cover dark:grayscale"
       />
       <div
         aria-hidden="true"

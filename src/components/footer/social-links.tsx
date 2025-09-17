@@ -56,7 +56,7 @@ export function SocialLinks({ footerData }: SocialLinksProps) {
 					aria-label={social.link.text}
 					className="text-gray-950 dark:text-gray-50 data-hover:text-gray-950/75 dark:data-hover:text-gray-50/75"
 				>
-					<img src={social.icon.url} alt={social.icon.label || social.link.text} className="size-4" />
+					<img src={social.icon.url} alt={social.icon.label || social.link.text} className="size-4 dark:grayscale" />
 				</Link>
 			))}
 		</>

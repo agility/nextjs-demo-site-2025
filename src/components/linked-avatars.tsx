@@ -70,12 +70,12 @@ function Photos() {
         <img
           alt=""
           src="/linked-avatars/customer.jpg"
-          className="size-20 rounded-full bg-white/15 ring-4 ring-white/10"
+          className="size-20 rounded-full bg-white/15 ring-4 ring-white/10 dark:grayscale"
         />
         <img
           alt=""
           src="/linked-avatars/manager.jpg"
-          className="size-20 rounded-full bg-white/15 ring-4 ring-white/10"
+          className="size-20 rounded-full bg-white/15 ring-4 ring-white/10 dark:grayscale"
         />
       </div>
     </div>

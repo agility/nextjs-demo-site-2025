@@ -36,7 +36,7 @@ function Marker({
       <img
         alt=""
         src={src}
-        className="absolute top-[4px] left-[7px] size-6 rounded-full"
+        className="absolute top-[4px] left-[7px] size-6 rounded-full dark:grayscale"
       />
     </motion.div>
   )

@@ -38,7 +38,7 @@ export const Gradient = ({
     return (
       <>
         <div
-          className={className}
+          className={clsx(className, "dark:grayscale")}
           style={{
             backgroundImage: `url(${backgroundImage?.url}?format=auto&w=2200)`,
             backgroundSize: 'cover',

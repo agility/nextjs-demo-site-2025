@@ -33,7 +33,7 @@ function Person({
 				image={image}
 				fallbackWidth={48}
 				alt={image.label || `${name} headshot`}
-				className="size-12 rounded-full object-cover"
+				className="size-12 rounded-full object-cover dark:grayscale"
 			/>
 			<div className="text-sm/6">
 				<h3 className="font-medium" data-agility-field="name">{name}</h3>

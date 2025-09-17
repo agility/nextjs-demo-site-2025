@@ -66,7 +66,7 @@ export default function AISearchResults({ searchData, onClose }: AISearchResults
                   <img
                     src={result.image}
                     alt=""
-                    className="w-16 h-16 rounded-md object-cover bg-gray-100 dark:bg-gray-700"
+                    className="w-16 h-16 rounded-md object-cover bg-gray-100 dark:bg-gray-700 dark:grayscale"
                     onError={(e) => {
                       (e.target as HTMLImageElement).style.display = 'none'
                     }}
