@@ -1,6 +1,7 @@
 import { convertToModelMessages, streamText, type UIMessage } from 'ai'
 import { validateAIEnvironment, validateAlgoliaEnvironment, getAIModel } from '@/lib/ai/providers'
 import { createSearchTool } from '@/lib/ai/searchTool'
+import { createContactCaptureTool } from '@/lib/ai/contactCaptureTool'
 import { getAISearchConfig } from '@/lib/cms-content/getAISearchConfig'
 
 // Allow streaming responses up to 30 seconds
@@ -60,11 +61,15 @@ export async function POST(req: Request) {
     // Create the search tool
     const searchTool = createSearchTool()
 
+    // Create the contact capture tool
+    const contactTool = createContactCaptureTool(aiConfig.contactCaptureURL)
+
     // Use a more conversational system prompt for the agent mode
     const agentSystemPrompt = `You are a helpful AI assistant for this website. You can have natural conversations with users and help them find information.
 
 Your capabilities:
 - You can search the website for relevant content to answer questions
+- You can capture contact information when users want to get in touch or request more information
 - You can have general conversations about topics related to this website
 - You provide helpful, accurate, and conversational responses
 - You have access to search tools to find current information when needed
@@ -78,9 +83,15 @@ Your personality:
 When responding:
 1. Be conversational and natural in your tone
 2. Use search when you need specific information from the website
-3. Provide clear and helpful answers
-4. Ask follow-up questions when appropriate
-5. Offer additional assistance or suggestions
+3. Use the contact capture tool when users express interest in:
+   - Getting in touch with the company
+   - Requesting more information
+   - Asking for a consultation or demo
+   - Wanting to speak with someone
+   - Expressing purchase intent
+4. Provide clear and helpful answers
+5. Ask follow-up questions when appropriate
+6. Offer additional assistance or suggestions
 
 Remember: You represent this website, so maintain a professional yet friendly demeanor.`
 
@@ -89,7 +100,10 @@ Remember: You represent this website, so maintain a professional yet friendly de
         model: model,
         system: agentSystemPrompt,
         messages: convertToModelMessages(messages),
-        tools: { search: searchTool },
+        tools: {
+          search: searchTool,
+          contactCapture: contactTool
+        },
         temperature: aiConfig.temperature,
         maxOutputTokens: aiConfig.maxTokens,
         toolChoice: 'auto', // Let the model decide when to use tools

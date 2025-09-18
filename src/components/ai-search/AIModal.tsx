@@ -13,7 +13,6 @@ interface AIModalProps {
 
 export default function AIModal({ isOpen, onClose, aiConfig }: AIModalProps) {
 
-  console.log("AI Config in AIModal:", aiConfig);
 
   // Show agent modal if full agent mode is enabled, otherwise show search modal
   if (aiConfig.fullAgentMode) {

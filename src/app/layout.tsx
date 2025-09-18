@@ -41,7 +41,7 @@ export default async function RootLayout({
   const regions = await getRegionListing({ locale, skip: 0, take: 10 })
 
   const aiConfig = await getAISearchConfig({ locale })
-  console.log("AI Config in RootLayout:", aiConfig);
+
   return (
     <html lang="en" className="overflow-x-hidden">
       <head>

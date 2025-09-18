@@ -10,6 +10,7 @@ import { Response } from '@/components/ai-elements/response'
 import { Button } from '@/components/ui/button'
 import { ChatBubbleLeftRightIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import { motion } from 'motion/react'
+import { ContactCaptureForm } from './ContactCaptureForm'
 
 interface AIAgentChatProps {
   placeholder?: string
@@ -38,8 +39,8 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
 
   const handleDefaultPrompt = (prompt: string) => {
     if (isLoading) return
-    setInput(prompt)
     sendMessage({ text: prompt })
+    setInput('')
   }
 
   const handlePromptSubmit = ({ text }: { text?: string }) => {
@@ -112,8 +113,56 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                               {part.text}
                             </Response>
                           )
-                        case 'tool-result':
+                        case 'tool-contactCapture':
+                          // Handle contactCapture tool results
+                          if (part.state === 'input-available') {
+                            return (
+                              <div key={`${message.id}-${i}`} className="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                                <div className="flex items-center gap-2">
+                                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500" />
+                                  <p className="text-sm text-blue-700 dark:text-blue-300">
+                                    Preparing contact form...
+                                  </p>
+                                </div>
+                              </div>
+                            )
+                          }
+                          if (part.state === 'output-available' && part.output) {
+                            const output = part.output as { error?: string; postURL?: string; message?: string }
+                            if (output.error) {
+                              return (
+                                <div key={`${message.id}-${i}`} className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                  <p className="text-sm text-red-700 dark:text-red-300">
+                                    {output.error}
+                                  </p>
+                                </div>
+                              )
+                            }
+                            if (output.postURL) {
+                              return (
+                                <div key={`${message.id}-${i}`} className="my-4">
+                                  <ContactCaptureForm
+                                    postURL={output.postURL}
+                                    message={output.message}
+                                  />
+                                </div>
+                              )
+                            }
+                          }
+                          if (part.state === 'output-error') {
+                            return (
+                              <div key={`${message.id}-${i}`} className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                <p className="text-sm text-red-700 dark:text-red-300">
+                                  {part.errorText || 'An error occurred with the contact form.'}
+                                </p>
+                              </div>
+                            )
+                          }
+                          return null
                         case 'tool-call':
+                        case 'tool-result':
+                          // Hide other tool internals
+                          return null
                         case 'step-start':
                         case 'step-finish' as any:
                           // Hide internal AI processing steps from the user
