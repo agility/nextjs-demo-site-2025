@@ -10,7 +10,8 @@
       "Bash(npm run dev:*)",
       "mcp__Agility-CMS__get_containers",
       "mcp__Agility-CMS__get_content_model_details",
-      "Read(//var/folders/x2/ryfvyg710lb0jr0f_56pv75r0000gn/T/TemporaryItems/NSIRD_screencaptureui_OeyRPg/**)"
+      "Read(//var/folders/x2/ryfvyg710lb0jr0f_56pv75r0000gn/T/TemporaryItems/NSIRD_screencaptureui_OeyRPg/**)",
+      "Bash(npx:*)"
     ],
     "deny": [],
     "ask": []

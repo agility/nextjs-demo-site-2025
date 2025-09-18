@@ -3,14 +3,14 @@
 import { SparklesIcon } from '@heroicons/react/24/solid'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
-import AISearchModal from './AISearchModal'
+import AIModal from './AIModal'
+import type { IAISearchConfigData } from '@/lib/cms-content/getAISearchConfig'
 
 interface FloatingAISearchProps {
-  placeholder?: string
-  defaultPrompts?: string[]
+  aiConfig: IAISearchConfigData
 }
 
-export default function FloatingAISearch({ placeholder = "Ask me anything about our products and services...", defaultPrompts = [] }: FloatingAISearchProps) {
+export default function FloatingAISearch({ aiConfig }: FloatingAISearchProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function FloatingAISearch({ placeholder = "Ask me anything about 
           {/* Tooltip */}
           <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block">
             <div className="bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-              AI Search (⌘K)
+              {aiConfig.fullAgentMode ? 'AI Assistant' : 'AI Search'} (⌘K)
               <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
             </div>
           </div>
@@ -63,12 +63,11 @@ export default function FloatingAISearch({ placeholder = "Ask me anything about 
         </motion.button>
       </motion.div>
 
-      {/* AI Search Modal */}
-      <AISearchModal
+      {/* AI Modal */}
+      <AIModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        placeholder={placeholder}
-        defaultPrompts={defaultPrompts}
+        aiConfig={aiConfig}
       />
     </>
   )

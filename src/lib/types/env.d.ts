@@ -20,10 +20,13 @@ declare global {
 			ALGOLIA_SEARCH_API_KEY: string
 
 			//Azure OpenAI Environment Variables
-			AZURE_AI_RESOURCE: string
-			AZURE_AI_DEPLOYMENT: string
-			AZURE_AI_KEY: string
-			AZURE_AI_API_VERSION: string
+			AZURE_AI_RESOURCE: string | undefined
+			AZURE_AI_DEPLOYMENT: string | undefined
+			AZURE_AI_KEY: string | undefined
+
+			//OpenAI Environment Variables
+			OPENAI_API_KEY: string | undefined
+			OPENAI_API_MODEL: string | undefined
 
 
 
