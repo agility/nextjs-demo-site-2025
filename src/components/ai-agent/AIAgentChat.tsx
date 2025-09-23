@@ -29,6 +29,8 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
     }),
   })
 
+  const isLoading = status === 'streaming' || status === 'submitted'
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -37,7 +39,19 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
     scrollToBottom()
   }, [messages])
 
-  const isLoading = status === 'streaming' || status === 'submitted'
+  // Auto-focus the textarea when component mounts and after state changes
+  useEffect(() => {
+    if (!isLoading && textareaRef.current) {
+      textareaRef.current.focus()
+    }
+  }, [isLoading])
+
+  // Initial focus on mount
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.focus()
+    }
+  }, [])
 
   const handleDefaultPrompt = (prompt: string) => {
     if (isLoading) return
