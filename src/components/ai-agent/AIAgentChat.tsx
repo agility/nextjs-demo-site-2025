@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { ChatBubbleLeftRightIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import { motion } from 'motion/react'
 import { ContactCaptureForm } from './ContactCaptureForm'
+import { SearchResults } from './SearchResults'
 
 interface AIAgentChatProps {
   placeholder?: string
@@ -20,6 +21,7 @@ interface AIAgentChatProps {
 export default function AIAgentChat({ placeholder = "Ask me anything...", defaultPrompts = [] }: AIAgentChatProps) {
   const [input, setInput] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
@@ -41,12 +43,16 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
     if (isLoading) return
     sendMessage({ text: prompt })
     setInput('')
+    // Focus the input after sending
+    setTimeout(() => textareaRef.current?.focus(), 100)
   }
 
   const handlePromptSubmit = ({ text }: { text?: string }) => {
     if (text?.trim()) {
       sendMessage({ text })
       setInput('')
+      // Focus the input after sending
+      setTimeout(() => textareaRef.current?.focus(), 100)
     }
   }
 
@@ -103,6 +109,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                     }
                   >
                     {message.parts ? message.parts.map((part, i) => {
+
                       switch (part.type) {
                         case 'text':
                           return (
@@ -113,6 +120,32 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                               {part.text}
                             </Response>
                           )
+                        case 'tool-search':
+                          // Display search tool results using the SearchResults component
+                          if (part.state === 'output-available' && part.output) {
+                            const output = part.output as { results?: any[]; totalHits?: number; error?: string }
+                            return (
+                              <SearchResults
+                                key={`${message.id}-${i}`}
+                                results={output.results || []}
+                                totalHits={output.totalHits}
+                                error={output.error}
+                              />
+                            )
+                          }
+
+                          // Show loading state during search
+                          if (part.state === 'input-available' || part.state === 'input-streaming') {
+                            return (
+                              <SearchResults
+                                key={`${message.id}-${i}`}
+                                results={[]}
+                                isLoading={true}
+                              />
+                            )
+                          }
+
+                          return null
                         case 'tool-contactCapture':
                           // Handle contactCapture tool results
                           if (part.state === 'input-available') {
@@ -168,14 +201,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                           // Hide internal AI processing steps from the user
                           return null
                         default:
-                          // Only show debug info in development
-                          if (process.env.NODE_ENV === 'development') {
-                            return (
-                              <div key={`${message.id}-${i}`} className="text-xs opacity-50 p-2 bg-gray-100 dark:bg-gray-800 rounded">
-                                Debug: {part.type}
-                              </div>
-                            )
-                          }
+                          // Hide all other internal tool types
                           return null
                       }
                     }) : (
@@ -218,6 +244,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
           <PromptInputBody className="p-4">
             <div className="relative">
               <PromptInputTextarea
+                ref={textareaRef}
                 placeholder={placeholder}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
