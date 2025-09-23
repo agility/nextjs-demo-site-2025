@@ -85,7 +85,7 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, parent }: Pr
 					return
 				}
 			}
-			console.warn("Could not output tag in Additional Header Markup", item)
+			console.warn("Warning: could not output tag in Additional Header Markup", item)
 		}
 
 		if (typeof additionalHeaderMarkup === "string") {
