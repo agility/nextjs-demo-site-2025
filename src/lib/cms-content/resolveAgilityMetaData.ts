@@ -68,15 +68,18 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, parent }: Pr
 			//check if this is a meta tag and add it to the otherMetaData if so
 			if (item.type === "meta") {
 				const metaTag = item.props as React.MetaHTMLAttributes<HTMLMetaElement>
-				if (metaTag && metaTag.property && metaTag.content) {
+				if (metaTag && (metaTag.property || metaTag.name) && metaTag.content) {
+
+					const metaProperty = metaTag.property || metaTag.name
+					if (!metaProperty) return
 
 					//special case for og:image
-					if (metaTag.property === "og:image") {
+					if (metaProperty === "og:image") {
 						ogImages.push({
 							url: metaTag.content
 						})
 					} else {
-						otherMetaData[metaTag.property] = metaTag.content
+						otherMetaData[metaProperty] = metaTag.content
 					}
 
 					return
