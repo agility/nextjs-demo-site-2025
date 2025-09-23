@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+#claude local stuff
+/.claude/settings.local.json
+
 # production
 /build
 

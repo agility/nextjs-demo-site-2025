@@ -9,6 +9,7 @@ import { useChat } from '@ai-sdk/react'
 import AISearchInput from './AISearchInput'
 import AISearchSummary from './AISearchSummary'
 import AISearchResults from './AISearchResults'
+import { DefaultChatTransport } from 'ai'
 
 interface AISearchModalProps {
   isOpen: boolean
@@ -20,6 +21,11 @@ interface AISearchModalProps {
 export default function AISearchModal({ isOpen, onClose, placeholder, defaultPrompts = [] }: AISearchModalProps) {
 
   const { messages, sendMessage, status, error, setMessages } = useChat({
+
+    transport: new DefaultChatTransport({
+      //use the AI search endpoint
+      api: '/api/ai/search'
+    }),
     onToolCall: async (toolCall) => {
       const toolInput: any = toolCall.toolCall.input
 

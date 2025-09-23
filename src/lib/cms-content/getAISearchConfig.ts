@@ -10,6 +10,8 @@ interface IAISearchConfig {
 	defaultPrompt1: string
 	defaultPrompt2: string
 	defaultPrompt3: string
+	fullAgentMode: string
+	contactCaptureURL: string
 }
 
 export interface IAISearchConfigData {
@@ -19,6 +21,8 @@ export interface IAISearchConfigData {
 	maxTokens: number
 	temperature: number
 	defaultPrompts: string[] // Array of up to 3 default search prompts
+	fullAgentMode: boolean // Whether to show full agent dialog instead of search
+	contactCaptureURL?: string // URL for posting contact form submissions
 }
 
 interface Props {
@@ -78,7 +82,8 @@ Response format:
 Keep responses informative and helpful. Use the search tool results to provide accurate summaries and information.`,
 		maxTokens: 2000,
 		temperature: 0.3,
-		defaultPrompts: []
+		defaultPrompts: [],
+		fullAgentMode: false
 	}
 
 	// set up content item
@@ -120,6 +125,8 @@ Keep responses informative and helpful. Use the search tool results to provide a
 		systemPrompt: contentItem.fields.aISearchSummarySystemPrompt || defaultConfig.systemPrompt,
 		maxTokens: parseInt(contentItem.fields.maxTokens) || defaultConfig.maxTokens,
 		temperature: parseTemperature(contentItem.fields.temperature),
-		defaultPrompts: defaultPrompts
+		defaultPrompts: defaultPrompts,
+		fullAgentMode: (contentItem.fields.fullAgentMode ?? "false") === "true",
+		contactCaptureURL: contentItem.fields.contactCaptureURL || undefined
 	} as IAISearchConfigData
 }

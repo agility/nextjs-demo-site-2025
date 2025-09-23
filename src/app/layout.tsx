@@ -77,8 +77,7 @@ export default async function RootLayout({
         {/* Floating AI Search */}
         {aiConfig.showAISearch &&
           <FloatingAISearch
-            placeholder={aiConfig.aiSearchHelp}
-            defaultPrompts={aiConfig.defaultPrompts}
+            aiConfig={aiConfig}
           />
         }
 
