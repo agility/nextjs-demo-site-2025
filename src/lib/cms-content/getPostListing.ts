@@ -64,7 +64,7 @@ export const getPostListing = async ({ sitemap, locale, skip, take }: LoadPostsP
 			const authorImage = post.fields.author?.fields.headShot || null
 			const date = DateTime.fromJSDate(new Date(post.fields.postDate)).toFormat("LLL. dd, yyyy")
 			let url = dynamicUrls[post.contentID] || "#"
-			console.log('Post URL before locale adjustment:', url, { locale, defaultLocale })
+
 			if (locale !== defaultLocale) {
 				url = `/${locale}${url}`
 			}
