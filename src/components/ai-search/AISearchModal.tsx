@@ -20,6 +20,12 @@ interface AISearchModalProps {
 
 export default function AISearchModal({ isOpen, onClose, placeholder, defaultPrompts = [] }: AISearchModalProps) {
 
+  const [query, setQuery] = useState('')
+  const searchData = useSearch()
+
+  /**
+   * AI chat hook with streaming and tool call handling (for search integration)
+   */
   const { messages, sendMessage, status, error, setMessages } = useChat({
 
     transport: new DefaultChatTransport({
@@ -36,8 +42,7 @@ export default function AISearchModal({ isOpen, onClose, placeholder, defaultPro
     }
   });
 
-  const [query, setQuery] = useState('')
-  const searchData = useSearch()
+
   const loading = status === 'streaming' || status === 'submitted'
 
 

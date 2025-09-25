@@ -24,6 +24,10 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
+
+  /**
+   * AI chat hook with streaming and tool call handling (for search integration and contact capture form)
+   */
   const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
       api: '/api/ai/agent'

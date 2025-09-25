@@ -17,7 +17,10 @@ export const createSearchTool = () => tool({
   execute: async ({ query, limit = 10 }) => {
     try {
 
-      console.log('Performing Algolia search for query:', query)
+      console.log('***********')
+      console.log('Algolia SEARCH QUERY: ', query)
+      console.log('***********')
+
 
       const searchParams = {
         query,
@@ -31,7 +34,9 @@ export const createSearchTool = () => tool({
         searchParams
       })
 
-      console.log("Algolia search response:", response.hits.length, "hits")
+      console.log('***********')
+      console.log('Algolia SEARCH HITS: ', response.hits.length)
+      console.log('***********')
 
       const results = response.hits.map((hit: any) => {
         // Extract and clean the title
