@@ -109,8 +109,6 @@ export const PricingTable = async ({ module, languageCode, globalData }: Unloade
 
 	try {
 		// Validate featuresJSON is a valid JSON string}
-
-
 		// Transform the tiers data
 		tiers = JSON.parse(featuresJSON)
 	} catch (error) {

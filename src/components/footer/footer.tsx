@@ -6,6 +6,7 @@ import { CallToAction } from './call-to-action'
 import { Copyright } from './copyright'
 import { Sitemap } from './sitemap'
 import { SocialLinks } from './social-links'
+import { LanguageToggle } from './language-toggle'
 import type { IFooter } from '@/lib/cms-content/getFooterContent'
 import type { ImageField } from '@agility/nextjs'
 
@@ -13,10 +14,13 @@ interface FooterProps {
 	footerData: IFooter
 	logo: ImageField
 	siteName: string
+	locale: string
+	locales: readonly string[]
+	defaultLocale: string
 }
 
 // Main Footer component
-export const Footer = ({ footerData, logo, siteName }: FooterProps) => {
+export const Footer = ({ footerData, logo, siteName, locale, locales, defaultLocale }: FooterProps) => {
 	return (
 		<footer className='mt-20'>
 			<Gradient className="relative" backgroundType='grays'>
@@ -47,6 +51,7 @@ export const Footer = ({ footerData, logo, siteName }: FooterProps) => {
 							</div>
 							<div className="flex">
 								<PlusGridItem className="flex items-center gap-8 p-3">
+									<LanguageToggle currentLocale={locale} locales={locales} defaultLocale={defaultLocale} />
 									<SocialLinks footerData={footerData} />
 								</PlusGridItem>
 							</div>

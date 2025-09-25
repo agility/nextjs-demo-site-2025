@@ -4,6 +4,8 @@ import type { ILink } from "@/lib/cms-content/getHeaderContent"
 import Link from "next/link"
 import { PlusGridIcon, PlusGridItem } from "../plus-grid"
 import React, { useState } from 'react'
+import { localizeUrlField } from '@/lib/i18n/localizeUrl'
+import { type Locale } from '@/lib/i18n/config'
 import {
 	Dialog,
 	DialogPanel,
@@ -30,9 +32,10 @@ import { DarkModeToggle } from "./dark-mode-toggle"
 
 interface Props {
 	links: ILink[]
+	locale: string
 }
 
-export function DesktopNav({ links }: Props) {
+export function DesktopNav({ links, locale }: Props) {
 
 	return (
 
@@ -68,7 +71,7 @@ export function DesktopNav({ links }: Props) {
 										<>
 											<div className="p-4 bg-gray-300/70 dark:bg-slate-600 backdrop-blur-sm text-center">
 												<Link
-													href={link.href}
+													href={localizeUrlField(link, locale as Locale)}
 													target={link.target}
 													className="text-lg px-3 p-1 rounded transition-colors font-medium text-gray-950 dark:text-gray-100 text-center relative group inline-block"
 													onClick={() => close()} // Close the popover when the link is clicked
@@ -81,7 +84,7 @@ export function DesktopNav({ links }: Props) {
 											<div className="p-4">
 
 												{subNavLinks.map(({ link, description, icon }, index) => (
-													<Link href={link.href}
+													<Link href={localizeUrlField(link, locale as Locale)}
 														key={`${link.href}-${index}`}
 														target={link.target}
 														className="group relative flex gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50/25 dark:hover:bg-gray-700/25 hover:backdrop-blur-sm transition-all duration-200"
@@ -103,7 +106,7 @@ export function DesktopNav({ links }: Props) {
 											<div className="grid grid-cols-2 divide-x divide-gray-900/10 dark:divide-gray-100/10 bg-gray-300/20 dark:bg-slate-600 backdrop-blur-sm">
 												{bottomLink1 && (
 													<Link
-														href={bottomLink1.href}
+														href={localizeUrlField(bottomLink1, locale as Locale)}
 														target={bottomLink1.target}
 														className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 dark:text-gray-100 hover:bg-gray-50/25 dark:hover:bg-gray-700/25 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-200 relative group"
 														onClick={() => close()}
@@ -116,7 +119,7 @@ export function DesktopNav({ links }: Props) {
 
 												{bottomLink2 && (
 													<Link
-														href={bottomLink2.href}
+														href={localizeUrlField(bottomLink2, locale as Locale)}
 														target={bottomLink2.target}
 														className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 dark:text-gray-100 hover:bg-gray-50/25 dark:hover:bg-gray-700/25 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-200 relative group"
 														onClick={() => close()}
@@ -136,7 +139,7 @@ export function DesktopNav({ links }: Props) {
 						) : (
 							<PlusGridItem className="relative flex justify-center px-2" >
 								<Link
-									href={link.href}
+									href={localizeUrlField(link, locale as Locale)}
 									target={link.target}
 									className="flex items-center px-4 py-3 text-base font-medium text-gray-950 dark:text-gray-100 relative group"
 								>

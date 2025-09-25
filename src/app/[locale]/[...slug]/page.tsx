@@ -9,6 +9,7 @@ import { resolveAgilityMetaData } from "@/lib/cms-content/resolveAgilityMetaData
 import { type SitemapNode } from "@/lib/types/SitemapNode"
 import { notFound } from "next/navigation"
 import InlineError from "@/components/InlineError"
+import { locales } from "@/lib/i18n/config"
 
 export const revalidate = 60
 export const runtime = "nodejs"
@@ -26,34 +27,41 @@ export async function generateStaticParams() {
 		apiKey,
 		isPreview,
 	});
-	const languageCode = process.env.AGILITY_LOCALES || "en-us";
 
-	agilityClient.config.fetchConfig = {
-		next: {
-			tags: [`agility-sitemap-flat-${languageCode}`],
-			revalidate: 60,
-		},
-	};
+	const allPaths: { locale: string; slug: string[] }[] = [];
 
-	// Get the flat sitemap and generate the paths
-	const sitemap: { [path: string]: SitemapNode } = await agilityClient.getSitemapFlat({
-		channelName: process.env.AGILITY_SITEMAP || "website",
-		languageCode,
-	});
+	// Generate paths for each locale
+	for (const locale of locales) {
+		agilityClient.config.fetchConfig = {
+			next: {
+				tags: [`agility-sitemap-flat-${locale}`],
+				revalidate: 60,
+			},
+		};
 
-	const paths = Object.values(sitemap)
-		.filter((node, index) => {
-			if (node.redirect !== null || node.isFolder === true || index === 0) return false;
-			return true;
-		})
-		.map((node) => {
-			return {
-				slug: node.path.split("/").slice(1),
-			};
+		// Get the flat sitemap for this locale
+		const sitemap: { [path: string]: SitemapNode } = await agilityClient.getSitemapFlat({
+			channelName: process.env.AGILITY_SITEMAP || "website",
+			languageCode: locale,
 		});
 
-	console.log("Pre-rendering", paths.length, "static paths.");
-	return paths;
+		const localePaths = Object.values(sitemap)
+			.filter((node, index) => {
+				if (node.redirect !== null || node.isFolder === true) return false;
+				return true;
+			})
+			.map((node) => {
+				return {
+					locale,
+					slug: node.path.split("/").slice(1),
+				};
+			});
+
+		allPaths.push(...localePaths);
+	}
+
+	console.log("Pre-rendering", allPaths.length, "static paths across", locales.length, "locales.");
+	return allPaths;
 }
 
 /**
@@ -63,9 +71,10 @@ export async function generateMetadata(
 	props: PageProps,
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
-	const { params } = props;  // Remove the 'await' here
+	const { params } = props;
+	const awaitedParams = await params;
 
-	const { locale, sitemap, isDevelopmentMode, isPreview } = await getAgilityContext();
+	const { locale, sitemap, isDevelopmentMode, isPreview } = await getAgilityContext(awaitedParams.locale);
 	const agilityData = await getAgilityPage({ params });
 	if (!agilityData.page) return {};
 	return await resolveAgilityMetaData({

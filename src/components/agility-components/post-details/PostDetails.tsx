@@ -9,8 +9,9 @@ import { Container } from "../../container"
 import { Subheading, Heading } from "../../text"
 import { Button } from "../../button"
 import { PostImage } from "./PostImage"
+import { localizeUrl } from "@/lib/i18n/localizeUrl"
 
-const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
+const PostDetails = async ({ dynamicPageItem, languageCode }: UnloadedModuleProps) => {
 	if (!dynamicPageItem) {
 		return <div>Post not found</div>
 	}
@@ -92,7 +93,7 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
 						/>
 
 						<div className="mt-10">
-							<Button variant="outline" href="/blog">
+							<Button variant="outline" href={localizeUrl("/blog", languageCode)}>
 								<ChevronLeftIcon className="size-4" />
 								Back to blog
 							</Button>

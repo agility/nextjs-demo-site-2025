@@ -28,6 +28,7 @@ interface IFooterItem {
 }
 
 export interface IFooter {
+	locale: string
 	ctaSubheading: string
 	ctaHeading: string
 	ctaDescription: string
@@ -97,6 +98,7 @@ export const getFooterContent = async ({ locale }: Props): Promise<IFooter | nul
 	const footerItem = contentItem.fields
 	// map the content item to the IFooter interface
 	return {
+		locale,
 		ctaSubheading: footerItem.ctaSubheading,
 		ctaHeading: footerItem.ctaHeading,
 		ctaDescription: footerItem.ctaDescription,

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { checkRedirect } from './lib/cms-content/checkRedirect'
+import { defaultLocale, locales } from './lib/i18n/config'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -14,6 +15,7 @@ export async function middleware(request: NextRequest) {
 	 *    based on a content id
 	 *******************************/
 
+	const pathname = request.nextUrl.pathname
 	const previewQ = request.nextUrl.searchParams.get("AgilityPreview")
 	let contentIDStr = request.nextUrl.searchParams.get("ContentID") as string || ""
 
@@ -48,7 +50,9 @@ export async function middleware(request: NextRequest) {
 
 		}
 	} else if ((!ext || ext.length === 0)) {
-		//check for a redirect
+		/***
+		 * CHECK FOR REDIRECT
+		***/
 
 
 		const redirection = await checkRedirect({ path: request.nextUrl.pathname })
@@ -76,6 +80,30 @@ export async function middleware(request: NextRequest) {
 				})
 			}
 		}
+
+
+		/***
+		 * LOCALE BASED ROUTING
+		 ***/
+
+		// Skip if already has locale prefix or is a static file
+		const hasLocalePrefix = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
+		const isStaticFile = pathname.includes('.') || pathname.startsWith('/_next')
+
+		console.log('middleware running for locale routing', { pathname, locales, defaultLocale, hasLocalePrefix, isStaticFile })
+
+		if (hasLocalePrefix || isStaticFile) {
+			return
+		}
+
+		const localeBasedUrl = new URL(`/${defaultLocale}${pathname}`, request.url)
+
+		console.log('Rewriting to locale based URL:', localeBasedUrl.toString())
+
+		// For all paths (including root), rewrite to include default locale (no redirect)
+		// This keeps the clean URL but internally routes to the locale-specific page
+		return NextResponse.rewrite(localeBasedUrl)
+
 	}
 
 }
