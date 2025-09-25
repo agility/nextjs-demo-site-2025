@@ -3,6 +3,7 @@
 import { type UIMessage } from 'ai'
 import { UserIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import { motion } from 'motion/react'
+import { cn } from '@/lib/utils'
 
 interface AIAgentMessageProps {
   message: UIMessage
@@ -19,19 +20,18 @@ export default function AIAgentMessage({ message }: AIAgentMessageProps) {
     >
       {!isUser && (
         <div className="flex-shrink-0">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600">
-            <SparklesIcon className="h-4 w-4 text-white" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
+            <SparklesIcon className="h-4 w-4 text-primary-foreground" />
           </div>
         </div>
       )}
 
-      <div className={`max-w-[70%] ${isUser ? 'order-first' : ''}`}>
+      <div className={cn(`max-w-[70%]`, isUser ? 'order-first' : '')}>
         <div
-          className={`rounded-lg px-4 py-2 ${
-            isUser
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
-          }`}
+          className={cn(`rounded-lg px-4 py-2`, isUser
+            ? 'bg-primary text-primary-foreground'
+            : 'bg-muted text-muted-foreground'
+          )}
         >
           <div className="text-sm">
             {message.parts ? message.parts.map((part, i) => {
@@ -61,8 +61,8 @@ export default function AIAgentMessage({ message }: AIAgentMessageProps) {
 
       {isUser && (
         <div className="flex-shrink-0">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 dark:bg-gray-600">
-            <UserIcon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+            <UserIcon className="h-4 w-4 text-muted-foreground" />
           </div>
         </div>
       )}

@@ -90,8 +90,6 @@ export async function middleware(request: NextRequest) {
 		const hasLocalePrefix = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
 		const isStaticFile = pathname.includes('.') || pathname.startsWith('/_next')
 
-		console.log('middleware running for locale routing', { pathname, locales, defaultLocale, hasLocalePrefix, isStaticFile })
-
 		if (hasLocalePrefix || isStaticFile) {
 			return
 		}

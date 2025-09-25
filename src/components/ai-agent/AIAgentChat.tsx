@@ -12,6 +12,7 @@ import { ChatBubbleLeftRightIcon, SparklesIcon } from '@heroicons/react/24/outli
 import { motion } from 'motion/react'
 import { ContactCaptureForm } from './ContactCaptureForm'
 import { SearchResults } from './SearchResults'
+import { IconBubble, IconUser } from "@tabler/icons-react"
 
 interface AIAgentChatProps {
   placeholder?: string
@@ -110,17 +111,18 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                 transition={{ delay: index * 0.1 }}
               >
                 <Message from={message.role}>
-                  <MessageAvatar
+                  {/* <MessageAvatar
                     src={message.role === 'user' ? '/user-avatar.svg' : '/ai-avatar.svg'}
                     name={message.role === 'user' ? 'You' : 'AI'}
                     className="ring-2 ring-gray-200 dark:ring-gray-700"
-                  />
+                  /> */}
+                  <div className='rounded-full bg-muted p-1 mr-2 mt-1'>
+                    {message.role === 'user' ?
+                      <IconUser role={message.role} /> :
+                      <IconBubble role={message.role} />}
+                  </div>
                   <MessageContent
                     variant={message.role === 'user' ? 'contained' : 'flat'}
-                    className={message.role === 'user'
-                      ? 'bg-blue-600 text-white px-4 py-3'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-4 py-3'
-                    }
                   >
                     {message.parts ? message.parts.map((part, i) => {
 
@@ -129,7 +131,6 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                           return (
                             <Response
                               key={`${message.id}-${i}`}
-                              className={message.role === 'user' ? 'text-white [&_p]:text-white [&_*]:text-white' : ''}
                             >
                               {part.text}
                             </Response>
@@ -164,7 +165,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                           // Handle contactCapture tool results
                           if (part.state === 'input-available') {
                             return (
-                              <div key={`${message.id}-${i}`} className="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                              <div key={`${message.id}-${i}`} className="p-3 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-lg">
                                 <div className="flex items-center gap-2">
                                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500" />
                                   <p className="text-sm text-blue-700 dark:text-blue-300">
@@ -178,7 +179,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                             const output = part.output as { error?: string; postURL?: string; message?: string }
                             if (output.error) {
                               return (
-                                <div key={`${message.id}-${i}`} className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                <div key={`${message.id}-${i}`} className="p-3 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-lg">
                                   <p className="text-sm text-red-700 dark:text-red-300">
                                     {output.error}
                                   </p>
@@ -198,7 +199,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                           }
                           if (part.state === 'output-error') {
                             return (
-                              <div key={`${message.id}-${i}`} className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                              <div key={`${message.id}-${i}`} className="p-3 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-lg">
                                 <p className="text-sm text-red-700 dark:text-red-300">
                                   {part.errorText || 'An error occurred with the contact form.'}
                                 </p>
@@ -231,7 +232,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4"
+              className="rounded-lg bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 p-4"
             >
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-red-500" />
@@ -250,7 +251,7 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
         <ConversationScrollButton />
       </Conversation>
 
-      <div className="border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+      <div className="border-t border-border bg-muted/50">
         <PromptInput
           onSubmit={handlePromptSubmit}
           className="border-0 shadow-none bg-transparent"
@@ -263,12 +264,12 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isLoading}
-                className="resize-none bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 pr-12 text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                className="resize-none bg-background border border-input rounded-xl px-4 py-3 pr-12 text-sm text-foreground placeholder-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent shadow-sm"
               />
               <div className="absolute right-2 bottom-2">
                 <PromptInputSubmit
                   disabled={isLoading || !input.trim()}
-                  className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-2 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg p-2 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
                 />
               </div>
             </div>

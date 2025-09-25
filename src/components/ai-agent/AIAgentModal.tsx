@@ -20,7 +20,7 @@ export default function AIAgentModal({ isOpen, onClose, placeholder, defaultProm
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-gray-900/50 dark:bg-gray-900/75 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
       />
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -30,20 +30,20 @@ export default function AIAgentModal({ isOpen, onClose, placeholder, defaultProm
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-3xl h-[600px] transform overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-2xl transition-all sm:my-8 flex flex-col"
+            className="relative w-full max-w-3xl h-[600px] transform overflow-hidden rounded-xl bg-background shadow-2xl transition-all sm:my-8 flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 p-4">
+            <div className="flex items-center justify-between border-b border-border p-4">
               <div className="flex items-center gap-2">
-                <ChatBubbleLeftRightIcon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <ChatBubbleLeftRightIcon className="h-5 w-5 text-primary" />
+                <h2 className="text-lg font-semibold text-foreground">
                   AI Assistant
                 </h2>
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md bg-white dark:bg-gray-800 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="rounded-md bg-background text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 <XMarkIcon className="h-6 w-6" />
               </button>

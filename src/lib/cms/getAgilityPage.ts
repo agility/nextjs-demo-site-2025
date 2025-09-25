@@ -19,14 +19,12 @@ export const getAgilityPage = async ({ params }: PageProps) => {
 	const { isPreview: preview, locale } = await getAgilityContext(awaitedParams.locale)
 
 	if (!awaitedParams.slug) awaitedParams.slug = [""]
-	console.log("Getting page for", { awaitedParams, preview, locale })
+
 	const page = await getAgilityPageProps({
 		params: awaitedParams, preview, locale, apiOptions: {
 			contentLinkDepth: 0
 		}
 	})
-
-	console.log("page ret", page.dynamicPageItem)
 
 	return page
 
