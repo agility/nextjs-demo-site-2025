@@ -92,7 +92,7 @@ Keep responses informative and helpful. Use the search tool results to provide a
 	try {
 		// try to fetch our AI search configuration (reference name is case-sensitive)
 		let aiConfig = await getContentList<IAISearchConfig>({
-			referenceName: "AISearchConfiguration",
+			referenceName: "aisearchconfiguration",
 			languageCode: locale,
 			take: 1,
 			locale

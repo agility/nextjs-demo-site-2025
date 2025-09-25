@@ -15,7 +15,7 @@ export const getContentList = async <T>(params: ContentListRequestParams): Promi
 
 	agilitySDK.config.fetchConfig = {
 		next: {
-			tags: [`agility-content-${params.referenceName}-${params.languageCode || params.locale}`],
+			tags: [`agility-content-${params.referenceName.toLowerCase()}-${params.languageCode || params.locale}`],
 			revalidate: 60,
 		},
 	}

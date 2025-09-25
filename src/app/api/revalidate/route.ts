@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 		//revalidate the correct tags based on what changed
 		if (data.referenceName) {
 			//content item change
-			const itemTag = `agility-content-${data.referenceName}-${data.languageCode}`
+			const itemTag = `agility-content-${data.referenceName.toLowerCase()}-${data.languageCode}`
 			const listTag = `agility-content-${data.contentID}-${data.languageCode}`
 			revalidateTag(itemTag)
 			revalidateTag(listTag)
