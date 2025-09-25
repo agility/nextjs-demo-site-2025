@@ -23,14 +23,14 @@ const testimonials = [
     name: 'Tina Yards',
     title: 'VP of Sales, Protocol',
     quote:
-      'Thanks to Radiant, we’re finding new leads that we never would have found with legal methods.',
+      'Thanks to Galaxy Tech, we’re finding new leads that we never would have found with legal methods.',
   },
   {
     img: '/testimonials/conor-neville.jpg',
     name: 'Conor Neville',
     title: 'Head of Customer Success, TaxPal',
     quote:
-      'Radiant made undercutting all of our competitors an absolute breeze.',
+      'Galaxy Tech made undercutting all of our competitors an absolute breeze.',
   },
   {
     img: '/testimonials/amy-chase.jpg',
@@ -50,7 +50,7 @@ const testimonials = [
     img: '/testimonials/dillon-lenora.jpg',
     name: 'Dillon Lenora',
     title: 'VP of Sales, Detax',
-    quote: 'I was able to replace 80% of my team with RadiantAI bots.',
+    quote: 'I was able to replace 80% of my team with Galaxy TechAI bots.',
   },
   {
     img: '/testimonials/harriet-arron.jpg',
@@ -156,7 +156,7 @@ function CallToAction() {
   return (
     <div>
       <p className="max-w-sm text-sm/6 text-gray-600">
-        Join the best sellers in the business and start using Radiant to hit
+        Join the best sellers in the business and start using Galaxy Tech to hit
         your targets today.
       </p>
       <div className="mt-2">

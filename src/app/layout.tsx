@@ -7,8 +7,8 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Radiant',
-    default: 'Radiant - Close every deal',
+    template: '%s',
+    default: 'Galaxy Tech'
   },
 }
 
@@ -23,12 +23,6 @@ export default function RootLayout({
         <link
           rel="stylesheet"
           href="https://api.fontshare.com/css?f%5B%5D=switzer@400,500,600,700&amp;display=swap"
-        />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title="The Radiant Blog"
-          href="/blog/feed.xml"
         />
         <meta name="view-transition" content="same-origin" />
       </head>
