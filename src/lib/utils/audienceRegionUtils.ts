@@ -30,7 +30,8 @@ export async function getAudienceContentID(
   const { getAudienceListingWithContentID } = await import('@/lib/cms-content/getAudienceListingWithContentID')
   const audiences = await getAudienceListingWithContentID({ locale })
 
-  const audience = audiences.find(a => a.name === audienceName)
+  //find the audience (we have to search the names to lower case, alphanumeric and dashes only)
+  const audience = audiences.find(a => a.name.toLowerCase().replace(/[^a-zA-Z0-9-_]/g, '') === audienceName)
   return audience ? audience.contentID : null
 }
 

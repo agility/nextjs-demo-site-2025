@@ -41,7 +41,7 @@ export const PostListing = async ({ globalData, languageCode }: UnloadedModulePr
 			<Container className="mt-16 pb-24">
 				<Categories selected={category} />
 				<Posts page={page} category={category} posts={postsResult.posts} />
-				<Pagination {...{ page, category, totalPosts: postsResult.totalCount, postsPerPage }} />
+				<Pagination {...{ page, category, totalPosts: postsResult.totalCount, postsPerPage, languageCode }} />
 			</Container>
 		</>
 	)

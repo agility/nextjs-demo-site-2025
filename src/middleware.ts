@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
 	 *    based on a content id
 	 *******************************/
 
-	const pathname = request.nextUrl.pathname
+	let pathname = request.nextUrl.pathname
 	const previewQ = request.nextUrl.searchParams.get("AgilityPreview")
 	let contentIDStr = request.nextUrl.searchParams.get("ContentID") as string || ""
 
@@ -81,7 +81,21 @@ export async function middleware(request: NextRequest) {
 			}
 		}
 
+		//grab the search params and add them to the path so we can pass them on when rewriting
+		//this will help use keep static routing working for better performance
+		let searchParams = request.nextUrl.searchParams.toString()
+		let hasSearchParams = searchParams && searchParams.length > 0
+		if (!hasSearchParams) {
+			searchParams = ""
+		}
 
+		if (searchParams && searchParams.length > 0) {
+			const searchParamPortion = `~~~${encodeURIComponent(searchParams)}~~~`
+			//if we have search params, we need to include them in the path like this /path/->/path/~~~searchParams~~~
+			pathname = pathname.endsWith("/") ? `${pathname}${searchParamPortion}` : `${pathname}/${searchParamPortion}`
+		}
+
+		console.log("Middleware checking locale for path:", pathname)
 		/***
 		 * LOCALE BASED ROUTING
 		 ***/
@@ -90,15 +104,27 @@ export async function middleware(request: NextRequest) {
 		const hasLocalePrefix = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
 		const isStaticFile = pathname.includes('.') || pathname.startsWith('/_next')
 
-		if (hasLocalePrefix || isStaticFile) {
-			return
+		const baseUrl = request.nextUrl.origin
+
+		console.log("Base URL:", baseUrl)
+
+		if (!hasLocalePrefix && !isStaticFile) {
+
+			console.log("Rewriting with Locale and search params:", pathname)
+
+			const localeBasedUrl = new URL(`/${defaultLocale}${pathname}`, baseUrl)
+
+			// For all paths (including root), rewrite to include default locale (no redirect)
+			// This keeps the clean URL but internally routes to the locale-specific page
+			return NextResponse.rewrite(localeBasedUrl)
 		}
 
-		const localeBasedUrl = new URL(`/${defaultLocale}${pathname}`, request.url)
-
-		// For all paths (including root), rewrite to include default locale (no redirect)
-		// This keeps the clean URL but internally routes to the locale-specific page
-		return NextResponse.rewrite(localeBasedUrl)
+		if (hasSearchParams) {
+			console.log("Rewriting with search params:", pathname)
+			//if we have search params, we need to make sure we decode them before passing them on
+			const searchParamUrl = new URL(pathname, baseUrl)
+			return NextResponse.rewrite(searchParamUrl)
+		}
 
 	}
 

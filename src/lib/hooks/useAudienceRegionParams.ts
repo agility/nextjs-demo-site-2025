@@ -31,6 +31,8 @@ export function useAudienceRegionParams(audiences: IAudience[] = [], regions: IR
     const params = new URLSearchParams(searchParams)
 
     if (audienceName) {
+      //set the audience to a value that is ONLY alphanumeric and dashes/underscores (no spaces or special characters)
+      audienceName = audienceName.toLowerCase().replace(/[^a-zA-Z0-9-_]/g, '')
       params.set('audience', audienceName)
     } else {
       params.delete('audience')
@@ -42,7 +44,7 @@ export function useAudienceRegionParams(audiences: IAudience[] = [], regions: IR
       params.delete('region')
     }
 
-    const newUrl = `${pathname}?${params.toString()}`
+    const newUrl = `${pathname}?${params.toString().replaceAll("+", "%20")}`
     router.push(newUrl)
   }, [searchParams, router, pathname])
 

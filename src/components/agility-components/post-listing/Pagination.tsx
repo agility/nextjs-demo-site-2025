@@ -1,5 +1,6 @@
 import { Button } from '@/components/button'
 import { Link } from '@/components/link'
+import { localizeUrl } from '@/lib/i18n/localizeUrl'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid'
 import { clsx } from 'clsx'
 
@@ -8,16 +9,19 @@ interface PaginationProps {
 	category?: string
 	totalPosts: number
 	postsPerPage: number
+	languageCode: string
 }
 
-export async function Pagination({ page, category, totalPosts, postsPerPage }: PaginationProps) {
+export async function Pagination({ page, category, totalPosts, postsPerPage, languageCode }: PaginationProps) {
 	function url(page: number) {
 		let params = new URLSearchParams()
 
 		if (category) params.set('category', category)
 		if (page > 1) params.set('page', page.toString())
 
-		return params.size !== 0 ? `/blog?${params.toString()}` : '/blog'
+		const theUrl = params.size !== 0 ? `/blog?${params.toString()}` : '/blog'
+
+		return localizeUrl(theUrl, languageCode)
 	}
 
 

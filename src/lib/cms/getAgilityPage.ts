@@ -18,13 +18,41 @@ export const getAgilityPage = async ({ params }: PageProps) => {
 	const awaitedParams = await params
 	const { isPreview: preview, locale } = await getAgilityContext(awaitedParams.locale)
 
+	console.log("getAgilityPage:", awaitedParams);
+
 	if (!awaitedParams.slug) awaitedParams.slug = [""]
 
+	//check the last element of the slug to see if it has search params encoded
+	let lastSlug = awaitedParams.slug[awaitedParams.slug.length - 1]
+	let searchParams: { [key: string]: string } = {}
+	if (lastSlug && lastSlug.startsWith("~~~") && lastSlug.endsWith("~~~")) {
+		//we have search params encoded here
+		lastSlug = lastSlug.replace(/~~~+/g, "")
+		const decoded = decodeURIComponent(lastSlug)
+		const parts = decoded.split("&").map(part => part.trim())
+
+		parts.forEach(part => {
+			const kvp = part.split("=")
+			if (kvp.length === 2) {
+				searchParams[kvp[0]] = kvp[1]
+			}
+		})
+
+		awaitedParams.slug = awaitedParams.slug.slice(0, awaitedParams.slug.length - 1)
+		if (awaitedParams.slug.length === 0) awaitedParams.slug = [""]
+
+		console.log("Decoded search params from slug:", searchParams)
+	}
+
+	//get the page
 	const page = await getAgilityPageProps({
 		params: awaitedParams, preview, locale, apiOptions: {
 			contentLinkDepth: 0
 		}
 	})
+
+	page.globalData = page.globalData || {};
+	page.globalData["searchParams"] = searchParams;
 
 	return page
 
