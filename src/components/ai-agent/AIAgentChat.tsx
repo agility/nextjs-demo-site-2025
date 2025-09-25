@@ -228,6 +228,26 @@ export default function AIAgentChat({ placeholder = "Ask me anything...", defaul
             ))
           )}
 
+          {isLoading && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 border border-border"
+            >
+              <div className='rounded-full bg-muted p-1'>
+                <IconBubble className="h-4 w-4" />
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-foreground/60 rounded-full animate-pulse [animation-delay:0ms]" />
+                  <div className="w-2 h-2 bg-foreground/60 rounded-full animate-pulse [animation-delay:150ms]" />
+                  <div className="w-2 h-2 bg-foreground/60 rounded-full animate-pulse [animation-delay:300ms]" />
+                </div>
+              </div>
+            </motion.div>
+          )}
+
           {error && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
