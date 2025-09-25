@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 	const agilityPreviewKey = searchParams.get("agilitypreviewkey") || ""
 
 	//locale is also passed in the querystring on preview requests
-	const locale = searchParams.get("lang")
+	const locale = searchParams.get("locale") || searchParams.get("lang")
 	const slug = searchParams.get("slug") || "/"
 
 	const ContentID = searchParams.get('ContentID')

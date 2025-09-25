@@ -18,7 +18,6 @@ export async function middleware(request: NextRequest) {
 	let pathname = request.nextUrl.pathname
 	const previewQ = request.nextUrl.searchParams.get("AgilityPreview")
 	let contentIDStr = request.nextUrl.searchParams.get("ContentID") as string || ""
-	const langParam = request.nextUrl.searchParams.get("lang")
 
 	const ext = request.nextUrl.pathname.includes(".") ? request.nextUrl.pathname.split('.').pop() : null
 
@@ -31,7 +30,8 @@ export async function middleware(request: NextRequest) {
 		const slug = request.nextUrl.pathname
 		//valid preview key: we need to redirect to the correct url for preview
 		let redirectUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}/api/preview?locale=${locale}&ContentID=${contentIDStr}&slug=${encodeURIComponent(slug)}&agilitypreviewkey=${encodeURIComponent(agilityPreviewKey)}`
-		return NextResponse.rewrite(redirectUrl)
+
+		return NextResponse.redirect(redirectUrl)
 
 	} else if (previewQ === "0") {
 		//*** exit preview
