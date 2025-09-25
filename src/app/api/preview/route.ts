@@ -1,3 +1,4 @@
+import { localizeUrl } from "@/lib/i18n/localizeUrl";
 import { validatePreview, getDynamicPageURL } from "@agility/nextjs/node";
 import { draftMode } from 'next/headers'
 import { NextRequest, NextResponse } from "next/server";
@@ -33,7 +34,8 @@ export async function GET(request: NextRequest) {
 		return NextResponse.json({ message: validationResp.message }, { status: 401 });
 	}
 
-	let previewUrl = slug;
+	let previewUrl = slug
+	if (locale) previewUrl = localizeUrl(slug, locale);
 
 	//if we have a content id, get the dynamic page url for it
 	if (ContentID) {

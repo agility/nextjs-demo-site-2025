@@ -7,7 +7,7 @@ export const Link = forwardRef(function Link(
   ref: React.ForwardedRef<HTMLAnchorElement>,
 ) {
   return (
-    <Headless.DataInteractive>
+    <Headless.DataInteractive as="span">
       <NextLink ref={ref} {...props} />
     </Headless.DataInteractive>
   )

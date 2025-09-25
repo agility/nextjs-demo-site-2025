@@ -22,24 +22,6 @@ export async function middleware(request: NextRequest) {
 
 	const ext = request.nextUrl.pathname.includes(".") ? request.nextUrl.pathname.split('.').pop() : null
 
-	// Handle lang query parameter for language switching
-	if (langParam && isValidLocale(langParam, locales)) {
-		const currentLocale = getLocaleFromPathname(pathname, locales)
-
-		if (currentLocale !== langParam) {
-			// Remove current locale from path if it exists
-			const pathWithoutLocale = currentLocale ? removeLocaleFromPathname(pathname, currentLocale) : pathname
-
-			// Create new URL with the requested locale
-			const newUrl = request.nextUrl.clone()
-			newUrl.pathname = `/${langParam}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
-
-			// Remove the lang parameter from the query string to avoid infinite redirects
-			newUrl.searchParams.delete("lang")
-
-			return NextResponse.redirect(newUrl)
-		}
-	}
 
 	if (request.nextUrl.searchParams.has("agilitypreviewkey")) {
 		//*** this is a preview request ***
