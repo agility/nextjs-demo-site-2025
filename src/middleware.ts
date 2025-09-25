@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { checkRedirect } from './lib/cms-content/checkRedirect'
-import { defaultLocale, locales } from './lib/i18n/config'
+import { defaultLocale, locales, isValidLocale, getLocaleFromPathname, removeLocaleFromPathname } from './lib/i18n/config'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -18,8 +18,28 @@ export async function middleware(request: NextRequest) {
 	let pathname = request.nextUrl.pathname
 	const previewQ = request.nextUrl.searchParams.get("AgilityPreview")
 	let contentIDStr = request.nextUrl.searchParams.get("ContentID") as string || ""
+	const langParam = request.nextUrl.searchParams.get("lang")
 
 	const ext = request.nextUrl.pathname.includes(".") ? request.nextUrl.pathname.split('.').pop() : null
+
+	// Handle lang query parameter for language switching
+	if (langParam && isValidLocale(langParam, locales)) {
+		const currentLocale = getLocaleFromPathname(pathname, locales)
+
+		if (currentLocale !== langParam) {
+			// Remove current locale from path if it exists
+			const pathWithoutLocale = currentLocale ? removeLocaleFromPathname(pathname, currentLocale) : pathname
+
+			// Create new URL with the requested locale
+			const newUrl = request.nextUrl.clone()
+			newUrl.pathname = `/${langParam}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+
+			// Remove the lang parameter from the query string to avoid infinite redirects
+			newUrl.searchParams.delete("lang")
+
+			return NextResponse.redirect(newUrl)
+		}
+	}
 
 	if (request.nextUrl.searchParams.has("agilitypreviewkey")) {
 		//*** this is a preview request ***
@@ -95,7 +115,6 @@ export async function middleware(request: NextRequest) {
 			pathname = pathname.endsWith("/") ? `${pathname}${searchParamPortion}` : `${pathname}/${searchParamPortion}`
 		}
 
-		console.log("Middleware checking locale for path:", pathname)
 		/***
 		 * LOCALE BASED ROUTING
 		 ***/
@@ -106,11 +125,7 @@ export async function middleware(request: NextRequest) {
 
 		const baseUrl = request.nextUrl.origin
 
-		console.log("Base URL:", baseUrl)
-
 		if (!hasLocalePrefix && !isStaticFile) {
-
-			console.log("Rewriting with Locale and search params:", pathname)
 
 			const localeBasedUrl = new URL(`/${defaultLocale}${pathname}`, baseUrl)
 
@@ -120,7 +135,6 @@ export async function middleware(request: NextRequest) {
 		}
 
 		if (hasSearchParams) {
-			console.log("Rewriting with search params:", pathname)
 			//if we have search params, we need to make sure we decode them before passing them on
 			const searchParamUrl = new URL(pathname, baseUrl)
 			return NextResponse.rewrite(searchParamUrl)

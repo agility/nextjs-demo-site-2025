@@ -18,11 +18,10 @@ export const getAgilityPage = async ({ params }: PageProps) => {
 	const awaitedParams = await params
 	const { isPreview: preview, locale } = await getAgilityContext(awaitedParams.locale)
 
-	console.log("getAgilityPage:", awaitedParams);
 
 	if (!awaitedParams.slug) awaitedParams.slug = [""]
 
-	//check the last element of the slug to see if it has search params encoded
+	//check the last element of the slug to see if it has search params encoded (from middleware)
 	let lastSlug = awaitedParams.slug[awaitedParams.slug.length - 1]
 	let searchParams: { [key: string]: string } = {}
 	if (lastSlug && lastSlug.startsWith("~~~") && lastSlug.endsWith("~~~")) {
@@ -40,8 +39,6 @@ export const getAgilityPage = async ({ params }: PageProps) => {
 
 		awaitedParams.slug = awaitedParams.slug.slice(0, awaitedParams.slug.length - 1)
 		if (awaitedParams.slug.length === 0) awaitedParams.slug = [""]
-
-		console.log("Decoded search params from slug:", searchParams)
 	}
 
 	//get the page

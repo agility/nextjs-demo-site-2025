@@ -92,15 +92,8 @@ export default async function Page({ params }: PageProps) {
 
 	const AgilityPageTemplate = getPageTemplate(agilityData.pageTemplateName || "");
 
-	// Await searchParams if it's a Promise (Next.js 15+)
-	// const resolvedSearchParams = searchParams ? await searchParams : {};
-	// console.log("Resolved Search Params:", resolvedSearchParams);
-	// agilityData.globalData = agilityData.globalData || {};
-	// agilityData.globalData["searchParams"] = resolvedSearchParams;
-
+	//get the search params from global data (since they are added in getAgilityPage)
 	const globalSearchParams = agilityData.globalData?.["searchParams"] || {};
-
-	console.log("SEACHPARAMS:", globalSearchParams);
 
 	return (
 		<div data-agility-page={agilityData.page?.pageID} data-agility-dynamic-content={agilityData.sitemapNode.contentID}>
