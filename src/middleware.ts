@@ -96,8 +96,6 @@ export async function middleware(request: NextRequest) {
 
 		const localeBasedUrl = new URL(`/${defaultLocale}${pathname}`, request.url)
 
-		console.log('Rewriting to locale based URL:', localeBasedUrl.toString())
-
 		// For all paths (including root), rewrite to include default locale (no redirect)
 		// This keeps the clean URL but internally routes to the locale-specific page
 		return NextResponse.rewrite(localeBasedUrl)
