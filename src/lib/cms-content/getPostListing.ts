@@ -4,6 +4,7 @@ import { type ImageField } from "@agility/nextjs"
 import { getContentList } from "@/lib/cms/getContentList"
 import { getSitemapFlat } from "@/lib/cms/getSitemapFlat"
 import { type IPost } from "../types/IPost"
+import { defaultLocale, locales } from "@/lib/i18n/config"
 
 export interface IPostMin {
 
@@ -34,6 +35,9 @@ export const getPostListing = async ({ sitemap, locale, skip, take }: LoadPostsP
 
 
 	try {
+
+
+
 		// get sitemap...
 		let sitemapNodes = await getSitemapFlat({
 			channelName: sitemap,
@@ -59,7 +63,11 @@ export const getPostListing = async ({ sitemap, locale, skip, take }: LoadPostsP
 			const author = post.fields.author?.fields.name || ""
 			const authorImage = post.fields.author?.fields.headShot || null
 			const date = DateTime.fromJSDate(new Date(post.fields.postDate)).toFormat("LLL. dd, yyyy")
-			const url = dynamicUrls[post.contentID] || "#"
+			let url = dynamicUrls[post.contentID] || "#"
+			console.log('Post URL before locale adjustment:', url, { locale, defaultLocale })
+			if (locale !== defaultLocale) {
+				url = `/${locale}${url}`
+			}
 
 			//to get the excerpt, we can use the first 250 characters of the post "content" field
 			//but we also have to convert it from HTML to plain text

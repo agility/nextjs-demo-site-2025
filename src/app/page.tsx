@@ -1,9 +1,17 @@
-/**
- * the root page - just pull exports from the main slug...
- */
-export { generateMetadata } from "./[...slug]/page"
-export { default} from "./[...slug]/page"
+import LocalePage from "@/app/[locale]/page"
+import { defaultLocale } from "@/lib/i18n/config"
 
-export const revalidate = 60
-export const runtime = "nodejs"
-//export const dynamic = "force-static"
+interface RootPageProps {
+	searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export { generateMetadata } from "@/app/[locale]/page"
+
+export default async function RootPage({ searchParams }: RootPageProps) {
+	return (
+		<LocalePage
+			params={Promise.resolve({ locale: defaultLocale, slug: [""] })}
+			searchParams={searchParams}
+		/>
+	)
+}

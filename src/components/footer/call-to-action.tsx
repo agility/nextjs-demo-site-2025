@@ -1,3 +1,4 @@
+import { localizeUrl } from '@/lib/i18n/localizeUrl'
 import { Button } from '../button'
 import { Subheading } from '../text'
 import type { IFooter } from '@/lib/cms-content/getFooterContent'
@@ -19,7 +20,7 @@ export function CallToAction({ footerData }: CallToActionProps) {
 				{footerData.ctaDescription}
 			</p>
 			<div className="mt-6">
-				<Button className="w-full sm:w-auto" href={footerData.ctaCTA.href}>
+				<Button className="w-full sm:w-auto" href={localizeUrl(footerData.ctaCTA.href, footerData.locale)}>
 					{footerData.ctaCTA.text}
 				</Button>
 			</div>

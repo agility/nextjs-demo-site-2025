@@ -16,6 +16,8 @@ import { MobileNav } from './mobile-nav'
 import { BannerLink } from './banner-link'
 import { DarkModeToggle } from './dark-mode-toggle'
 import { useState } from 'react'
+import { localizeUrl, localizeUrlField } from '@/lib/i18n/localizeUrl'
+import { type Locale } from '@/lib/i18n/config'
 
 const links = [
   { href: '/pricing', label: 'Pricing' },
@@ -28,9 +30,10 @@ const links = [
 
 interface Props {
   header: IHeaderData
+  locale: string
 }
 
-export function Navbar({ header }: Props) {
+export function Navbar({ header, locale }: Props) {
 
   const [showMobileNav, setShowMobileNav] = useState(false)
 
@@ -42,7 +45,7 @@ export function Navbar({ header }: Props) {
             <PlusGridRow className="relative flex justify-between">
               <div className="relative flex gap-6">
                 <PlusGridItem className="p-3">
-                  <Link href="/" title="Home" className='flex items-center gap-2 text-gray-900 dark:text-gray-100 hover:text-gray-800 dark:hover:text-gray-200 text-xl'>
+                  <Link href={localizeUrl('/', locale as Locale)} title="Home" className='flex items-center gap-2 text-gray-900 dark:text-gray-100 hover:text-gray-800 dark:hover:text-gray-200 text-xl'>
                     <Logo className="h-9 hover:animate-spin" logo={header.logo} />
                     <span className='text-nowrap'>{header.siteName}</span>
                   </Link>
@@ -58,7 +61,7 @@ export function Navbar({ header }: Props) {
                 )}
               </div>
               <div className="flex items-center gap-4">
-                <DesktopNav links={header.links} />
+                <DesktopNav links={header.links} locale={locale} />
                 <div className="hidden lg:flex">
                   <DarkModeToggle />
                 </div>
@@ -80,6 +83,7 @@ export function Navbar({ header }: Props) {
           showMobileNav={showMobileNav}
           siteName={header.siteName}
           logo={header.logo}
+          locale={locale}
           onClose={() => setShowMobileNav(false)} />
       </header>
     </>

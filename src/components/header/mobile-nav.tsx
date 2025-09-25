@@ -7,6 +7,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Logo } from "../logo"
 import { PlusGridItem } from "../plus-grid"
+import { localizeUrl, localizeUrlField } from '@/lib/i18n/localizeUrl'
+import { type Locale } from '@/lib/i18n/config'
 
 
 
@@ -15,13 +17,14 @@ interface Props {
 	showMobileNav: boolean
 	siteName?: string
 	logo?: ImageField
+	locale: string
 	onClose?: () => void
 }
 
 
 
 
-export function MobileNav({ links, showMobileNav, onClose, siteName, logo }: Props) {
+export function MobileNav({ links, showMobileNav, onClose, siteName, logo, locale }: Props) {
 
 	const router = useRouter()
 
@@ -80,9 +83,9 @@ export function MobileNav({ links, showMobileNav, onClose, siteName, logo }: Pro
 							<div>
 
 								<Link
-									href="/"
+									href={localizeUrl('/', locale as Locale)}
 									title="Home" className='flex items-center gap-2 text-xl font-medium text-gray-950 dark:text-gray-100 py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50/60 dark:hover:bg-gray-700/60 active:bg-gray-100/70 dark:active:bg-gray-600/70 active:scale-97 transition-all touch-manipulation'
-									onClick={(e) => handleLinkClick(e, "/")}>
+									onClick={(e) => handleLinkClick(e, localizeUrl('/', locale as Locale))}>
 									<Logo className="h-9 hover:animate-spin" logo={logo} />
 									<span >{siteName}</span>
 								</Link>
@@ -100,10 +103,10 @@ export function MobileNav({ links, showMobileNav, onClose, siteName, logo }: Pro
 									key={link.href}
 								>
 									<Link
-										href={link.href}
+										href={localizeUrlField(link, locale as Locale)}
 										target={link.target}
 										className="text-base font-medium text-gray-950 dark:text-gray-100 block py-2 px-3 -mx-3 rounded-lg hover:bg-gray-50/60 dark:hover:bg-gray-700/60 active:bg-gray-100/70 dark:active:bg-gray-600/70 active:scale-97 transition-all touch-manipulation"
-										onClick={(e) => handleLinkClick(e, link.href)}
+										onClick={(e) => handleLinkClick(e, localizeUrlField(link, locale as Locale))}
 									>
 										{link.text}
 									</Link>
