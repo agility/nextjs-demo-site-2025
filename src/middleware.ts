@@ -52,11 +52,10 @@ export async function middleware(request: NextRequest) {
 
 		}
 	} else if ((!ext || ext.length === 0)) {
-		/***
-		 * CHECK FOR REDIRECT
-		***/
 
-
+		/**********************
+		 * CHECK FOR REDIRECT *
+		***********************/
 		const redirection = await checkRedirect({ path: request.nextUrl.pathname })
 
 		if (redirection) {
@@ -83,8 +82,50 @@ export async function middleware(request: NextRequest) {
 			}
 		}
 
+
+
+		/**************************************
+		 * SPECIAL CASE FOR lang= QUERY PARAM *
+		 **************************************/
+
+		//handle the case where ?lang=xx is passed in the querystring
+		const langQ = request.nextUrl.searchParams.get("lang")
+		const langParam = request.nextUrl.searchParams.get("lang")
+		//get the current locale from the pathname (if any)
+
+		const currentLocale = getLocaleFromPathname(pathname, locales) || defaultLocale
+
+		//if we have a lang query and it's valid and it's different from the current locale in the path
+		if (langParam && isValidLocale(langParam, locales) && langParam !== currentLocale) {
+
+			//we have a locale specified in the querystring and it's valid
+			if (langParam === defaultLocale) {
+				//default locale - redirect to root path (no locale in path)
+				const redirectUrl = new URL(request.nextUrl.toString())
+				redirectUrl.pathname = removeLocaleFromPathname(pathname, currentLocale)
+				//remove lang param from querystring
+				redirectUrl.searchParams.delete("lang")
+				return NextResponse.redirect(redirectUrl)
+			} else {
+				//non-default locale - redirect to include locale in path
+				const redirectUrl = new URL(request.nextUrl.toString())
+				//add the locale to the pathname
+				const pathnameWithoutLocale = removeLocaleFromPathname(pathname, currentLocale)
+				redirectUrl.pathname = `/${langParam}${pathnameWithoutLocale}`
+				//remove lang param from querystring
+				redirectUrl.searchParams.delete("lang")
+				return NextResponse.redirect(redirectUrl)
+			}
+		}
+		/************************
+		 * HANDLE SEARCH PARAMS *
+		 ************************/
+
 		//grab the search params and add them to the path so we can pass them on when rewriting
 		//this will help use keep static routing working for better performance
+		//otherwise, nextjs will treat the page as a dynamic route and we lose the performance benefits of static routing
+		//eg: /blog/?q=something -> /blog/~~~q=something~~~
+		//otherwise, Next.js will treat the page as a dynamic route and we lose the performance benefits of static routing
 		let searchParams = request.nextUrl.searchParams.toString()
 		let hasSearchParams = searchParams && searchParams.length > 0
 		if (!hasSearchParams) {
@@ -97,9 +138,9 @@ export async function middleware(request: NextRequest) {
 			pathname = pathname.endsWith("/") ? `${pathname}${searchParamPortion}` : `${pathname}/${searchParamPortion}`
 		}
 
-		/***
-		 * LOCALE BASED ROUTING
-		 ***/
+		/************************
+		 * LOCALE BASED ROUTING *
+		 ************************/
 
 		// Skip if already has locale prefix or is a static file
 		const hasLocalePrefix = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
