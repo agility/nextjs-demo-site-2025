@@ -14,15 +14,6 @@ interface IPricingTable {
 	featuresJSON: string // JSON string containing features array
 }
 
-interface IPricingTier {
-	name: string
-	slug: string
-	description: string
-	priceMonthly: number
-	ctaButton: URLField
-	featuresJSON: string // JSON string containing features array
-}
-
 interface Feature {
 	section: string
 	name: string
