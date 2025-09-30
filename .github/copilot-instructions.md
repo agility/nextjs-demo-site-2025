@@ -1,115 +1,137 @@
+# Agility CMS Next.js Demo Site
 
-## Project Description
-This is a Next.js project with TypeScript, Tailwind CSS v4, and Agility CMS.
-The project includes various components such as RichTextArea, BentoSection, LogoStrip, and BackgroundHero that are directly linked to Agility CMS components, which provide the content for those components.
+> Modern headless CMS website with AI-powered search, internationalization, and advanced caching
 
-When working with Tailwind CSS, refer to the official documentation at https://tailwindcss.com/docs for v4-specific features and syntax.
+## Core Architecture
 
-## Technical Stack
-- **Framework**: Next.js 15.3.5 with TypeScript
-- **Styling**: Tailwind CSS v4 (css-filed based, no config file)
-- **CMS**: Agility CMS with @agility/nextjs v15.0.7
-- **Animation**: Motion (Framer Motion alternative)
-- **State Management**: React 19.1.0 with hooks
-- **Icons**: Heroicons v2 and React Icons
-- **Development**: Turbopack for dev server
+**Headless CMS Pattern**: Content managed in Agility CMS → API fetching → Next.js rendering
 
-## Project Structure
-- `/src/components/agility-components/` - CMS-connected components
-- `/src/components/agility-pages/` - Page-level components
-- `/src/lib/cms/` - CMS utility functions and SDK
-- `/src/lib/types/` - TypeScript definitions
-- `/public/` - Static assets organized by category
+- **Page Routing**: Dynamic via Agility's sitemap (`src/components/agility-pages/MainTemplate.tsx`)
+- **Content Zones**: `<ContentZone name="main-content-zone">` renders CMS modules
+- **Module System**: CMS components auto-registered via `getModule()` function
 
-## Layout and Components
-The layout of the application is defined in the `layout.tsx` file, which includes a gradient background and a container for the main content. The BentoSection component is used to display a section with multiple cards, each with its own content and animations.
-The project also includes utility components such as Container, Keyboard, LogoCluster, Map, and text components like Subheading and Heading for consistent styling across the application.
+**Essential File Relationships**:
 
-The project is structured to allow for easy addition of new components and content types, making it flexible for future development.
+- `src/middleware.ts` → Handles preview, redirects, i18n routing
+- `src/lib/cms/` → All CMS API abstractions with caching
+- `src/components/agility-components/` → CMS-bound components (see `BentoSection.tsx` for nested data pattern)
 
-## Development Guidelines
+## Technology Stack
 
-### Agility CMS Integration
-- Always use `getContentItem()` for single content items
-- Use `getContentList()` for collections and nested references
-- All components should accept `UnloadedModuleProps` with `module` and `languageCode`
-- Add `data-agility-component={contentID}` to container elements
-- Add `data-agility-field="fieldName"` to field containers for inline editing
+- **Next.js 15.5.3** with App Router, React 19, TypeScript, Turbopack dev server
+- **Tailwind CSS v4** (CSS-file based, no config) + Motion animations
+- **Agility CMS** (@agility/nextjs 15.0.7) with custom caching layer
+- **AI Features**: Azure/OpenAI integration with Algolia search (`/api/ai/search`)
+- **Analytics**: PostHog integration with environment validation
 
-### TypeScript Patterns
-- Define interfaces for CMS content fields (e.g., `IBentoSection`, `IBentoCard`)
-- Use `ContentItem<T>` type for typed content items
-- Always type `ImageField` for Agility image fields
+## Development Workflow
 
-### Styling Conventions
-- Use Tailwind CSS v4 classes (no config file approach)
-- Responsive design: mobile-first with `lg:` prefixes
-- Dark mode support with `dark:` variants
-- Use `clsx()` for conditional classes
-- Animation delays for staggered effects
+```bash
+npm run dev          # Turbopack dev server
+npm run prebuild     # Rebuilds redirect cache (run before build)
+npm run build        # Production build
+```
 
-## Common Patterns
+**Critical Pre-build Step**: `tsx node/prebuild.ts` rebuilds redirect cache from bloom filters
 
-### Nested Content Fetching
+## CMS Integration Patterns
+
+### Standard Component Structure
+
 ```typescript
-// Get main content item
-const { fields: { nestedRef: { referencename } } } = await getContentItem<MainType>({
-  contentID: module.contentid,
-  languageCode,
-})
+// All CMS components follow this pattern
+export const ComponentName = async ({ module, languageCode }: UnloadedModuleProps) => {
+  const { fields: { field1, field2 }, contentID } = await getContentItem<IComponentType>({
+    contentID: module.contentid,
+    languageCode,
+  })
 
-// Get nested collection
+  return (
+    <div data-agility-component={contentID}>
+      <div data-agility-field="field1">{field1}</div>
+    </div>
+  )
+}
+```
+
+### Nested Content Fetching (Critical Pattern)
+
+```typescript
+// See BentoSection.tsx for complete example
+const { fields: { nestedRef: { referencename } } } = await getContentItem<MainType>({...})
 const nestedItems = await getContentList<NestedType>({
-  referenceName: referencename,
+  referenceName: referencename,  // Key: use referencename from parent
   languageCode,
   take: 20
 })
 ```
 
-### Animation Implementation
-- Use Motion library for animations
-- Implement staggered delays for grid items
-- Fade animations from specific directions
-- Calculate delays based on item index for visual interest
+### Caching Strategy
 
-## Agility CMS Components
-Agility CMS components are in the `src/components/agility-components` directory.
-The instructions in this file are meant to help you understand how to use these components effectively in your Next.js application.
-Also these example components show how to fetch content from Agility CMS and display it in a structured way, using TypeScript for type safety and Tailwind CSS for styling.
-Use these examples as a reference for creating your own components that interact with Agility CMS.
+- **Automatic**: All `getContentItem()`/`getContentList()` calls include Next.js cache tags
+- **Revalidation**: 60-second cache + tag-based invalidation
+- **Environment**: Use `src/lib/env.ts` for strongly-typed env vars (never `process.env` directly)
 
-### Available Components
-- **RichTextArea** - Renders rich text content from CMS
-- **BackgroundHero** - Hero section with background image
-- **BentoSection** - Animated grid of cards with nested content
-- **LogoStrip** - Display strip of logos
-- **Header** - Site header component
-- **Hero** - Standard hero component
-- **ContactUs** - Contact form components
-- **TeamListing** - Team member display
-- **BlogHeader** - Blog-specific header
-- **CompanyStats** - Statistics display component
-- **Testimonials** - Customer testimonial components
-- **Pricing** - Pricing table components
-- **Carousel** - Image/content carousel
-- **PostListing** - Blog post listing
-- **PostDetails** - Individual blog post display
+## Internationalization & Routing
 
-### The RichTextArea component
-- designed to render rich text content fetched from Agility CMS.
-- It uses the `getContentItem` method to fetch the content item and render it as HTML.
+**Middleware Flow** (`src/middleware.ts`):
 
-### The BackgroundHero component
-- designed to display a hero section with a background image and optional content.
-- It uses the `getContentItem` method to fetch the content item and render it with a background image, heading, and subheading.
-- The component is responsive and adjusts its layout based on the content provided.
+1. Preview mode detection → `/api/preview`
+2. Dynamic redirects → `/api/dynamic-redirect`
+3. Locale routing → Rewrites to `/{locale}/path` (internal)
+4. Search params encoding → `path/~~~params~~~` for static optimization
 
-### The BentoSection component
-- designed to display a grid of cards with animations and staggered delays for visual interest. The LogoStrip component is used to display a strip of logos, while the BackgroundHero component provides a hero section with a background image.
-- fetches content from Agility CMS and displays it in a responsive grid layout, with each card being animated on load.
-- The main item is fetched using the `getContentItem` method, and additional items (from the nested linked content field) are fetched using the `getContentList` method.
-- Use this component as an example of how to do data fetching on nested linked content fields.
-- The component also handles different content types such as text, images, and links, ensuring that the content is displayed correctly based on its type.
-- is particularly notable for its use of animations and responsive design, making it visually appealing and engaging for users.
+**Locale Strategy**: Default locale (no path prefix) + explicit locales (`/fr/`, `/es/`)
 
+## Styling System
 
+**Tailwind CSS v4 Features**:
+
+- `@import 'tailwindcss'` in `src/styles/tailwind.css`
+- CSS custom properties for theming (light/dark mode)
+- `clsx()` for conditional classes
+- Motion library for animations with staggered delays
+
+**Component Patterns**:
+
+- Container components for consistent layouts
+- `data-agility-*` attributes for CMS inline editing
+- Mobile-first responsive design (`lg:` breakpoints)
+
+## AI & Search Integration
+
+**AI Search API** (`/api/ai/search`):
+
+- Azure OpenAI + Algolia search tool integration
+- Content from CMS configures system prompts and behavior
+- Streaming responses with tool calling support
+- Rate limiting and environment validation
+
+**Search Tool Pattern**: Algolia index → AI context → Streamed responses
+
+## Type Safety
+
+**Environment Variables**: Strongly typed via `src/lib/env.ts` (throws at runtime if missing)
+**CMS Content**: Define interfaces for all content types (e.g., `IBentoSection`, `IBentoCard`)
+**Image Fields**: Always type as `ImageField` from Agility SDK
+
+## Key Debugging Commands
+
+```bash
+# View environment validation
+node -e "console.log(require('./src/lib/env.ts').env.getAll())"
+
+# Check redirect cache
+npm run prebuild
+
+# Test AI configuration
+curl localhost:3000/api/ai/search -X POST -d '{"messages":[{"role":"user","content":"test"}]}'
+```
+
+## Common Gotchas
+
+- **Preview Mode**: Requires `agilitypreviewkey` param, not just `AgilityPreview`
+- **Nested Content**: Must use `referencename` field, not `contentid`
+- **Caching**: Tags are auto-generated; manual cache invalidation via API routes
+- **Search Params**: Encoded in path for static optimization (`~~~params~~~`)
+- **Styling**: Dark mode uses `@custom-variant dark (&:where(.dark, .dark *))` syntax

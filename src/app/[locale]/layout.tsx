@@ -15,6 +15,8 @@ import { Suspense } from 'react'
 import FloatingAISearch from '@/components/ai-search/FloatingAISearch'
 import { getAISearchConfig } from '@/lib/cms-content/getAISearchConfig'
 import { locales, defaultLocale } from '@/lib/i18n/config'
+import { getSettings } from '@/lib/cms-content/getSettings'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -36,6 +38,8 @@ export default async function LocaleLayout({
   const regions = await getRegionListing({ locale, skip: 0, take: 10 })
 
   const aiConfig = await getAISearchConfig({ locale })
+  const settings = await getSettings({ locale })
+  const gaId = settings?.googleAnalyticsID || null
 
   return (
     <>
@@ -55,6 +59,9 @@ export default async function LocaleLayout({
           aiConfig={aiConfig}
         />
       }
+
+      {/* Google Analytics */}
+      {gaId && <GoogleAnalytics gaId={gaId} />}
 
       {/* Preview indicator - normally not needed in production, but we show it here for illustration purposes */}
       <Suspense fallback={null}>
