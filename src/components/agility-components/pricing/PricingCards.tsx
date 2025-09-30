@@ -7,6 +7,8 @@ import { CheckIcon, MinusIcon } from '@heroicons/react/16/solid'
 import type { UnloadedModuleProps, URLField, ContentItem } from "@agility/nextjs"
 import { getContentItem } from "@/lib/cms/getContentItem"
 import { getContentList } from "@/lib/cms/getContentList"
+import type { IPricingTier } from "@/lib/types/IPricingTier"
+import { getRegionContentID } from '@/lib/utils/audienceRegionUtils'
 
 interface IPricingCards {
 	title?: string
@@ -15,25 +17,19 @@ interface IPricingCards {
 
 }
 
-interface IPricingTier {
-	name: string
-	description: string
-	priceMonthly: number
-	ctaButton: URLField
-	highlights: string
-
-}
-
 interface TransformedTier {
 	name: string
 	description: string
 	priceMonthly: number
+	currency: string
+	currencySymbol: string
 	ctaButton: URLField
 	highlights: string[]
-
+	regionName?: string
+	regionID?: string
 }
 
-export const PricingCards = async ({ module, languageCode }: UnloadedModuleProps) => {
+export const PricingCards = async ({ module, languageCode, globalData }: UnloadedModuleProps) => {
 	const {
 		fields: {
 			title,
@@ -54,15 +50,36 @@ export const PricingCards = async ({ module, languageCode }: UnloadedModuleProps
 		take: 100,
 	})
 
-	// Transform the tiers data
-	const tiers: TransformedTier[] = tiersData.items.map((tier: ContentItem<IPricingTier>) => {
-		const fields = tier.fields
-		return {
-			...fields,
-			highlights: fields.highlights ? fields.highlights.split('\n').map(h => h.trim()).filter(h => h) : [],
 
-		}
-	})
+	const searchParams = globalData?.["searchParams"]
+	let regionContentID: number | null = null
+	if (searchParams) {
+		//check the personalization stuff and filter the list of customers
+		regionContentID = await getRegionContentID(searchParams, languageCode)
+
+	}
+
+	console.log("Region Content ID: ", regionContentID)
+
+	// Transform the tiers data
+	const tiers: TransformedTier[] = tiersData.items
+		.filter(tier => {
+			// If there's no regionContentID, include the defaults
+			if (!regionContentID) return !tier.fields.regionID;
+
+			const tierRegionID = tier.fields.regionID ? parseInt(tier.fields.regionID) : null;
+
+			// Include the tier if it matches the regionContentID
+			return tierRegionID === regionContentID;
+		})
+		.map((tier: ContentItem<IPricingTier>) => {
+			const fields = tier.fields
+			return {
+				...fields,
+				priceMonthly: parseFloat(fields.priceMonthly) || 0,
+				highlights: fields.highlights ? fields.highlights.split('\n').map(h => h.trim()).filter(h => h) : [],
+			}
+		})
 
 	return (
 		<div className="relative py-24" data-agility-component={contentID}>
@@ -99,10 +116,10 @@ function PricingCard({ tier }: { tier: TransformedTier }) {
 					<p className="mt-2 text-sm/6 text-gray-950/75 dark:text-gray-300">{tier.description}</p>
 					<div className="mt-8 flex items-center gap-4">
 						<div className="text-5xl font-medium text-gray-950 dark:text-white">
-							${tier.priceMonthly}
+							{tier.currencySymbol || '$'}{tier.priceMonthly}
 						</div>
 						<div className="text-sm/5 text-gray-950/75 dark:text-gray-300">
-							<p>USD</p>
+							<p>{tier.currency || 'USD'}</p>
 							<p>per month</p>
 						</div>
 					</div>
