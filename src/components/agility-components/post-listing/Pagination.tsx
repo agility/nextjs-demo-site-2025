@@ -35,7 +35,7 @@ export async function Pagination({ page, category, totalPosts, postsPerPage, lan
 	}
 
 	return (
-		<div className="mt-6 flex items-center justify-between gap-2">
+		<div className="mt-12 flex items-center justify-between gap-2">
 			<Button
 				variant="outline"
 				href={previousPageUrl}
@@ -51,10 +51,10 @@ export async function Pagination({ page, category, totalPosts, postsPerPage, lan
 						href={url(i + 1)}
 						data-active={i + 1 === page ? true : undefined}
 						className={clsx(
-							'size-7 rounded-lg text-center text-sm/7 font-medium',
-							'data-hover:bg-gray-100',
-							'data-active:shadow-sm data-active:ring-1 data-active:ring-black/10',
-							'data-active:data-hover:bg-gray-50',
+							'min-w-10 px-3 py-2 rounded-lg text-center text-sm font-medium',
+							'data-hover:bg-gray-100 dark:data-hover:bg-gray-800 transition-colors',
+							'data-active:bg-black data-active:text-white dark:data-active:bg-white dark:data-active:text-black',
+							'data-active:data-hover:bg-gray-800 dark:data-active:data-hover:bg-gray-200',
 						)}
 					>
 						{i + 1}

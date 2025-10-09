@@ -51,10 +51,10 @@ export const getPostListing = async ({ sitemap, locale, skip, take }: LoadPostsP
 			contentLinkDepth: 2,
 			take,
 			skip,
-			locale
-		})
-
-		// resolve dynamic urls
+			locale,
+			sort: "fields.postDate",
+			direction: "desc"
+		})		// resolve dynamic urls
 		const dynamicUrls = resolvePostUrls(sitemapNodes, rawPosts.items)
 
 		const posts: IPostMin[] = rawPosts.items.map((post: any) => {
