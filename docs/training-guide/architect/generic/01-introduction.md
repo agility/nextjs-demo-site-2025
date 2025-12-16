@@ -4,7 +4,7 @@ This guide provides an architectural overview of Agility CMS, focusing on design
 
 ## Headless Architecture
 
-![Headless Architecture Diagram](../../../assets/concepts/Agility%20Headless%20Architecture.png)
+![Headless Architecture Diagram](../../assets/concepts/Agility%20Headless%20Architecture.png)
 
 Agility CMS follows a **headless architecture** pattern that separates content management from content delivery.
 
@@ -33,7 +33,7 @@ Agility CMS follows a **headless architecture** pattern that separates content m
 
 ## Data Model Architecture
 
-![Data Model Diagram](../../../assets/concepts/Agility%20Data%20Model.png)
+![Data Model Diagram](../../assets/concepts/Agility%20Data%20Model.png)
 
 The Agility data model uses a three-layer architecture:
 
@@ -64,7 +64,7 @@ The Agility data model uses a three-layer architecture:
 
 ## Interface Organization
 
-![Agility Sections Diagram](../../../assets/concepts/Agility%20Sections.png)
+![Agility Sections Diagram](../../assets/concepts/Agility%20Sections.png)
 
 The Agility CMS interface is organized into four main sections:
 

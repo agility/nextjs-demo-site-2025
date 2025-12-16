@@ -18,7 +18,7 @@ This separation gives you:
 
 ## Understanding Headless Architecture
 
-![Headless Architecture Diagram](../../../assets/concepts/Agility%20Headless%20Architecture.png)
+![Headless Architecture Diagram](../../assets/concepts/Agility%20Headless%20Architecture.png)
 
 *In a headless architecture, content is created in the Content Manager, exposed through Content APIs, and consumed by frontend applications which deliver experiences to end-user devices. Assets are delivered directly via a CDN for optimal performance.*
 
@@ -32,7 +32,7 @@ This separation gives you:
 
 ## Understanding the Data Model
 
-![Data Model Diagram](../../../assets/concepts/Agility%20Data%20Model.png)
+![Data Model Diagram](../../assets/concepts/Agility%20Data%20Model.png)
 
 *The Agility data model shows how a Sitemap organizes Pages, Pages contain Components, and Components display Content Items. Each entity (Page, Component, Content) has a corresponding Model that defines its structure.*
 
