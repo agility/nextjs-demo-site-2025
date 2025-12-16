@@ -417,10 +417,240 @@ The `screenshot-config.json` file contains:
 
 ---
 
-## Next Steps
+## Next Steps: Building Generic & Instance-Specific Guides
 
-1. **Capture missing screenshots** using the automated system
-2. **Refactor existing guides** to separate generic from instance-specific
-3. **Expand generic content** for each role
-4. **Create instance-specific templates** for easy customization
-5. **Document the process** for creating training for new instances
+### ✅ Completed Prerequisites
+- ✅ All screenshots captured (34 total)
+- ✅ Concept diagrams included in all guides
+- ✅ Terminology updated (Component vs Module)
+- ✅ Screenshot capture system created
+- ✅ URL patterns documented
+
+---
+
+## Phase 1: Build Generic Training Guides (Foundation)
+
+**Goal**: Create complete, reusable training that works for ANY Agility instance.
+
+### Step 1.1: Create Generic Folder Structure
+For each role (content-editor, developer, architect, admin):
+
+1. Create `generic/` folder
+2. Create numbered markdown files following the structure in "Recommended Structure" above
+3. Create `instance-specific/` folder
+4. Update main `README.md` to be a navigation hub linking to both sections
+
+### Step 1.2: Extract & Expand Generic Content
+
+**Content Editor Generic Guide:**
+- `01-introduction.md` - What is Agility CMS? (headless architecture, benefits)
+- `02-core-concepts.md` - Data Model, Architecture, Sections (use concept diagrams)
+- `03-navigation.md` - How to navigate the CMS interface (generic UI patterns)
+- `04-content-basics.md` - Creating/editing content items (generic workflows)
+- `05-pages-basics.md` - Creating/editing pages (generic page structure)
+- `06-components.md` - Working with components (generic component concepts)
+- `07-workflow.md` - Publishing workflow (draft, publish, approval concepts)
+- `08-troubleshooting.md` - Common issues and solutions
+
+**Developer Generic Guide:**
+- `01-introduction.md` - Agility CMS for developers (headless architecture, API-first)
+- `02-architecture.md` - Headless architecture deep dive
+- `03-setup.md` - Project setup (generic setup steps)
+- `04-api-basics.md` - API fundamentals (fetching content, authentication)
+- `05-component-development.md` - Building components (generic patterns)
+- `06-content-fetching.md` - Fetching content (generic API patterns)
+- `07-caching.md` - Caching strategies (generic caching concepts)
+- `08-preview-mode.md` - Preview functionality (generic preview concepts)
+- `09-internationalization.md` - i18n implementation (generic i18n patterns)
+- `10-best-practices.md` - Development best practices
+
+**Architect Generic Guide:**
+- `01-introduction.md` - Agility CMS architecture overview
+- `02-data-model.md` - Data model deep dive (use concept diagrams)
+- `03-content-strategy.md` - Content modeling strategies
+- `04-component-strategy.md` - Component architecture patterns
+- `05-performance.md` - Performance considerations
+- `06-scalability.md` - Scaling strategies
+- `07-security.md` - Security best practices
+- `08-integrations.md` - Integration patterns
+
+**Administrator Generic Guide:**
+- `01-introduction.md` - Admin overview and responsibilities
+- `02-user-management.md` - Users and permissions (generic permission system)
+- `03-content-models.md` - Managing content models (generic model management)
+- `04-component-models.md` - Managing component models
+- `05-page-models.md` - Managing page models
+- `06-workflow.md` - Workflow configuration (Security/permissions approach)
+- `07-api-keys.md` - API key management
+- `08-webhooks.md` - Webhook configuration
+- `09-troubleshooting.md` - Admin troubleshooting
+
+### Step 1.3: Generic Content Guidelines
+
+**What to Include:**
+- ✅ Concept explanations (use concept diagrams)
+- ✅ Generic UI patterns (not instance-specific screenshots)
+- ✅ How Agility CMS works (not how Demo Site works)
+- ✅ Analogies and examples that work for any instance
+- ✅ Step-by-step workflows (generic steps)
+- ✅ Common mistakes and troubleshooting
+
+**What to Avoid:**
+- ❌ Instance-specific references (e.g., "Demo Site", specific content models)
+- ❌ Instance-specific screenshots (use generic UI descriptions or concept diagrams)
+- ❌ Instance-specific configurations
+- ❌ Specific IDs, GUIDs, or instance names
+
+---
+
+## Phase 2: Build Instance-Specific Training Guides
+
+**Goal**: Document Demo Site-specific content that maps to generic concepts.
+
+### Step 2.1: Create Instance-Specific Folder Structure
+For each role, create `instance-specific/` folder with:
+
+1. `README.md` - Instance overview and navigation
+2. Content-specific files (content-models.md, components.md, etc.)
+3. Configuration files (configuration.md, setup.md, etc.)
+
+### Step 2.2: Instance-Specific Content
+
+**Content Editor Instance-Specific:**
+- `README.md` - Demo Site overview for content editors
+- `content-models.md` - Available content models in Demo Site (Posts, Authors, etc.)
+- `components.md` - Available components (BackgroundHero, BentoSection, etc.)
+- `pages.md` - Site structure (Home, About, Blog, etc.)
+- `common-tasks.md` - Demo Site-specific workflows
+
+**Developer Instance-Specific:**
+- `README.md` - Demo Site overview for developers
+- `project-structure.md` - Codebase organization
+- `content-models.md` - Content model implementations
+- `components.md` - Component implementations
+- `api-routes.md` - Custom API routes
+- `deployment.md` - Deployment configuration
+
+**Architect Instance-Specific:**
+- `README.md` - Demo Site architecture overview
+- `architecture.md` - Site architecture
+- `content-architecture.md` - Content model design decisions
+- `component-architecture.md` - Component design patterns
+- `integrations.md` - Implemented integrations (PostHog, Algolia, etc.)
+
+**Administrator Instance-Specific:**
+- `README.md` - Demo Site admin overview
+- `configuration.md` - Instance configuration
+- `content-setup.md` - Content model setup
+- `component-setup.md` - Component setup
+- `workflows.md` - Configured workflows and permissions
+
+### Step 2.3: Instance-Specific Content Guidelines
+
+**What to Include:**
+- ✅ Specific content models and their purposes
+- ✅ Available components and their use cases
+- ✅ Site structure and page organization
+- ✅ Instance-specific screenshots
+- ✅ Configuration details
+- ✅ Mapping to generic concepts ("This implements the generic pattern from...")
+
+**What to Reference:**
+- Link back to generic guides ("See [Generic Guide: Components](../generic/06-components.md) for concepts")
+- Use generic terminology consistently
+- Show how Demo Site implements generic patterns
+
+---
+
+## Implementation Roadmap
+
+### Week 1: Structure & Content Editor
+1. Create folder structure for all roles
+2. Build Content Editor generic guide (8 modules)
+3. Build Content Editor instance-specific guide (5 modules)
+4. Update Content Editor main README as navigation hub
+
+### Week 2: Developer Guide
+1. Build Developer generic guide (10 modules)
+2. Build Developer instance-specific guide (6 modules)
+3. Update Developer main README as navigation hub
+
+### Week 3: Architect & Admin Guides
+1. Build Architect generic guide (8 modules)
+2. Build Architect instance-specific guide (5 modules)
+3. Build Admin generic guide (9 modules)
+4. Build Admin instance-specific guide (5 modules)
+5. Update main READMEs as navigation hubs
+
+### Week 4: Integration & Polish
+1. Cross-link between generic and instance-specific
+2. Add "See Also" sections
+3. Create instance template documentation
+4. Final review and testing
+
+---
+
+## Content Extraction Strategy
+
+### From Current Hybrid Guides
+
+**Generic Content to Extract:**
+- Introduction sections (remove instance references)
+- Concept explanations (Data Model, Architecture, Sections)
+- Generic workflows (how to create content, edit pages, etc.)
+- Navigation patterns
+- UI patterns and terminology
+
+**Instance-Specific Content to Extract:**
+- Demo Site overview sections
+- Specific content model lists
+- Specific component lists
+- Site structure details
+- Configuration examples
+
+**Screenshots:**
+- Generic screenshots → Use in generic guides (if applicable)
+- Instance-specific screenshots → Use in instance-specific guides
+- Concept diagrams → Use in both (via assets/concepts/)
+
+---
+
+## Quality Checklist
+
+### Generic Guide Checklist
+- [ ] No instance-specific references
+- [ ] Uses concept diagrams where appropriate
+- [ ] Explains "why" and "how" Agility CMS works
+- [ ] Works for any Agility instance
+- [ ] Links to concept guides
+- [ ] Includes troubleshooting
+
+### Instance-Specific Guide Checklist
+- [ ] Clearly marked as Demo Site specific
+- [ ] Links to generic guides for concepts
+- [ ] Uses instance-specific screenshots
+- [ ] Maps to generic patterns
+- [ ] Documents "what" exists in Demo Site
+- [ ] Includes configuration details
+
+---
+
+## Success Criteria
+
+**Generic Guides:**
+- ✅ Complete standalone training for each role
+- ✅ No instance-specific dependencies
+- ✅ Reusable for any Agility instance
+- ✅ Clear concept explanations
+
+**Instance-Specific Guides:**
+- ✅ Complete Demo Site documentation
+- ✅ Clear mapping to generic concepts
+- ✅ Instance-specific screenshots and examples
+- ✅ Easy to customize for new instances
+
+**Combined Result:**
+- ✅ Easy to build training for new instances
+- ✅ Generic content stays up-to-date across instances
+- ✅ Clear separation of concerns
+- ✅ Progressive disclosure (generic → instance-specific)
