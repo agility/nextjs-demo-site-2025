@@ -69,30 +69,77 @@ A page is a container that:
 **Example Page:**
 ```json
 {
-  "id": 1,
-  "title": "Home Page",
-  "path": "home",
-  "components": [
-    { "name": "Hero", "id": 10 },
-    { "name": "Carousel", "id": 11 }
-  ]
+  "pageID": 2,
+  "name": "home",
+  "path": null,
+  "title": "Home",
+  "menuText": "Home",
+  "pageType": "static",
+  "templateName": "Main Template",
+  "zones": {
+    "main-content-zone": [
+      {
+        "module": "PersonalizedBackgroundHero",
+        "item": {
+          "contentID": 186,
+          "properties": {
+            "state": 2,
+            "referenceName": "home_personalizedbackgroundh48f36e",
+            "definitionName": "PersonalizedBackgroundHero"
+          },
+          "fields": {
+            "heading": "Close Every Deal",
+            "description": "Galaxy Tech helps you sell more...",
+            "cta1": {
+              "href": "/contact-us",
+              "text": "Get started"
+            }
+          }
+        }
+      },
+      {
+        "module": "BentoSection",
+        "item": {
+          "contentID": 27,
+          "properties": {
+            "referenceName": "home_bentosection",
+            "definitionName": "BentoSection"
+          },
+          "fields": {
+            "heading": "Know everything your customers do...",
+            "bentoCards": {
+              "referencename": "home_bentosection_bentocard",
+              "fulllist": true
+            }
+          }
+        }
+      }
+    ]
+  }
 }
 ```
 
 #### Component Structure
 
-Components are reusable UI building blocks:
+Components are reusable UI building blocks. When placed on a page, they appear in the `zones` array:
 
-**Example Component (Hero):**
+**Example Component (BentoSection):**
 ```json
 {
-  "id": 10,
-  "name": "Hero",
+  "contentID": 27,
+  "properties": {
+    "state": 2,
+    "referenceName": "home_bentosection",
+    "definitionName": "BentoSection",
+    "itemOrder": 0
+  },
   "fields": {
-    "heading": "Welcome to Our Site",
-    "image": { "url": "...", "label": "..." },
-    "content": "Hero description text",
-    "cta": { "href": "/contact", "text": "Get Started" }
+    "subheading": "Sales",
+    "heading": "Know everything your customers do and so much more",
+    "bentoCards": {
+      "referencename": "home_bentosection_bentocard",
+      "fulllist": true
+    }
   }
 }
 ```
@@ -103,17 +150,57 @@ Components define **how** content is presented, not **what** content is shown.
 
 Content items are standalone, reusable pieces of data:
 
-**Example Content (BlogPost):**
+**Example Content (Post):**
 ```json
 {
-  "id": 6,
-  "contentDefinitionName": "BlogPost",
+  "contentID": 204,
+  "properties": {
+    "state": 2,
+    "modified": "2025-12-08T15:12:10.883",
+    "versionID": 1287,
+    "referenceName": "posts",
+    "definitionName": "Post",
+    "itemOrder": 22
+  },
   "fields": {
-    "title": "First Post",
-    "date": "2025-01-15",
-    "author": { "contentID": 5, "fields": {...} },
-    "image": { "url": "...", "label": "..." },
-    "content": "Post content..."
+    "heading": "Changed Heading",
+    "slug": "future-of-retail-ai-customer-intelligence",
+    "postDate": "2025-10-08T04:00:00+00:00",
+    "category": {
+      "contentID": 61,
+      "properties": {
+        "referenceName": "categories",
+        "definitionName": "Category"
+      },
+      "fields": {
+        "name": "Knowledge"
+      }
+    },
+    "categoryID": "61",
+    "categoryName": "Knowledge",
+    "tags": [
+      {
+        "contentID": 8,
+        "fields": {
+          "name": "A.I."
+        }
+      }
+    ],
+    "author": {
+      "contentID": 59,
+      "fields": {
+        "name": "Emily Selman",
+        "headShot": {
+          "url": "https://cdn.agilitycms.com/...",
+          "label": null
+        }
+      }
+    },
+    "content": "<p>The retail landscape has undergone...</p>",
+    "image": {
+      "label": "Man at a computer",
+      "url": "https://cdn.agilitycms.com/..."
+    }
   }
 }
 ```

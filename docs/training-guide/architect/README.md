@@ -1,11 +1,34 @@
 # Agility CMS Training Guide: Architect
 
-> **Instance**: Demo Site (`13f09fe2-u`)
 > **Target Audience**: Solution architects and technical leads designing content management solutions
 
 ## Overview
 
 This guide is designed for architects who need to understand Agility CMS from a system design perspective, plan content architecture, and make strategic decisions about content modeling and integration patterns.
+
+## Training Structure
+
+This guide is split into two parts:
+
+1. **[Generic Training Guide](./generic/README.md)** - Works for **any Agility CMS instance**
+   - Learn architectural principles and patterns
+   - Understand content and component design strategies
+   - Apply to any Agility CMS project
+
+2. **[Instance-Specific Guide](./instance-specific/README.md)** - Specific to **Demo Site** (`13f09fe2-u`)
+   - Analyze instance architecture
+   - Review content and component designs
+   - Evaluate integration patterns
+
+## Quick Start
+
+**New to Agility CMS?** Start with the [Generic Training Guide](./generic/README.md)
+
+**Analyzing Demo Site?** Review the [Instance-Specific Guide](./instance-specific/README.md)
+
+---
+
+## Overview (Legacy Content)
 
 ## Learning Outcomes
 

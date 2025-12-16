@@ -1,11 +1,34 @@
 # Agility CMS Training Guide: Developer
 
-> **Instance**: Demo Site (`13f09fe2-u`)
 > **Target Audience**: Developers integrating with Agility CMS and building custom components
 
 ## Overview
 
-This guide is designed for developers who need to understand how Agility CMS works from a technical perspective, integrate with the CMS APIs, and develop custom modules or components for the Next.js application.
+This guide is designed for developers who need to understand how Agility CMS works from a technical perspective, integrate with the CMS APIs, and develop custom components for frontend applications.
+
+## Training Structure
+
+This guide is split into two parts:
+
+1. **[Generic Training Guide](./generic/README.md)** - Works for **any Agility CMS instance**
+   - Learn how Agility CMS works in general
+   - Understand APIs, SDKs, and development patterns
+   - Apply to any Agility CMS project
+
+2. **[Instance-Specific Guide](./instance-specific/README.md)** - Specific to **Demo Site** (`13f09fe2-u`)
+   - Learn project structure and implementation details
+   - Understand specific content models and components
+   - Practice with real examples
+
+## Quick Start
+
+**New to Agility CMS?** Start with the [Generic Training Guide](./generic/README.md)
+
+**Working on Demo Site?** Review the [Instance-Specific Guide](./instance-specific/README.md)
+
+---
+
+## Overview (Legacy Content)
 
 ## Learning Outcomes
 
@@ -57,30 +80,76 @@ Defines the structure/schema for pages. Pages are instances of page models.
 **Page Example:**
 ```json
 {
-  "id": 1,
-  "title": "Home Page",
-  "path": "home",
-  "description": "The home page of our website",
-  "components": [
-    { "name": "Hero", "id": 10 },
-    { "name": "Carousel", "id": 11 }
-  ]
+  "pageID": 2,
+  "name": "home",
+  "path": null,
+  "title": "Home",
+  "menuText": "Home",
+  "pageType": "static",
+  "templateName": "Main Template",
+  "zones": {
+    "main-content-zone": [
+      {
+        "module": "PersonalizedBackgroundHero",
+        "item": {
+          "contentID": 186,
+          "properties": {
+            "state": 2,
+            "referenceName": "home_personalizedbackgroundh48f36e",
+            "definitionName": "PersonalizedBackgroundHero"
+          },
+          "fields": {
+            "heading": "Close Every Deal",
+            "description": "Galaxy Tech helps you sell more...",
+            "cta1": {
+              "href": "/contact-us",
+              "text": "Get started"
+            }
+          }
+        }
+      },
+      {
+        "module": "BentoSection",
+        "item": {
+          "contentID": 27,
+          "properties": {
+            "referenceName": "home_bentosection",
+            "definitionName": "BentoSection"
+          },
+          "fields": {
+            "heading": "Know everything your customers do...",
+            "bentoCards": {
+              "referencename": "home_bentosection_bentocard",
+              "fulllist": true
+            }
+          }
+        }
+      }
+    ]
+  }
 }
 ```
 
 #### Component Model
-Defines the structure/schema for reusable UI components (modules). Components are instances of component models.
+Defines the structure/schema for reusable UI components. Components are instances of component models.
 
-**Component Example (Hero):**
+**Component Example (BentoSection):**
 ```json
 {
-  "id": 10,
-  "name": "Hero",
+  "contentID": 27,
+  "properties": {
+    "state": 2,
+    "referenceName": "home_bentosection",
+    "definitionName": "BentoSection",
+    "itemOrder": 0
+  },
   "fields": {
-    "heading": "Welcome to Our Site",
-    "image": { "url": "...", "label": "..." },
-    "content": "Hero description text",
-    "cta": { "href": "/contact", "text": "Get Started" }
+    "subheading": "Sales",
+    "heading": "Know everything your customers do and so much more",
+    "bentoCards": {
+      "referencename": "home_bentosection_bentocard",
+      "fulllist": true
+    }
   }
 }
 ```
@@ -88,17 +157,57 @@ Defines the structure/schema for reusable UI components (modules). Components ar
 #### Content Model
 Defines the structure/schema for standalone content items. Content items are instances of content models.
 
-**Content Example (BlogPost):**
+**Content Example (Post):**
 ```json
 {
-  "id": 6,
-  "contentDefinitionName": "BlogPost",
+  "contentID": 204,
+  "properties": {
+    "state": 2,
+    "modified": "2025-12-08T15:12:10.883",
+    "versionID": 1287,
+    "referenceName": "posts",
+    "definitionName": "Post",
+    "itemOrder": 22
+  },
   "fields": {
-    "title": "First Post",
-    "date": "2025-01-15",
-    "author": { "contentID": 5, "fields": {...} },
-    "image": { "url": "...", "label": "..." },
-    "content": "Post content..."
+    "heading": "Changed Heading",
+    "slug": "future-of-retail-ai-customer-intelligence",
+    "postDate": "2025-10-08T04:00:00+00:00",
+    "category": {
+      "contentID": 61,
+      "properties": {
+        "referenceName": "categories",
+        "definitionName": "Category"
+      },
+      "fields": {
+        "name": "Knowledge"
+      }
+    },
+    "categoryID": "61",
+    "categoryName": "Knowledge",
+    "tags": [
+      {
+        "contentID": 8,
+        "fields": {
+          "name": "A.I."
+        }
+      }
+    ],
+    "author": {
+      "contentID": 59,
+      "fields": {
+        "name": "Emily Selman",
+        "headShot": {
+          "url": "https://cdn.agilitycms.com/...",
+          "label": null
+        }
+      }
+    },
+    "content": "<p>The retail landscape has undergone...</p>",
+    "image": {
+      "label": "Man at a computer",
+      "url": "https://cdn.agilitycms.com/..."
+    }
   }
 }
 ```

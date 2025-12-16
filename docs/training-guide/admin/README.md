@@ -1,11 +1,34 @@
 # Agility CMS Training Guide: Administrator
 
-> **Instance**: Demo Site (`13f09fe2-u`)
 > **Target Audience**: System administrators and power users managing Agility CMS instances
 
 ## Overview
 
 This guide is designed for administrators who need to manage Agility CMS instances, configure settings, manage users, and maintain the content management system.
+
+## Training Structure
+
+This guide is split into two parts:
+
+1. **[Generic Training Guide](./generic/README.md)** - Works for **any Agility CMS instance**
+   - Learn administration concepts and best practices
+   - Understand user management and permissions
+   - Apply to any Agility CMS instance
+
+2. **[Instance-Specific Guide](./instance-specific/README.md)** - Specific to **Demo Site** (`13f09fe2-u`)
+   - Learn instance-specific configurations
+   - Understand content and component setup
+   - Review configured workflows
+
+## Quick Start
+
+**New to Agility CMS Administration?** Start with the [Generic Training Guide](./generic/README.md)
+
+**Managing Demo Site?** Review the [Instance-Specific Guide](./instance-specific/README.md)
+
+---
+
+## Overview (Legacy Content)
 
 ## Learning Outcomes
 
