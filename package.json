@@ -8,7 +8,8 @@
     "prebuild": "tsx node/prebuild.ts",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "capture-screenshots": "tsx scripts/capture-missing-screenshots.ts"
   },
   "dependencies": {
     "@agility/nextjs": "^15.0.7",

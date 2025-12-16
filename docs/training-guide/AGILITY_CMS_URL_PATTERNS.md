@@ -157,8 +157,13 @@ https://app.agilitycms.com/instance/13f09fe2-u/en-us/pages/page-2/item-75
 
 ### Assets/Media
 ```
-/assets
+/media/folder-0
 ```
+
+**Notes:**
+- Assets are organized in folders
+- Default folder is `folder-0`
+- URL pattern: `/media/folder-{folder-id}`
 
 ## ID Reference
 
