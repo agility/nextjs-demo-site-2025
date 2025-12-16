@@ -41,7 +41,7 @@ Agility CMS is a **headless content management system** that separates content m
 
 Agility CMS follows a headless architecture pattern, where content management is completely separate from content delivery:
 
-![Agility Headless Architecture Diagram](../concepts/Agility%20Headless%20Architecture.png)
+![Agility Headless Architecture Diagram](../assets/concepts/Agility%20Headless%20Architecture.png)
 
 *In a headless architecture, content is created in the Content Manager, exposed through Content APIs, and consumed by various frontend applications (websites, mobile apps) which then deliver the experience to end-user devices. Assets are delivered directly via a CDN for optimal performance.*
 
@@ -55,7 +55,7 @@ Agility CMS follows a headless architecture pattern, where content management is
 
 Agility CMS organizes content using a structured data model that separates content from presentation:
 
-![Agility Data Model Diagram](../concepts/Agility%20Data%20Model.png)
+![Agility Data Model Diagram](../assets/concepts/Agility%20Data%20Model.png)
 
 *The Agility data model shows how a Sitemap organizes Pages, Pages contain Components, and Components display Content Items. Each entity (Page, Component, Content) has a corresponding Model that defines its structure. This separation allows content to be reused across multiple pages and components.*
 
@@ -69,7 +69,7 @@ Agility CMS organizes content using a structured data model that separates conte
 
 The Agility CMS interface is organized into four main sections:
 
-![Agility Sections Diagram](../concepts/Agility%20Sections.png)
+![Agility Sections Diagram](../assets/concepts/Agility%20Sections.png)
 
 *The Agility CMS interface is organized into four main sections:*
 - **Content**: Manage Lists and Items (reusable content)
@@ -90,7 +90,7 @@ The Agility CMS interface is organized into four main sections:
 
 Upon logging into Agility CMS, you'll see the main navigation with these key areas:
 
-![Agility CMS Dashboard](../screenshots/agility-cms/01-dashboard-home.png)
+![Agility CMS Dashboard](../assets/screenshots/agility-cms/01-dashboard-home.png)
 
 *The Agility CMS dashboard provides an overview of your content and quick access to key sections.*
 
@@ -132,7 +132,7 @@ A **Module** (also called a Component) is a reusable building block that display
 
 ### Creating a New Page
 
-![Sitemap View](../screenshots/agility-cms/09-sitemap-view.png)
+![Sitemap View](../assets/screenshots/agility-cms/09-sitemap-view.png)
 
 *The sitemap shows the structure of your website. Pages are organized hierarchically.*
 
@@ -190,7 +190,7 @@ Based on the Demo Site structure, you'll work with these content types:
   - Author (linked content)
   - Tags (multiple linked items)
 
-![Posts Content List](../screenshots/agility-cms/03-content-posts-list.png)
+![Posts Content List](../assets/screenshots/agility-cms/03-content-posts-list.png)
 
 *The Posts content list shows all blog posts. Click on any post to edit it.*
 
@@ -198,14 +198,14 @@ Based on the Demo Site structure, you'll work with these content types:
   - Name
   - Headshot image
 
-![Authors Content List](../screenshots/agility-cms/04-content-authors-list.png)
+![Authors Content List](../assets/screenshots/agility-cms/04-content-authors-list.png)
 
 *Authors are managed as reusable content items that can be linked to multiple posts.*
 
 - **Categories** - Blog categories with:
   - Name
 
-![Categories Content List](../screenshots/agility-cms/05-content-categories-list.png)
+![Categories Content List](../assets/screenshots/agility-cms/05-content-categories-list.png)
 
 *Categories help organize blog posts by topic.*
 
@@ -334,7 +334,7 @@ The Demo Site includes a complete blog system:
 **Creating a Blog Post:**
 1. Navigate to **Content** → **Posts**
 
-![Posts Content List](../screenshots/agility-cms/03-content-posts-list.png)
+![Posts Content List](../assets/screenshots/agility-cms/03-content-posts-list.png)
 
 2. Click **"Add Content"**
 3. Fill in:
@@ -350,7 +350,7 @@ The Demo Site includes a complete blog system:
 
 **Blog posts automatically appear** in the blog listing page when published.
 
-![Blog Listing Page](../screenshots/website/06-blog-listing.png)
+![Blog Listing Page](../assets/screenshots/website/06-blog-listing.png)
 
 *Published blog posts appear on the blog listing page automatically.*
 
@@ -386,7 +386,7 @@ The Demo Site supports **audience and region personalization**:
 
 ### Task: Update the Homepage Hero Section
 
-![Homepage](../screenshots/website/01-homepage.png)
+![Homepage](../assets/screenshots/website/01-homepage.png)
 
 *The homepage displays various modules including hero sections.*
 
@@ -461,5 +461,5 @@ After completing this guide, you should:
 
 ---
 
-*This guide is specific to the Demo Site instance (`13f09fe2-u`). For generic Agility CMS concepts, see the [Concept Guides](../concepts/README.md).*
+*This guide is specific to the Demo Site instance (`13f09fe2-u`). For generic Agility CMS concepts, see the [Concept Guides](../assets/concepts/README.md).*
 
