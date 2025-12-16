@@ -116,11 +116,11 @@ The dashboard provides quick access to:
 
 A **Page** represents an individual web page on your site. Pages are organized in a **Sitemap**, which defines your site's navigation structure.
 
-### What is a Module?
+### What is a Component?
 
-A **Module** (also called a Component) is a reusable building block that displays content on a page. Think of modules as LEGO blocks—you combine different modules to build a complete page.
+A **Component** is a reusable building block that displays content on a page. Think of components as LEGO blocks—you combine different components to build a complete page.
 
-**Common Modules in the Demo Site:**
+**Common Components in the Demo Site:**
 - **RichTextArea** - For formatted text content
 - **BackgroundHero** - Hero section with background image
 - **BentoSection** - Animated grid of cards
@@ -147,22 +147,22 @@ A **Module** (also called a Component) is a reusable building block that display
    > **Note**: "Page Templates" is the old terminology. The current term is "Page Models."
 5. Click **"Save"**
 
-### Adding Modules to a Page
+### Adding Components to a Page
 
 1. Open the page you want to edit
-2. In the page editor, you'll see **Content Zones** (areas where modules can be added)
-3. Click **"Add Module"** in the desired content zone
-4. Select the module type from the list
-5. Configure the module's content fields
+2. In the page editor, you'll see **Content Zones** (areas where components can be added)
+3. Click **"Add Component"** in the desired content zone
+4. Select the component type from the list
+5. Configure the component's content fields
 6. Click **"Save"**
 
 ### Editing Page Content
 
 1. Navigate to **Pages** → **Sitemap**
 2. Click on the page you want to edit
-3. In the page editor, click on any module to open its content editor
-4. Make your changes to the module's fields
-5. Click **"Save"** to save the module
+3. In the page editor, click on any component to open its content editor
+4. Make your changes to the component's fields
+5. Click **"Save"** to save the component
 6. Click **"Publish"** (or **"Submit for Approval"** if workflow is enabled) to make changes live
 
 ---
@@ -242,14 +242,14 @@ Based on the Demo Site structure, you'll work with these content types:
 4. Make your changes
 5. Click **"Save"**
 
-### Linking Content Items to Modules
+### Linking Content Items to Components
 
-When editing a module that supports linked content:
-1. Open the module editor
+When editing a component that supports linked content:
+1. Open the component editor
 2. Find the field that accepts linked content (often labeled with a link icon)
 3. Click to open the content picker
 4. Select the content item(s) you want to link
-5. Save the module
+5. Save the component
 
 ---
 
@@ -364,7 +364,7 @@ The Demo Site supports **audience and region personalization**:
 
 ### Available Modules Reference
 
-| Module | Purpose | Key Fields |
+| Component | Purpose | Key Fields |
 |--------|---------|------------|
 | **RichTextArea** | Formatted text content | Rich text editor |
 | **BackgroundHero** | Hero section with background | Heading, description, background image, CTA |
@@ -392,7 +392,7 @@ The Demo Site supports **audience and region personalization**:
 
 1. Navigate to **Pages** → **Sitemap**
 2. Click on **Home** page
-3. Find the **BackgroundHero** or **Hero** module
+3. Find the **BackgroundHero** or **Hero** component
 4. Click to edit
 5. Update heading, description, image, or CTA
 6. Save and publish

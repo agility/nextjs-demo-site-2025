@@ -63,7 +63,7 @@ Each sitemap entry maps a URL path to a page, and optionally to specific content
 
 A page is a container that:
 - Has metadata (title, description, path)
-- References multiple components/modules
+- References multiple components
 - Can be organized in a sitemap hierarchy
 
 **Example Page:**
@@ -381,7 +381,7 @@ The Agility Sections diagram illustrates the four main functional areas of the A
 
 **What You Do Here:**
 - Build and organize pages in the sitemap
-- Add components/modules to pages
+- Add components to pages
 - Configure page models
 - Set up dynamic page routing
 

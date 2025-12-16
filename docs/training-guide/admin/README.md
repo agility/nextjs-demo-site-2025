@@ -292,6 +292,8 @@ The Demo Site includes **20 component definitions**:
 { name: "ComponentName", module: ComponentName }
 ```
 
+> **Note**: The `module` property name is from the Next.js SDK's legacy terminology. In Agility CMS, these are now called "components" and "component models."
+
 **Naming Rules:**
 - Case-insensitive matching
 - Spaces converted to no spaces
@@ -339,7 +341,7 @@ The Demo Site supports:
 1. Navigate to **Pages** → **Page Models** (may still show as "Page Templates" in the UI)
 2. View available page models
 3. Configure content zones
-4. Define module placement areas
+4. Define component placement areas
 
 ### API Configuration
 

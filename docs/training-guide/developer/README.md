@@ -217,7 +217,7 @@ All Agility components must be registered:
 const allModules = [
   { name: "RichTextArea", module: RichTextArea },
   { name: "BackgroundHero", module: BackgroundHero },
-  // ... more modules
+  // ... more components
 ]
 
 export const getModule = (moduleName: string) => {
@@ -227,6 +227,8 @@ export const getModule = (moduleName: string) => {
   return obj?.module || NoComponentFound
 }
 ```
+
+> **Note**: The Next.js SDK still uses "module" terminology in code (e.g., `allModules`, `getModule`, `module.contentid`). This is a legacy naming convention from when components were called "modules" in Agility CMS. The UI and documentation now use "component" terminology, but the SDK maintains backward compatibility.
 
 ### Environment Variables
 
@@ -286,7 +288,8 @@ export const ComponentName = async ({
 
 1. **Async Function**: Components are async to fetch data
 2. **UnloadedModuleProps**: Accepts `module`, `languageCode`, `isPreview`, etc.
-3. **getContentItem()**: Fetch content using the module's `contentid`
+   > **Note**: The `module` prop name is from the SDK's legacy terminology. It refers to the component instance data.
+3. **getContentItem()**: Fetch content using the component's `contentid` (accessed via `module.contentid`)
 4. **data-agility-* Attributes**: Required for inline editing support
 5. **TypeScript Interfaces**: Define field types for type safety
 
@@ -299,7 +302,7 @@ After creating a component:
    ```typescript
    { name: "ComponentName", module: ComponentName }
    ```
-3. Component name must match Agility CMS module definition (case-insensitive)
+3. Component name must match Agility CMS component model (case-insensitive)
 
 ### Image Handling
 
@@ -611,15 +614,17 @@ Add to `src/components/agility-components/index.ts`:
 import { MyComponent } from "./MyComponent"
 
 const allModules = [
-  // ... existing modules
+  // ... existing components
   { name: "MyComponent", module: MyComponent },
 ]
 ```
 
+> **Note**: The variable name `allModules` and property `module` are from the SDK's legacy terminology. In Agility CMS, these are now called "components" and "component models."
+
 ### 5. Test Component
 
-1. Create module in Agility CMS with matching name
-2. Add module to a page
+1. Create component in Agility CMS with matching name
+2. Add component to a page
 3. Preview in development mode
 4. Test with different content
 
@@ -657,8 +662,8 @@ Component is automatically available after deployment.
 ### Debugging Tools
 
 ```typescript
-// Log module data
-console.log('Module:', module)
+// Log component data
+console.log('Component data:', module)
 
 // Log fetched content
 console.log('Content:', { fields, contentID })

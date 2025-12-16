@@ -36,7 +36,7 @@ Each guide is:
 
 Example:
 
-“Create a reusable content module used across multiple pages”
+"Create a reusable content component used across multiple pages"
 
 Recommended structure
 	1.	What you’re accomplishing (business + product context)

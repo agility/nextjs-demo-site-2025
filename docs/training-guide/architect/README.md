@@ -262,6 +262,8 @@ const allModules = [
   { name: "ComponentName", module: ComponentName },
   // ... more components
 ]
+
+> **Note**: The variable name `allModules` and property `module` are from the Next.js SDK's legacy terminology. In Agility CMS, these are now called "components" and "component models."
 ```
 
 **Critical:** Component names must match Agility CMS definitions (case-insensitive).
