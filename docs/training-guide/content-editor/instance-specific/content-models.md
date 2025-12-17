@@ -13,7 +13,7 @@ The Demo Site has **24 content models** organized into different categories:
 
 ### Posts (Content List)
 
-![Posts Content List](../../assets/screenshots/agility-cms/03-content-posts-list.png)
+![Posts Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/03-content-posts-list.png)
 
 **Purpose**: Individual blog posts
 
@@ -34,7 +34,7 @@ The Demo Site has **24 content models** organized into different categories:
 
 ### Authors (Content List)
 
-![Authors Content List](../../assets/screenshots/agility-cms/04-content-authors-list.png)
+![Authors Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/04-content-authors-list.png)
 
 **Purpose**: Blog post authors
 
@@ -48,7 +48,7 @@ The Demo Site has **24 content models** organized into different categories:
 
 ### Categories (Content List)
 
-![Categories Content List](../../assets/screenshots/agility-cms/05-content-categories-list.png)
+![Categories Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/05-content-categories-list.png)
 
 **Purpose**: Blog post categories
 
@@ -112,7 +112,7 @@ The Demo Site has **24 content models** organized into different categories:
 
 ### Bento Cards (Content List)
 
-![Bento Cards List](../../assets/screenshots/agility-cms/06-content-bento-cards-list.png)
+![Bento Cards List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/06-content-bento-cards-list.png)
 
 **Purpose**: Cards used in Bento sections
 
@@ -129,7 +129,7 @@ The Demo Site has **24 content models** organized into different categories:
 
 ### Testimonials (Content List)
 
-![Testimonials List](../../assets/screenshots/agility-cms/07-content-testimonials-list.png)
+![Testimonials List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/07-content-testimonials-list.png)
 
 **Purpose**: Customer testimonials
 

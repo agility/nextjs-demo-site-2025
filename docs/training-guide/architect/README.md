@@ -56,7 +56,7 @@ By the end of this guide, you will be able to:
 
 Agility CMS follows a **headless architecture** pattern, separating content management from content delivery.
 
-![Headless Architecture Diagram](../assets/concepts/Agility%20Headless%20Architecture.png)
+![Headless Architecture Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Headless%20Architecture.png)
 
 *This diagram illustrates the headless architecture: Content is managed in the Content Manager, exposed via Content APIs, and consumed by frontend applications (Website, Apps) which deliver experiences to Devices. Assets are delivered via Asset CDN. This separation enables multi-channel publishing, technology independence, and independent scaling.*
 
@@ -84,7 +84,7 @@ Agility CMS follows a **headless architecture** pattern, separating content mana
 
 ### Data Model Architecture
 
-![Data Model Diagram](../assets/concepts/Agility%20Data%20Model.png)
+![Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 *This diagram shows the Agility data model structure: The Sitemap maps URLs to Pages, Pages contain Components, and Components display Content Items. Each entity has a corresponding Model (Page Model, Component Model, Content Model) that defines its schema. This three-layer model (Models → Instances → Relationships) enables content reusability and flexible presentation.*
 
@@ -118,7 +118,7 @@ Agility CMS follows a **headless architecture** pattern, separating content mana
 
 The Agility CMS interface is organized into four main functional areas:
 
-![Agility Sections Diagram](../assets/concepts/Agility%20Sections.png)
+![Agility Sections Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Sections.png)
 
 *The Agility CMS interface is organized into four sections: Content (Lists/Items), Assets (Files/Images/PDFs), Pages (Sitemap/Pages/Components), and Web Studio (Preview). Understanding this organization helps architects plan content workflows and user access patterns.*
 
@@ -567,5 +567,5 @@ After completing this guide, you should:
 
 ---
 
-*This guide is specific to the Demo Site instance (`13f09fe2-u`). For generic Agility CMS concepts, see the [Concept Guides](../assets/concepts/README.md).*
+*This guide is specific to the Demo Site instance (`13f09fe2-u`). For generic Agility CMS concepts, see the [Concept Guides](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/README.md).*
 

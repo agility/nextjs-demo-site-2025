@@ -4,7 +4,7 @@ This guide provides a deep understanding of the Agility CMS data model, includin
 
 ## Three-Layer Architecture
 
-![Data Model Diagram](../../assets/concepts/Agility%20Data%20Model.png)
+![Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 The Agility data model uses a three-layer architecture:
 

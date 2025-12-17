@@ -57,7 +57,7 @@ By the end of this guide, you will be able to:
 
 The Agility CMS data model follows a hierarchical structure that separates content from presentation.
 
-![Agility Data Model Diagram](../assets/concepts/Agility%20Data%20Model.png)
+![Agility Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 *This diagram illustrates how Agility CMS organizes data: The Sitemap maps URLs to Pages, Pages contain Components, and Components display Content Items. Each entity has a corresponding Model that defines its structure. This separation enables content reusability and flexible presentation.*
 
@@ -231,7 +231,7 @@ Defines the structure/schema for standalone content items. Content items are ins
 
 Agility CMS follows a headless architecture pattern, separating content management from content delivery.
 
-![Headless Architecture Diagram](../assets/concepts/Agility%20Headless%20Architecture.png)
+![Headless Architecture Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Headless%20Architecture.png)
 
 *This diagram shows the headless architecture flow: Content is created in the Content Manager, exposed through Content APIs, and consumed by frontend applications (Website, Apps) which deliver experiences to end-user Devices. Assets are delivered directly via Asset CDN for optimal performance. This architecture enables multi-channel publishing and technology independence.*
 
@@ -272,7 +272,7 @@ Agility CMS follows a headless architecture pattern, separating content manageme
 
 Before diving into integration, it's helpful to understand how the Agility CMS interface is organized:
 
-![Agility Sections Diagram](../assets/concepts/Agility%20Sections.png)
+![Agility Sections Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Sections.png)
 
 *The Agility CMS interface is organized into four main sections: Content (for managing Lists and Items), Assets (for Files, Images, PDFs), Pages (for Sitemap, Pages, and Components), and Web Studio (for Preview). As a developer, you'll primarily interact with the Content and Pages sections when configuring content models and components, but understanding all sections helps you work effectively with content editors and administrators.*
 
@@ -812,5 +812,5 @@ After completing this guide, you should:
 
 ---
 
-*This guide is specific to the Demo Site instance (`13f09fe2-u`). For generic Agility CMS concepts, see the [Concept Guides](../assets/concepts/README.md).*
+*This guide is specific to the Demo Site instance (`13f09fe2-u`). For generic Agility CMS concepts, see the [Concept Guides](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/README.md).*
 

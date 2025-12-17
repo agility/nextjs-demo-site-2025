@@ -15,7 +15,7 @@ A **Page** represents an individual web page on your site. Pages are organized i
 
 ## Sitemap
 
-![Sitemap View](../../assets/screenshots/agility-cms/09-sitemap-view.png)
+![Sitemap View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/09-sitemap-view.png)
 
 The sitemap shows your site's page hierarchy:
 - Pages are organized in a tree structure
@@ -53,13 +53,13 @@ Different page models can have different content zone configurations. For exampl
 
 ## Page Editor
 
-![Page Edit View](../../assets/screenshots/agility-cms/13-page-edit-view.png)
+![Page Edit View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/13-page-edit-view.png)
 
 When editing a page, you'll see:
 
 ### Content Zones
 
-![Page with Content Zones](../../assets/screenshots/agility-cms/21-page-content-zones.png)
+![Page with Content Zones](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/21-page-content-zones.png)
 
 **Content Zones** are areas on the page where components can be added:
 - Each zone has a name (e.g., "Main Content", "Sidebar")
@@ -68,7 +68,7 @@ When editing a page, you'll see:
 
 ### Adding Components to Pages
 
-![Component Picker](../../assets/screenshots/agility-cms/18-component-picker.png)
+![Component Picker](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/18-component-picker.png)
 
 1. Open the page you want to edit
 2. In the page editor, you'll see **Content Zones** (areas where components can be added)
@@ -79,7 +79,7 @@ When editing a page, you'll see:
 
 ### Editing Components on Pages
 
-![Component Editor](../../assets/screenshots/agility-cms/19-component-editor-form.png)
+![Component Editor](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/19-component-editor-form.png)
 
 1. Navigate to **Pages** → **Sitemap**
 2. Click on the page you want to edit

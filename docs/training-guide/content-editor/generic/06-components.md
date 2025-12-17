@@ -14,7 +14,7 @@ A **Component** is a reusable building block that displays content on a page. Th
 
 ## Component Models
 
-![Component Definition](../../assets/screenshots/agility-cms/14-component-definition.png)
+![Component Definition](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/14-component-definition.png)
 
 **Component Models** define the structure of components:
 - What fields the component has
@@ -24,7 +24,7 @@ A **Component** is a reusable building block that displays content on a page. Th
 
 ## Adding Components to Pages
 
-![Component Picker](../../assets/screenshots/agility-cms/18-component-picker.png)
+![Component Picker](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/18-component-picker.png)
 
 1. Open the page you want to edit
 2. In the page editor, you'll see **Content Zones** (areas where components can be added)
@@ -35,7 +35,7 @@ A **Component** is a reusable building block that displays content on a page. Th
 
 ## Editing Components
 
-![Component Editor](../../assets/screenshots/agility-cms/19-component-editor-form.png)
+![Component Editor](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/19-component-editor-form.png)
 
 1. Navigate to the page containing the component
 2. Click on the component in the page editor
@@ -45,7 +45,7 @@ A **Component** is a reusable building block that displays content on a page. Th
 
 ## Linking Content to Components
 
-![Content Picker](../../assets/screenshots/agility-cms/20-content-picker.png)
+![Content Picker](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/20-content-picker.png)
 
 Many components can link to content items. This allows components to display reusable content.
 

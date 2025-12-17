@@ -6,7 +6,7 @@ This guide explains the publishing workflow in Agility CMS, including how to pub
 
 Content items and pages have publishing status:
 
-![Publishing Status](../../assets/screenshots/agility-cms/25-publishing-status.png)
+![Publishing Status](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/25-publishing-status.png)
 
 - **Draft**: Content that hasn't been published yet
 - **Published**: Content that is live and available
@@ -30,7 +30,7 @@ Content items and pages have publishing status:
 
 ## Preview Before Publishing
 
-![Preview Mode](../../assets/screenshots/agility-cms/33-preview-mode.png)
+![Preview Mode](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/33-preview-mode.png)
 
 Always preview content before publishing:
 

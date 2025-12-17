@@ -4,7 +4,7 @@ This guide provides step-by-step instructions for common tasks specific to the D
 
 ## Task: Create a New Blog Post
 
-![Posts Content List](../../assets/screenshots/agility-cms/03-content-posts-list.png)
+![Posts Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/03-content-posts-list.png)
 
 1. Navigate to **Content** → **Posts**
 2. Click **"Add Content"** or the **"+"** button
@@ -22,11 +22,11 @@ This guide provides step-by-step instructions for common tasks specific to the D
 
 **Result**: The blog post automatically appears on the blog listing page when published.
 
-![Blog Listing Page](../../assets/screenshots/website/06-blog-listing.png)
+![Blog Listing Page](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/website/06-blog-listing.png)
 
 ## Task: Update the Homepage Hero Section
 
-![Homepage](../../assets/screenshots/website/01-homepage.png)
+![Homepage](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/website/01-homepage.png)
 
 1. Navigate to **Pages** → **Sitemap**
 2. Click on **Home** page
@@ -83,7 +83,7 @@ This guide provides step-by-step instructions for common tasks specific to the D
 
 ## Task: Manage Authors
 
-![Authors Content List](../../assets/screenshots/agility-cms/04-content-authors-list.png)
+![Authors Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/04-content-authors-list.png)
 
 1. Navigate to **Content** → **Authors**
 2. To add a new author:
@@ -100,7 +100,7 @@ This guide provides step-by-step instructions for common tasks specific to the D
 
 ## Task: Organize Blog Posts with Categories
 
-![Categories Content List](../../assets/screenshots/agility-cms/05-content-categories-list.png)
+![Categories Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/05-content-categories-list.png)
 
 1. Navigate to **Content** → **Categories**
 2. Create categories as needed:
@@ -124,7 +124,7 @@ This guide provides step-by-step instructions for common tasks specific to the D
    - Browse and select the image
    - Add alt text for accessibility
 
-![Image Upload Dialog](../../assets/screenshots/agility-cms/24-image-upload-dialog.png)
+![Image Upload Dialog](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/24-image-upload-dialog.png)
 
 ## Task: Preview Before Publishing
 
@@ -134,7 +134,7 @@ This guide provides step-by-step instructions for common tasks specific to the D
 4. Make adjustments if needed
 5. Publish when ready
 
-![Preview Mode](../../assets/screenshots/agility-cms/33-preview-mode.png)
+![Preview Mode](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/33-preview-mode.png)
 
 ## Task: Use Personalization Features
 

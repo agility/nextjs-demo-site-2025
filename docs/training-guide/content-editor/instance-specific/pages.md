@@ -47,7 +47,7 @@ The Demo Site has **7 main pages** organized in the sitemap:
 
 ## Sitemap Structure
 
-![Sitemap View](../../assets/screenshots/agility-cms/09-sitemap-view.png)
+![Sitemap View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/09-sitemap-view.png)
 
 The sitemap organizes pages hierarchically:
 - Home (root)

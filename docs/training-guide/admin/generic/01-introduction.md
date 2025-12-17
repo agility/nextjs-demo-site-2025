@@ -6,7 +6,7 @@ This guide provides an overview of Agility CMS administration, including the int
 
 As an administrator, it's important to understand how Agility CMS is structured. Agility CMS follows a **headless architecture** pattern:
 
-![Agility Headless Architecture Diagram](../../assets/concepts/Agility%20Headless%20Architecture.png)
+![Agility Headless Architecture Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Headless%20Architecture.png)
 
 *Agility CMS uses a headless architecture where content is managed separately from presentation. Content is created in the Content Manager, exposed through Content APIs, and consumed by frontend applications. Assets are delivered via CDN. This architecture enables multi-channel publishing and independent scaling.*
 
@@ -14,7 +14,7 @@ As an administrator, it's important to understand how Agility CMS is structured.
 
 Agility CMS organizes content using a structured data model:
 
-![Agility Data Model Diagram](../../assets/concepts/Agility%20Data%20Model.png)
+![Agility Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 *The Agility data model shows how Sitemap organizes Pages, Pages contain Components, and Components display Content Items. Each entity has a corresponding Model that defines its structure. As an administrator, you'll manage these Models (Page Models, Component Models, Content Models) and configure how they relate to each other.*
 
@@ -22,7 +22,7 @@ Agility CMS organizes content using a structured data model:
 
 The Agility CMS administration interface is organized into four main sections:
 
-![Agility Sections Diagram](../../assets/concepts/Agility%20Sections.png)
+![Agility Sections Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Sections.png)
 
 *The Agility CMS interface is organized into: Content (Lists/Items), Assets (Files/Images/PDFs), Pages (Sitemap/Pages/Components), and Web Studio (Preview). As an administrator, you'll work across all these sections to configure and manage the instance.*
 

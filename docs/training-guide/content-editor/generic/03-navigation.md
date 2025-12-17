@@ -6,7 +6,7 @@ This guide explains how to navigate the Agility CMS interface. The interface str
 
 Upon logging into Agility CMS, you'll see the main navigation with these key areas:
 
-![Agility CMS Dashboard](../../assets/screenshots/agility-cms/01-dashboard-home.png)
+![Agility CMS Dashboard](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/01-dashboard-home.png)
 
 *The Agility CMS dashboard provides an overview of your content and quick access to key sections.*
 
@@ -26,7 +26,7 @@ The dashboard provides quick access to:
 
 ## Content Section Navigation
 
-![Content Section Overview](../../assets/screenshots/agility-cms/02-content-section-overview.png)
+![Content Section Overview](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/02-content-section-overview.png)
 
 The Content section is where you manage reusable content items.
 
@@ -49,13 +49,13 @@ Content items are organized into **Content Lists**. Each content list contains i
 
 ## Pages Section Navigation
 
-![Pages Section](../../assets/screenshots/agility-cms/08-pages-section.png)
+![Pages Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/08-pages-section.png)
 
 The Pages section is where you manage your site's page structure.
 
 ### Sitemap View
 
-![Sitemap View](../../assets/screenshots/agility-cms/09-sitemap-view.png)
+![Sitemap View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/09-sitemap-view.png)
 
 The sitemap shows your site's page hierarchy:
 - Pages are organized in a tree structure
@@ -76,7 +76,7 @@ When editing a page, you'll see:
 
 ## Assets Section Navigation
 
-![Assets Section](../../assets/screenshots/agility-cms/11-assets-section.png)
+![Assets Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/11-assets-section.png)
 
 The Assets section is where you manage media files.
 
@@ -87,7 +87,7 @@ The Assets section is where you manage media files.
 
 ## Components Section Navigation
 
-![Components Section](../../assets/screenshots/agility-cms/10-components-section.png)
+![Components Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/10-components-section.png)
 
 The Components section shows available component definitions.
 

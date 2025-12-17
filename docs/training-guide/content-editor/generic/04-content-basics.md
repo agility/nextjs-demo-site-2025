@@ -25,13 +25,13 @@ Think of it like this:
 
 Content items are organized into **Content Lists**. Each content list contains items of a specific content model type.
 
-![Content List Example](../../assets/screenshots/agility-cms/03-content-posts-list.png)
+![Content List Example](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/03-content-posts-list.png)
 
 *Content lists show all items of a specific type. Click on any item to edit it.*
 
 ## Creating a Content Item
 
-![Content Item Create View](../../assets/screenshots/agility-cms/17-content-item-create-view.png)
+![Content Item Create View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/17-content-item-create-view.png)
 
 1. Navigate to **Content** in the main navigation
 2. Select the content list you want to work with (e.g., "Posts", "Authors")
@@ -54,7 +54,7 @@ Content items can have various field types:
 
 ## Editing Content Items
 
-![Content Item Edit View](../../assets/screenshots/agility-cms/16-content-item-edit-view.png)
+![Content Item Edit View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/16-content-item-edit-view.png)
 
 1. Navigate to **Content**
 2. Select the content list
@@ -64,7 +64,7 @@ Content items can have various field types:
 
 ### Rich Text Editing
 
-![Rich Text Editor](../../assets/screenshots/agility-cms/22-rich-text-editor.png)
+![Rich Text Editor](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/22-rich-text-editor.png)
 
 When editing rich text fields:
 - Use the formatting toolbar for text styling
@@ -100,7 +100,7 @@ Content items have publishing status:
 - **Published**: Live and available
 - **Archived**: No longer active
 
-![Publishing Status](../../assets/screenshots/agility-cms/25-publishing-status.png)
+![Publishing Status](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/25-publishing-status.png)
 
 ## Best Practices
 

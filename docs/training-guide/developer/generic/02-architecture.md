@@ -4,7 +4,7 @@ Understanding Agility CMS architecture is essential for effective development. T
 
 ## Headless Architecture
 
-![Headless Architecture Diagram](../../assets/concepts/Agility%20Headless%20Architecture.png)
+![Headless Architecture Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Headless%20Architecture.png)
 
 Agility CMS follows a **headless architecture** pattern that separates content management from content delivery.
 
@@ -45,7 +45,7 @@ Agility CMS follows a **headless architecture** pattern that separates content m
 
 ## Data Model Architecture
 
-![Data Model Diagram](../../assets/concepts/Agility%20Data%20Model.png)
+![Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 The Agility data model uses a three-layer architecture:
 

@@ -4,7 +4,7 @@ This section provides a deep understanding of the fundamental concepts that make
 
 ## 1. Agility Data Model
 
-![Agility Data Model Diagram](../../assets/concepts/Agility%20Data%20Model.png)
+![Agility Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 The Agility Data Model shows how content, presentation, and navigation are structured and related.
 
@@ -47,7 +47,7 @@ Content is **separated from presentation**. The same content item (e.g., a blog 
 
 ## 2. Headless Architecture
 
-![Headless Architecture Diagram](../../assets/concepts/Agility%20Headless%20Architecture.png)
+![Headless Architecture Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Headless%20Architecture.png)
 
 Agility CMS uses a headless architecture, meaning the content management system (the "head") is completely separate from where content is displayed (the "body").
 
@@ -82,7 +82,7 @@ Agility CMS uses a headless architecture, meaning the content management system 
 
 ## 3. Agility Sections
 
-![Agility Sections Diagram](../../assets/concepts/Agility%20Sections.png)
+![Agility Sections Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Sections.png)
 
 The Agility CMS interface is organized into four main sections, each serving a specific purpose:
 

@@ -65,21 +65,21 @@ The Demo Site is a comprehensive Next.js application powered by Agility CMS, sho
 
 ## Assets
 
-All images, diagrams, and screenshots are organized in the [`assets/`](./assets/) directory for easy management and deployment:
+All images, diagrams, and screenshots are organized in the [`assets/`](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/) directory for easy management and deployment:
 
 ### Concept Diagrams
-Located in [`assets/concepts/`](./assets/concepts/):
+Located in [`assets/concepts/`](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/):
 - **3 core concept diagrams**: Agility Data Model, Headless Architecture, and Agility Sections
 
 ### Website Screenshots
-Located in [`assets/screenshots/website/`](./assets/screenshots/website/):
+Located in [`assets/screenshots/website/`](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/website/):
 - **9 website screenshots** including homepage, all main pages (About, Pricing, Features, Contact), blog listing, and 3 sample blog posts
 
 ### Agility CMS Screenshots
-Located in [`assets/screenshots/agility-cms/`](./assets/screenshots/agility-cms/):
+Located in [`assets/screenshots/agility-cms/`](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/):
 - **15 CMS interface screenshots** including dashboard, content management, pages, components, assets, and edit views
 
-See the [Assets README](./assets/README.md) for folder structure details, and the [Screenshots README](./screenshots/README.md) for a complete index of all screenshots.
+See the [Assets README](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/README.md) for folder structure details, and the [Screenshots README](./screenshots/README.md) for a complete index of all screenshots.
 
 ## Training Philosophy
 
@@ -140,7 +140,7 @@ training-guide/
 
 - **Agility CMS Documentation**: [Official Agility CMS documentation](https://agilitycms.com/docs)
 - **User Permissions**: [Agility CMS User Permissions Guide](https://agilitycms.com/docs/owners-admins/user-permissions)
-- **Assets**: See the [Assets README](./assets/README.md) for folder structure and the [Screenshots Index](./screenshots/README.md) for all available screenshots
+- **Assets**: See the [Assets README](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/README.md) for folder structure and the [Screenshots Index](./screenshots/README.md) for all available screenshots
 - **URL Patterns**: Learn about [Agility CMS URL structure](./AGILITY_CMS_URL_PATTERNS.md)
 - **Codebase**: Review the Next.js implementation in `src/`
 

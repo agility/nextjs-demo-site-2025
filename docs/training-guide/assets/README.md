@@ -40,8 +40,8 @@ assets/
 
 All images in this folder are referenced from the training guide markdown files using relative paths:
 
-- From role guides (e.g., `content-editor/README.md`): `../assets/concepts/` or `../assets/screenshots/`
-- From root docs: `./assets/concepts/` or `./assets/screenshots/`
+- From role guides (e.g., `content-editor/README.md`): `https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/` or `https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/`
+- From root docs: `https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/` or `https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/`
 
 ## Uploading to External Server
 

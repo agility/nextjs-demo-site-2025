@@ -10,7 +10,7 @@ Agility CMS is a **headless content management system** that separates content m
 
 Agility CMS follows a headless architecture pattern, where content management is completely separate from content delivery:
 
-![Agility Headless Architecture Diagram](../../assets/concepts/Agility%20Headless%20Architecture.png)
+![Agility Headless Architecture Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Headless%20Architecture.png)
 
 *In a headless architecture, content is created in the Content Manager, exposed through Content APIs, and consumed by various frontend applications (websites, mobile apps) which then deliver the experience to end-user devices. Assets are delivered directly via a CDN for optimal performance.*
 
@@ -24,7 +24,7 @@ Agility CMS follows a headless architecture pattern, where content management is
 
 Agility CMS organizes content using a structured data model that separates content from presentation:
 
-![Agility Data Model Diagram](../../assets/concepts/Agility%20Data%20Model.png)
+![Agility Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 *The Agility data model shows how a Sitemap organizes Pages, Pages contain Components, and Components display Content Items. Each entity (Page, Component, Content) has a corresponding Model that defines its structure. This separation allows content to be reused across multiple pages and components.*
 
@@ -38,7 +38,7 @@ Agility CMS organizes content using a structured data model that separates conte
 
 The Agility CMS interface is organized into four main sections:
 
-![Agility Sections Diagram](../../assets/concepts/Agility%20Sections.png)
+![Agility Sections Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Sections.png)
 
 *The Agility CMS interface is organized into four main sections:*
 - **Content**: Manage Lists and Items (reusable content)

@@ -14,7 +14,7 @@ This section explains the core concepts and mental models that underpin Agility 
 
 ## 1. Agility Data Model
 
-![Agility Data Model Diagram](../assets/concepts/Agility%20Data%20Model.png)
+![Agility Data Model Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Data%20Model.png)
 
 ### Overview
 
@@ -251,7 +251,7 @@ Content items define **what** data exists, independent of **where** it's display
 
 ## 2. Headless Architecture
 
-![Headless Architecture Diagram](../assets/concepts/Agility%20Headless%20Architecture.png)
+![Headless Architecture Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Headless%20Architecture.png)
 
 ### Overview
 
@@ -406,7 +406,7 @@ CMS → APIs → Frontend → HTML → Browser
 
 ## 3. Agility Sections
 
-![Agility Sections Diagram](../assets/concepts/Agility%20Sections.png)
+![Agility Sections Diagram](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/concepts/Agility%20Sections.png)
 
 ### Overview
 

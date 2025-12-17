@@ -16,7 +16,7 @@ Screenshots are organized into two main directories:
 Use standard markdown image syntax with relative paths:
 
 ```markdown
-![Alt text describing the screenshot](./assets/screenshots/website/01-homepage.jpeg)
+![Alt text describing the screenshot](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/website/01-homepage.jpeg)
 ```
 
 ### Screenshot Examples by Section
@@ -25,50 +25,50 @@ Use standard markdown image syntax with relative paths:
 
 **Dashboard Overview:**
 ```markdown
-![Agility CMS Dashboard](./assets/screenshots/agility-cms/01-dashboard-home.png)
+![Agility CMS Dashboard](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/01-dashboard-home.png)
 ```
 
 **Content Section:**
 ```markdown
-![Content Section Overview](./assets/screenshots/agility-cms/02-content-section-overview.png)
+![Content Section Overview](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/02-content-section-overview.png)
 ```
 
 **Creating a Blog Post:**
 ```markdown
-![Posts Content List](./assets/screenshots/agility-cms/03-content-posts-list.png)
+![Posts Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/03-content-posts-list.png)
 
 To create a new blog post, navigate to the Posts content list and click "Add Content".
 
-![Content Item Edit View](./assets/screenshots/agility-cms/13-page-edit-view.png)
+![Content Item Edit View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/13-page-edit-view.png)
 ```
 
 **Page Management:**
 ```markdown
-![Sitemap View](./assets/screenshots/agility-cms/09-sitemap-view.png)
+![Sitemap View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/09-sitemap-view.png)
 
 The sitemap shows the structure of your website. Click on any page to edit it.
 
-![Page Edit View](./assets/screenshots/agility-cms/13-page-edit-view.png)
+![Page Edit View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/13-page-edit-view.png)
 ```
 
 #### Developer Guide
 
 **Component Structure:**
 ```markdown
-![Components Section](./assets/screenshots/agility-cms/10-components-section.png)
+![Components Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/10-components-section.png)
 
 All components must be registered in the frontend code.
 
-![Component Definition](./assets/screenshots/agility-cms/14-component-definition.png)
+![Component Definition](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/14-component-definition.png)
 ```
 
 **Website Examples:**
 ```markdown
-![Homepage](./assets/screenshots/website/01-homepage.jpeg)
+![Homepage](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/website/01-homepage.jpeg)
 
 The homepage demonstrates multiple components working together.
 
-![Blog Listing](./assets/screenshots/website/06-blog-listing.png)
+![Blog Listing](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/website/06-blog-listing.png)
 
 The blog listing page uses the PostListing component.
 ```
@@ -77,18 +77,18 @@ The blog listing page uses the PostListing component.
 
 **Content Models:**
 ```markdown
-![Content Section](./assets/screenshots/agility-cms/02-content-section-overview.png)
+![Content Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/02-content-section-overview.png)
 
 This view shows all available content models in the instance.
 
-![Authors Content List](./assets/screenshots/agility-cms/04-content-authors-list.png)
+![Authors Content List](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/04-content-authors-list.png)
 
 Content items like Authors are managed in their respective content lists.
 ```
 
 **Asset Management:**
 ```markdown
-![Assets Section](./assets/screenshots/agility-cms/11-assets-section.png)
+![Assets Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/11-assets-section.png)
 
 The Assets section is where you manage all media files.
 ```
@@ -114,19 +114,19 @@ When adding new screenshots, follow this naming pattern:
 
 1. **Descriptive Alt Text**: Always include meaningful alt text
    ```markdown
-   ![Agility CMS Dashboard showing main navigation](./assets/screenshots/agility-cms/01-dashboard-home.png)
+   ![Agility CMS Dashboard showing main navigation](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/01-dashboard-home.png)
    ```
 
 2. **Context Before Screenshot**: Explain what the user is looking at
    ```markdown
    When you first log into Agility CMS, you'll see the dashboard:
 
-   ![Dashboard Home](./assets/screenshots/agility-cms/01-dashboard-home.png)
+   ![Dashboard Home](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/01-dashboard-home.png)
    ```
 
 3. **Caption After Screenshot**: Add additional context if needed
    ```markdown
-   ![Content Section](./assets/screenshots/agility-cms/02-content-section-overview.png)
+   ![Content Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/02-content-section-overview.png)
 
    *The Content section shows all available content models. Click on any model to view or create content items.*
    ```
@@ -137,15 +137,15 @@ When adding new screenshots, follow this naming pattern:
 
    1. Navigate to the Pages section:
 
-   ![Pages Section](./assets/screenshots/agility-cms/08-pages-section.png)
+   ![Pages Section](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/08-pages-section.png)
 
    2. Click on Sitemap to see the page structure:
 
-   ![Sitemap View](./assets/screenshots/agility-cms/09-sitemap-view.png)
+   ![Sitemap View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/09-sitemap-view.png)
 
    3. Click on a page to edit it:
 
-   ![Page Edit View](./assets/screenshots/agility-cms/13-page-edit-view.png)
+   ![Page Edit View](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/agility-cms/13-page-edit-view.png)
    ```
 
 ## Screenshot Checklist
@@ -156,7 +156,7 @@ When adding screenshots to a guide:
 - [ ] Filename follows naming convention
 - [ ] Alt text is descriptive and helpful
 - [ ] Screenshot is referenced in context
-- [ ] Path is relative (starts with `./assets/screenshots/`)
+- [ ] Path is relative (starts with `https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/`)
 - [ ] Screenshot shows relevant information
 - [ ] Screenshot is clear and readable
 
@@ -190,5 +190,5 @@ When adding new screenshot types or patterns, update this document to help futur
 
 ---
 
-*For more information, see [Screenshots README](./assets/screenshots/README.md)*
+*For more information, see [Screenshots README](https://cdn.aglty.io/agility-cms-docs/images/training-guide/assets/screenshots/README.md)*
 
