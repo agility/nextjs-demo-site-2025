@@ -18,7 +18,7 @@ Codebase-specific documentation for developers working with this Next.js applica
 - **[Codebase Guide](./developer/codebase/README.md)** - Project structure, components, and implementation details
 - **[Environment Variables](./developer/ENVIRONMENT_VARIABLES.md)** - Strongly typed environment configuration
 - **[Multi-Locale Implementation](./developer/MULTI_LOCALE_IMPLEMENTATION.md)** - Internationalization setup
-- **[Audience & Region System](./developer/AUDIENCE_REGION_SYSTEM.md)** - Personalization system
+- **[Audience & Region System](./developer/AUDIENCE_REGION_SYSTEM.md)** - Personalization system (query parameters for testing; edge-based detection in production)
 - **[View Transitions](./developer/VIEW_TRANSITIONS.md)** - Page transition implementation
 
 ## Quick Links
@@ -28,5 +28,3 @@ Codebase-specific documentation for developers working with this Next.js applica
 - **Demo Site**: [https://demo.agilitycms.com/](https://demo.agilitycms.com/)
 
 ---
-
-*Instance: Demo Site (`13f09fe2-u`)*

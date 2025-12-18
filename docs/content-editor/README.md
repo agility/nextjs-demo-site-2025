@@ -1,6 +1,5 @@
 # Demo Site: Content Editor Guide
 
-> **Instance**: Demo Site (`13f09fe2-u`)
 > **Website**: https://demo.agilitycms.com/
 
 This guide provides instance-specific information for content editors working with the Demo Site. For generic Agility CMS concepts and workflows, see the [official Agility CMS Training Guide](https://agilitycms.com/docs/training-guide).
@@ -39,7 +38,7 @@ The Demo Site is a comprehensive Next.js application powered by Agility CMS, sho
 ### Key Features
 
 - **AI-Powered Search**: Azure OpenAI + Algolia integration
-- **Personalization**: Audience and region-based content targeting
+- **Personalization**: Audience and region-based content targeting (query parameters for testing; edge-based detection in production)
 - **A/B Testing**: PostHog feature flags integration
 - **Analytics**: PostHog tracking
 - **Performance**: Advanced caching with Next.js App Router

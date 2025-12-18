@@ -485,7 +485,7 @@ curl localhost:3000/api/ai/search -X POST -d '{"messages":[{"role":"user","conte
 
 ## Audience & Region Personalization
 
-**System Overview**: URL query parameter-based personalization system for audience and region targeting.
+**System Overview**: Personalization system for audience and region targeting using query parameters. **Note**: The current query parameter approach is implemented for testing purposes. In production, a system would detect the user's region and audience at the edge (via middleware or edge functions) and then rewrite to the appropriate version of the site using query strings, rather than requiring manual query parameter manipulation.
 
 **Client Components** (`useAudienceRegionParams` hook):
 ```typescript
@@ -517,6 +517,7 @@ import { ConditionalContent } from '@/components/AudienceRegionUtils'
 ```
 
 **Key Points**:
+- **Testing vs Production**: Query parameters are used here for easy testing; production would detect audience/region at the edge and rewrite URLs with query strings automatically
 - Audience names are normalized (lowercase, alphanumeric + dashes/underscores only)
 - Parameters persist across navigation via URL
 - Use `contentID` for filtering content in server components

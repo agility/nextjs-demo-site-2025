@@ -167,8 +167,10 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 				</ol>
 			</nav>
 
-			{/* Title */}
-			<h1 className="text-4xl font-bold mb-6">{doc.title}</h1>
+			{/* Title - Skip if markdown content starts with an h1 heading */}
+			{!doc.content.trimStart().startsWith('# ') && (
+				<h1 className="text-4xl font-bold mb-6">{doc.title}</h1>
+			)}
 
 			{/* Content */}
 			<div className="prose prose-lg dark:prose-invert max-w-none">
@@ -194,19 +196,75 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 							)
 						},
 						a({ node, href, children, ...props }) {
-							// Handle internal links
-							if (href?.startsWith('/')) {
+							if (!href) {
+								return <a {...props}>{children}</a>
+							}
+
+							// Handle absolute internal links (starting with /)
+							if (href.startsWith('/')) {
 								return (
 									<Link href={href} {...props}>
 										{children}
 									</Link>
 								)
 							}
-							// External links
+
+							// Handle external links (http://, https://, mailto:, etc.)
+							if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('#')) {
+								return (
+									<a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+										{children}
+									</a>
+								)
+							}
+
+							// Handle relative links (./, ../, or just a filename)
+							// Resolve relative to current page's slug
+							const resolveRelativeLink = (relativeHref: string, currentSlug: string[]): string => {
+								// Get the directory of the current file (remove filename/README)
+								let baseDir = [...currentSlug]
+								if (baseDir.length > 0) {
+									// Remove the last segment (filename or README) to get the directory
+									baseDir.pop()
+								}
+
+								// Remove .md or .mdx extension if present
+								let cleanHref = relativeHref.replace(/\.mdx?$/, '')
+
+								// Check if this is a README link
+								const isReadmeLink = cleanHref.endsWith('/README') || cleanHref === 'README' || cleanHref.endsWith('./README') || cleanHref === './README'
+
+								// Split the relative path into segments
+								let segments = cleanHref.split('/').filter(s => s !== '' && s !== '.')
+
+								// Start with the base directory
+								let resolvedSlug = [...baseDir]
+
+								// Process each segment
+								for (const segment of segments) {
+									if (segment === '..') {
+										// Go up one directory
+										if (resolvedSlug.length > 0) {
+											resolvedSlug.pop()
+										}
+									} else if (segment !== '.' && segment !== 'README') {
+										// Add segment to path
+										resolvedSlug.push(segment)
+									}
+									// If segment is 'README', we ignore it (README links resolve to folder path)
+								}
+
+								// Build the /docs/... path
+								// README links resolve to the folder (not /README), regular files include the filename
+								return `/docs/${resolvedSlug.join('/')}`
+							}
+
+							const resolvedPath = resolveRelativeLink(href, slug)
+
 							return (
-								<a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+								<Link href={resolvedPath} {...props}>
 									{children}
-								</a>
+								</Link>
 							)
 						},
 					}}

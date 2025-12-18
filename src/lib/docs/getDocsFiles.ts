@@ -78,6 +78,11 @@ export function getAllDocFiles(): DocFile[] {
 		const entries = fs.readdirSync(dir, { withFileTypes: true })
 
 		for (const entry of entries) {
+			// Skip assets folder - it's just a folder of files, not documentation
+			if (entry.isDirectory() && entry.name === 'assets') {
+				continue
+			}
+
 			const fullPath = path.join(dir, entry.name)
 			const slug = [...baseSlug, entry.name.replace(/\.mdx?$/, '')]
 

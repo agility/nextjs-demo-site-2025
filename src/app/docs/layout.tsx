@@ -1,6 +1,7 @@
 import { getDocsTree } from '@/lib/docs/getDocsFiles'
 import Link from 'next/link'
 import { type ReactNode } from 'react'
+import { DocsNav } from './DocsNav'
 
 export default async function DocsLayout({ children }: { children: ReactNode }) {
 	const tree = await getDocsTree()
@@ -59,8 +60,8 @@ export default async function DocsLayout({ children }: { children: ReactNode }) 
 				<div className="flex flex-col lg:flex-row gap-8">
 					{/* Sidebar Navigation */}
 					<aside className="lg:w-64 flex-shrink-0">
-						<nav className="sticky top-24">
-							<div className="mb-6">
+						<nav className="sticky top-24 flex flex-col h-[calc(100vh-8rem)]">
+							<div className="mb-6 flex-shrink-0">
 								<Link
 									href="/docs"
 									className="text-xl font-semibold text-gray-900 dark:text-white hover:text-[#5800d4] dark:hover:text-[#9333ea] transition-colors"
@@ -68,7 +69,9 @@ export default async function DocsLayout({ children }: { children: ReactNode }) 
 									Documentation
 								</Link>
 							</div>
-							<DocsNav tree={tree} />
+							<div className="flex-1 overflow-y-auto overscroll-contain scrollbar-thin pr-2 -mr-2 scroll-smooth">
+								<DocsNav tree={tree} />
+							</div>
 						</nav>
 					</aside>
 
@@ -141,38 +144,3 @@ export default async function DocsLayout({ children }: { children: ReactNode }) 
 	)
 }
 
-function DocsNav({ tree }: { tree: ReturnType<typeof getDocsTree> }) {
-	return (
-		<ul className="space-y-1">
-			{tree.map((node) => (
-				<NavItem key={node.path} node={node} />
-			))}
-		</ul>
-	)
-}
-
-function NavItem({ node, level = 0 }: { node: ReturnType<typeof getDocsTree>[0]; level?: number }) {
-	const href = `/docs/${node.slug.join('/')}`
-	const hasChildren = node.children && node.children.length > 0
-
-	return (
-		<li>
-			<Link
-				href={href}
-				className={`block px-3 py-2 text-sm rounded-md transition-colors ${level === 0
-					? 'font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-					: 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-					}`}
-			>
-				{node.title}
-			</Link>
-			{hasChildren && (
-				<ul className={`ml-4 mt-1 space-y-1 ${level > 0 ? 'border-l border-gray-200 dark:border-gray-700 pl-2' : ''}`}>
-					{node.children!.map((child) => (
-						<NavItem key={child.path} node={child} level={level + 1} />
-					))}
-				</ul>
-			)}
-		</li>
-	)
-}

@@ -72,9 +72,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		const isReadme = file.slug[file.slug.length - 1] === 'README';
 
 		if (isReadme) {
+			// Skip root README (docs/README.md) - it's handled by the explicit docs index entry below
+			if (file.slug.length === 1 && file.slug[0] === 'README') {
+				return;
+			}
+
 			// For README files, add the folder path (without README)
 			const folderPath = file.slug.slice(0, -1).join('/');
-			// Skip root README (empty path)
 			if (folderPath && !addedPaths.has(folderPath)) {
 				docsEntries.push({
 					url: `${baseUrl}/docs/${folderPath}`,

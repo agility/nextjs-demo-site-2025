@@ -10,7 +10,7 @@ https://app.agilitycms.com/instance/[instance-guid]/[locale-code]/section/[scree
 
 **Example Base:**
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us
+https://app.agilitycms.com/instance/[instance-guid]/en-us
 ```
 
 ## URL Patterns by Section
@@ -27,7 +27,7 @@ View a content list (collection of content items).
 
 **Example:**
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/content/list-38
+https://app.agilitycms.com/instance/[instance-guid]/en-us/content/list-38
 ```
 
 **Notes:**
@@ -45,7 +45,7 @@ View or edit a specific content item.
 
 **Example:**
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/content/list-38/listitem-92
+https://app.agilitycms.com/instance/[instance-guid]/en-us/content/list-38/listitem-92
 ```
 
 **Notes:**
@@ -65,7 +65,7 @@ View or edit a content model definition.
 
 **Example:**
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/models/contentmodels/39
+https://app.agilitycms.com/instance/[instance-guid]/en-us/models/contentmodels/39
 ```
 
 **Notes:**
@@ -83,7 +83,7 @@ View or edit a component model definition.
 
 **Example:**
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/models/component-models/40
+https://app.agilitycms.com/instance/[instance-guid]/en-us/models/component-models/40
 ```
 
 **Notes:**
@@ -103,7 +103,7 @@ View or edit a specific page.
 
 **Example:**
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/pages/page-2
+https://app.agilitycms.com/instance/[instance-guid]/en-us/pages/page-2
 ```
 
 **Notes:**
@@ -120,7 +120,7 @@ View or edit a component instance on a specific page.
 
 **Example:**
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/pages/page-2/item-75
+https://app.agilitycms.com/instance/[instance-guid]/en-us/pages/page-2/item-75
 ```
 
 **Notes:**
@@ -246,27 +246,27 @@ https://app.agilitycms.com/instance/13f09fe2-u/en-us/pages/page-2/item-75
 
 ### Navigate to Posts Content List
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/content/list-{posts-container-id}
+https://app.agilitycms.com/instance/[instance-guid]/en-us/content/list-{posts-container-id}
 ```
 
 ### Navigate to a Specific Post
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/content/list-{posts-container-id}/listitem-{post-content-id}
+https://app.agilitycms.com/instance/[instance-guid]/en-us/content/list-{posts-container-id}/listitem-{post-content-id}
 ```
 
 ### Navigate to Post Content Model Definition
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/models/contentmodels/11
+https://app.agilitycms.com/instance/[instance-guid]/en-us/models/contentmodels/11
 ```
 
 ### Navigate to Home Page
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/pages/page-2
+https://app.agilitycms.com/instance/[instance-guid]/en-us/pages/page-2
 ```
 
 ### Navigate to a Component on Home Page
 ```
-https://app.agilitycms.com/instance/13f09fe2-u/en-us/pages/page-2/item-{component-container-id}
+https://app.agilitycms.com/instance/[instance-guid]/en-us/pages/page-2/item-{component-container-id}
 ```
 
 ## Finding IDs
@@ -280,5 +280,5 @@ To find the correct IDs for your instance:
 
 ---
 
-*This documentation is specific to the Demo Site instance (`13f09fe2-u`). URL patterns may vary slightly between instances or Agility CMS versions.*
+*This documentation describes URL patterns for Agility CMS instances. URL patterns may vary slightly between instances or Agility CMS versions.*
 
