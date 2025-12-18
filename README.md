@@ -1,4 +1,4 @@
-# Agility CMS Next.js Demo Site 2025
+# Agility CMS Next.js Demo Site
 
 > Modern headless CMS website with AI-powered search, internationalization, and advanced caching
 

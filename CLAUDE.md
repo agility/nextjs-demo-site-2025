@@ -1,4 +1,4 @@
-# Agility Demo Site 2025 - Claude Code Project Context
+# Agility Demo Site - Claude Code Project Context
 
 > Modern headless CMS website with AI-powered search, internationalization, and advanced caching
 
