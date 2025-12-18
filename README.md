@@ -292,6 +292,23 @@ AI-powered search using Azure OpenAI and Algolia:
 
 ## 📚 Documentation
 
+### In-Site Documentation (`/docs`)
+
+**⚠️ Important**: This demo site includes an in-site documentation system accessible at `/docs`. This is **specific to this demo site** and is **not part of a normal Agility CMS site**. It's included here to document:
+
+- Demo site architecture and implementation patterns
+- Instance-specific Agility CMS configuration
+- Codebase structure and developer guides
+- Content editor workflows for this specific demo
+
+The documentation is built using MDX routing with markdown files in the `docs/` folder. It includes:
+- **Admin Guides** - Instance configuration, content models, components, workflows
+- **Architect Guides** - Site architecture, component design, content architecture, integrations
+- **Content Editor Guides** - Common tasks, components, content models, pages
+- **Developer Guides** - Codebase structure, environment variables, multi-locale setup, personalization, view transitions
+
+**Note**: For generic Agility CMS training and documentation, see the [Official Agility CMS Training Guide](https://agilitycms.com/docs/training-guide).
+
 ### Quick Reference
 - [AI Agent Instructions](AGENTS.md) - Comprehensive development guidelines (single source of truth)
 - [Cursor Rules](.cursorrules) - Cursor-specific file (references AGENTS.md)
@@ -300,7 +317,8 @@ AI-powered search using Azure OpenAI and Algolia:
 - [Claude Context](CLAUDE.md) - Stub file pointing to AGENTS.md
 
 ### Full Documentation
-- **[📖 Documentation Index](docs/README.md)** - Complete documentation guide
+- **[📖 In-Site Documentation](https://demo.agilitycms.com/docs)** - Complete documentation guide (demo site specific)
+- **[📖 Documentation Index](docs/README.md)** - Documentation source files
 
 **Developer Docs:**
 - [Codebase Guide](docs/developer/codebase/README.md) - Project structure and implementation
@@ -310,10 +328,10 @@ AI-powered search using Azure OpenAI and Algolia:
 - [View Transitions](docs/developer/VIEW_TRANSITIONS.md) - Page transition implementation
 
 **Agility CMS Training:**
-- [Content Editor Guide](docs/agility-cms/content-editor/README.md) - Creating and managing content
-- [Administrator Guide](docs/agility-cms/admin/README.md) - Instance configuration
-- [Architect Guide](docs/agility-cms/architect/README.md) - Architecture decisions
-- [URL Patterns](docs/agility-cms/AGILITY_CMS_URL_PATTERNS.md) - Agility CMS interface URLs
+- [Content Editor Guide](docs/content-editor/README.md) - Creating and managing content
+- [Administrator Guide](docs/admin/README.md) - Instance configuration
+- [Architect Guide](docs/architect/README.md) - Architecture decisions
+- [URL Patterns](docs/AGILITY_CMS_URL_PATTERNS.md) - Agility CMS interface URLs
 
 **External Resources:**
 - [Official Agility CMS Docs](https://agilitycms.com/docs) - Agility CMS documentation

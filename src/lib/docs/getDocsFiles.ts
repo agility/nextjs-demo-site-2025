@@ -4,6 +4,55 @@ import matter from 'gray-matter'
 
 const docsDirectory = path.join(process.cwd(), 'docs')
 
+/**
+ * Common acronyms that should remain uppercase
+ */
+const ACRONYMS = ['CMS', 'API', 'URL', 'SEO', 'MDX', 'JSON', 'LD', 'HTML', 'CSS', 'JS', 'TS', 'JSX', 'TSX', 'REST', 'GraphQL', 'HTTP', 'HTTPS', 'XML', 'RSS', 'RPC', 'SDK', 'CLI', 'UI', 'UX', 'ID', 'UUID', 'GUID']
+
+/**
+ * Convert SCREAMING_SNAKE_CASE or kebab-case to friendly title
+ * Preserves common acronyms like CMS, API, URL, etc.
+ * e.g., "AUDIENCE_REGION_SYSTEM" -> "Audience Region System"
+ * e.g., "multi-locale-implementation" -> "Multi Locale Implementation"
+ * e.g., "agility-cms-url-patterns" -> "Agility CMS URL Patterns"
+ */
+export function formatDocTitle(filename: string, frontmatterTitle?: string): string {
+	// Use frontmatter title if available
+	if (frontmatterTitle) {
+		return frontmatterTitle
+	}
+
+	// Helper to format a single word, preserving acronyms
+	const formatWord = (word: string): string => {
+		const upperWord = word.toUpperCase()
+		// Check if the word is a known acronym
+		if (ACRONYMS.includes(upperWord)) {
+			return upperWord
+		}
+		// Otherwise capitalize first letter, lowercase the rest
+		return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+	}
+
+	// Convert SCREAMING_SNAKE_CASE to Title Case
+	if (filename.includes('_')) {
+		return filename
+			.split('_')
+			.map(formatWord)
+			.join(' ')
+	}
+
+	// Convert kebab-case to Title Case
+	if (filename.includes('-')) {
+		return filename
+			.split('-')
+			.map(formatWord)
+			.join(' ')
+	}
+
+	// Capitalize first letter for simple names
+	return formatWord(filename)
+}
+
 export interface DocFile {
 	slug: string[]
 	title: string
@@ -37,10 +86,11 @@ export function getAllDocFiles(): DocFile[] {
 			} else if (entry.isFile() && /\.mdx?$/.test(entry.name)) {
 				const fileContents = fs.readFileSync(fullPath, 'utf8')
 				const { data, content } = matter(fileContents)
+				const filename = entry.name.replace(/\.mdx?$/, '')
 
 				files.push({
 					slug,
-					title: data.title || entry.name.replace(/\.mdx?$/, ''),
+					title: formatDocTitle(filename, data.title),
 					content,
 					frontmatter: data,
 					filePath: fullPath,
@@ -102,9 +152,7 @@ export function getDocsTree(): DocNode[] {
 			currentPath = currentPath ? `${currentPath}/${segment}` : segment
 
 			// Always use folder name (segment) for title, never "README"
-			const title = segment.split('-').map(word =>
-				word.charAt(0).toUpperCase() + word.slice(1)
-			).join(' ')
+			const title = formatDocTitle(segment)
 
 			if (!nodeMap.has(currentPath)) {
 				const node: DocNode = {
@@ -152,7 +200,7 @@ export function getDocsTree(): DocNode[] {
 				const isFile = isLastSegment
 
 				const node: DocNode = {
-					title: isFile ? file.title : segment,
+					title: isFile ? file.title : formatDocTitle(segment),
 					slug: file.slug.slice(0, i + 1),
 					path: currentPath,
 					children: isFile ? undefined : [],
@@ -176,9 +224,7 @@ export function getDocsTree(): DocNode[] {
 				}
 				// Ensure title is not "README"
 				if (existingNode.title === 'README' || existingNode.title.toLowerCase() === 'readme') {
-					existingNode.title = segment.split('-').map(word =>
-						word.charAt(0).toUpperCase() + word.slice(1)
-					).join(' ')
+					existingNode.title = formatDocTitle(segment)
 				}
 				// If this is a file, add it to parent's children
 				if (i === file.slug.length - 1 && parentNode && parentNode.children) {
@@ -204,9 +250,7 @@ export function getDocsTree(): DocNode[] {
 			// Replace "README" titles with folder name
 			if (node.title === 'README' || node.title.toLowerCase() === 'readme') {
 				const lastSegment = node.slug[node.slug.length - 1]
-				node.title = lastSegment.split('-').map(word =>
-					word.charAt(0).toUpperCase() + word.slice(1)
-				).join(' ')
+				node.title = formatDocTitle(lastSegment)
 			}
 
 			// Recursively clean children
@@ -251,10 +295,8 @@ export function getBreadcrumbs(slug: string[]): Array<{ title: string; path: str
 			// Use the file's title, but if it's "README" or similar, use the folder name instead
 			let title = file.title
 			if (title === 'README' || title.toLowerCase() === 'readme') {
-				// Use the last segment of the path as the title (capitalized)
-				title = currentSlug[i].split('-').map(word =>
-					word.charAt(0).toUpperCase() + word.slice(1)
-				).join(' ')
+				// Use the last segment of the path as the title (formatted)
+				title = formatDocTitle(currentSlug[i])
 			}
 
 			breadcrumbs.push({
@@ -262,13 +304,9 @@ export function getBreadcrumbs(slug: string[]): Array<{ title: string; path: str
 				path: `/docs/${breadcrumbPath.join('/')}`,
 			})
 		} else {
-			// Fallback to slug segment if no file found (capitalize it)
-			const title = currentSlug[i].split('-').map(word =>
-				word.charAt(0).toUpperCase() + word.slice(1)
-			).join(' ')
-
+			// Fallback to slug segment if no file found (format it)
 			breadcrumbs.push({
-				title,
+				title: formatDocTitle(currentSlug[i]),
 				path: `/docs/${breadcrumbPath.join('/')}`,
 			})
 		}
