@@ -3,8 +3,47 @@ import type { NextRequest } from 'next/server'
 import { checkRedirect } from './lib/cms-content/checkRedirect'
 import { defaultLocale, locales, isValidLocale, getLocaleFromPathname, removeLocaleFromPathname } from './lib/i18n/config'
 
+/**
+ * MIDDLEWARE DEBUGGING
+ *
+ * To enable diagnostic logging, add to your .env.local file:
+ *   MIDDLEWARE_DEBUG=true
+ *
+ * This will log:
+ * - All incoming requests (pathname, method, user-agent, etc.)
+ * - Route classification (static file, docs route, sitemap/robots, etc.)
+ * - Middleware decisions (rewrites, redirects, early returns)
+ * - Response actions taken
+ *
+ * Debug headers are also added to responses when enabled:
+ * - X-Middleware-Debug: Indicates middleware processing
+ * - X-Middleware-Path: The pathname being processed
+ * - X-Middleware-Reason: Why certain actions were taken
+ *
+ * View logs in:
+ * - Development: Terminal/console where `npm run dev` is running
+ * - Production: Your hosting provider's function logs (Vercel, Netlify, etc.)
+ */
+const DEBUG_MIDDLEWARE = true
+
+function logDebug(message: string, data?: Record<string, any>) {
+	if (DEBUG_MIDDLEWARE) {
+		const timestamp = new Date().toISOString()
+		const logData = data ? ` ${JSON.stringify(data)}` : ''
+		console.log(`[MIDDLEWARE ${timestamp}] ${message}${logData}`)
+	}
+}
+
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
+	logDebug('=== MIDDLEWARE REQUEST START ===', {
+		pathname: request.nextUrl.pathname,
+		method: request.method,
+		userAgent: request.headers.get('user-agent'),
+		referer: request.headers.get('referer'),
+		host: request.nextUrl.host,
+		searchParams: Object.fromEntries(request.nextUrl.searchParams.entries()),
+	})
 
 
 	/*****************************
@@ -21,6 +60,13 @@ export async function middleware(request: NextRequest) {
 
 	const ext = request.nextUrl.pathname.includes(".") ? request.nextUrl.pathname.split('.').pop() : null
 
+	logDebug('Path analysis', {
+		pathname,
+		extension: ext,
+		hasPreviewKey: request.nextUrl.searchParams.has("agilitypreviewkey"),
+		hasContentID: !!contentIDStr,
+	})
+
 
 	if (request.nextUrl.searchParams.has("agilitypreviewkey")) {
 		//*** this is a preview request ***
@@ -31,6 +77,7 @@ export async function middleware(request: NextRequest) {
 		//valid preview key: we need to redirect to the correct url for preview
 		let redirectUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}/api/preview?locale=${locale}&ContentID=${contentIDStr}&slug=${encodeURIComponent(slug)}&agilitypreviewkey=${encodeURIComponent(agilityPreviewKey)}`
 
+		logDebug('Preview request detected', { redirectUrl })
 		return NextResponse.redirect(redirectUrl)
 
 	} else if (previewQ === "0") {
@@ -41,6 +88,7 @@ export async function middleware(request: NextRequest) {
 		const slug = request.nextUrl.pathname
 		let redirectUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}/api/preview/exit?locale=${locale}&ContentID=${contentIDStr}&slug=${encodeURIComponent(slug)}`
 
+		logDebug('Exit preview request', { redirectUrl })
 		return NextResponse.redirect(redirectUrl)
 	} else if (contentIDStr) {
 		const contentID = parseInt(contentIDStr)
@@ -48,6 +96,7 @@ export async function middleware(request: NextRequest) {
 			//*** this is a dynamic page request ***
 
 			let dynredirectUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}/api/dynamic-redirect?ContentID=${contentID}`
+			logDebug('Dynamic content request', { contentID, rewriteUrl: dynredirectUrl })
 			return NextResponse.rewrite(dynredirectUrl)
 
 		}
@@ -59,6 +108,11 @@ export async function middleware(request: NextRequest) {
 		const redirection = await checkRedirect({ path: request.nextUrl.pathname })
 
 		if (redirection) {
+			logDebug('Redirect found', {
+				from: request.nextUrl.pathname,
+				to: redirection.destinationUrl,
+				statusCode: redirection.statusCode,
+			})
 			//redirect to the destination url
 			//cache the redirect for 10 minutes
 			if (redirection.destinationUrl.startsWith("/")) {
@@ -156,9 +210,28 @@ export async function middleware(request: NextRequest) {
 		const isDocsRoute = pathname.startsWith('/docs')
 		const isSitemapOrRobots = pathname === '/sitemap.xml' || pathname === '/robots.txt'
 
+		logDebug('Route classification', {
+			pathname,
+			hasLocalePrefix,
+			isStaticFile,
+			isDocsRoute,
+			isSitemapOrRobots,
+			hasSearchParams: hasSearchParams,
+		})
+
 		// Skip locale routing for docs routes, sitemap, and robots.txt
 		if (isDocsRoute || isSitemapOrRobots) {
-			return NextResponse.next()
+			logDebug('Skipping middleware processing - early return', {
+				reason: isDocsRoute ? 'docs route' : 'sitemap/robots',
+				action: 'NextResponse.next()',
+			})
+			const response = NextResponse.next()
+			if (DEBUG_MIDDLEWARE) {
+				response.headers.set('X-Middleware-Debug', 'skipped-early-return')
+				response.headers.set('X-Middleware-Path', pathname)
+				response.headers.set('X-Middleware-Reason', isDocsRoute ? 'docs-route' : 'sitemap-robots')
+			}
+			return response
 		}
 
 		const baseUrl = request.nextUrl.origin
@@ -166,6 +239,13 @@ export async function middleware(request: NextRequest) {
 		if (!hasLocalePrefix && !isStaticFile) {
 
 			const localeBasedUrl = new URL(`/${defaultLocale}${pathname}`, baseUrl)
+
+			logDebug('Locale rewrite', {
+				originalPath: pathname,
+				rewriteTo: localeBasedUrl.pathname,
+				defaultLocale,
+				action: 'NextResponse.rewrite()',
+			})
 
 			// For all paths (including root), rewrite to include default locale (no redirect)
 			// This keeps the clean URL but internally routes to the locale-specific page
@@ -175,14 +255,30 @@ export async function middleware(request: NextRequest) {
 		if (hasSearchParams) {
 			//if we have search params, we need to make sure we decode them before passing them on
 			const searchParamUrl = new URL(pathname, baseUrl)
+			logDebug('Search params rewrite', {
+				pathname,
+				searchParams,
+				rewriteTo: searchParamUrl.pathname,
+				action: 'NextResponse.rewrite()',
+			})
 			return NextResponse.rewrite(searchParamUrl)
 		}
 
 		// If we reach here, let Next.js handle the request normally
+		logDebug('No special handling - passing through', {
+			pathname,
+			action: 'NextResponse.next()',
+		})
 		return NextResponse.next()
 
 	}
 
+	logDebug('=== MIDDLEWARE REQUEST END (no match) ===', {
+		pathname: request.nextUrl.pathname,
+		action: 'NextResponse.next() - no conditions matched',
+	})
+
+	return NextResponse.next()
 }
 
 
@@ -199,6 +295,6 @@ export const config = {
 		 * - sitemap.xml (sitemap file)
 		 * - robots.txt (robots file)
 		 */
-		'/((?!api|assets|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+		'/((?!api|assets|_next/static|_next/image|favicon\\.ico|sitemap\\.xml|robots\\.txt).*)',
 	],
 }
