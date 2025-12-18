@@ -15,11 +15,20 @@ export async function generateStaticParams() {
 
 	// Add all files
 	files.forEach((file) => {
+		// Skip root README.md (empty slug) - that's handled by /docs/page.tsx
+		if (file.slug.length === 0) {
+			return
+		}
+
 		params.push({ slug: file.slug })
 
 		// If it's a README file, also add the folder path (without README)
 		if (file.slug[file.slug.length - 1] === 'README') {
-			params.push({ slug: file.slug.slice(0, -1) })
+			const folderSlug = file.slug.slice(0, -1)
+			// Only add if folder slug is not empty (root README is handled separately)
+			if (folderSlug.length > 0) {
+				params.push({ slug: folderSlug })
+			}
 		}
 	})
 
@@ -166,9 +175,10 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 				<ReactMarkdown
 					remarkPlugins={[remarkGfm]}
 					components={{
-						code({ node, inline, className, children, ...props }) {
+						code({ className, children, ...props }: any) {
 							const match = /language-(\w+)/.exec(className || '')
-							return !inline && match ? (
+							const isInline = !match
+							return !isInline && match ? (
 								<SyntaxHighlighter
 									style={vscDarkPlus}
 									language={match[1]}
