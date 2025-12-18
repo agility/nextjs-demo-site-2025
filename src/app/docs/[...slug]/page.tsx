@@ -86,7 +86,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 	const docUrl = `${baseUrl}/docs/${slug.join('/')}`
 
 	// Generate structured data for Article and BreadcrumbList
-	const articleStructuredData = {
+	const articleStructuredData: Record<string, any> = {
 		'@context': 'https://schema.org',
 		'@type': 'Article',
 		headline: doc.title,
@@ -110,8 +110,18 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 			'@type': 'WebPage',
 			'@id': docUrl,
 		},
-		datePublished: doc.frontmatter.datePublished || new Date().toISOString(),
-		dateModified: doc.frontmatter.dateModified || new Date().toISOString(),
+	}
+
+	// Only include datePublished if explicitly provided in frontmatter
+	// Using a dynamic fallback would change on each revalidation, which is bad for SEO
+	if (doc.frontmatter.datePublished) {
+		articleStructuredData.datePublished = doc.frontmatter.datePublished
+	}
+
+	// Only include dateModified if explicitly provided in frontmatter
+	// Using a dynamic fallback would change on each revalidation, which is misleading
+	if (doc.frontmatter.dateModified) {
+		articleStructuredData.dateModified = doc.frontmatter.dateModified
 	}
 
 	const breadcrumbStructuredData = {
