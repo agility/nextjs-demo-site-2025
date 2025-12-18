@@ -154,9 +154,10 @@ export async function middleware(request: NextRequest) {
 		const hasLocalePrefix = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
 		const isStaticFile = pathname.includes('.') || pathname.startsWith('/_next')
 		const isDocsRoute = pathname.startsWith('/docs')
+		const isSitemapOrRobots = pathname === '/sitemap.xml' || pathname === '/robots.txt'
 
-		// Skip locale routing for docs routes
-		if (isDocsRoute) {
+		// Skip locale routing for docs routes, sitemap, and robots.txt
+		if (isDocsRoute || isSitemapOrRobots) {
 			return NextResponse.next()
 		}
 
@@ -195,7 +196,9 @@ export const config = {
 		 * - _next/static (static files)
 		 * - _next/image (image optimization files)
 		 * - favicon.ico (favicon file)
+		 * - sitemap.xml (sitemap file)
+		 * - robots.txt (robots file)
 		 */
-		'/((?!api|assets|_next/static|_next/image|favicon.ico).*)',
+		'/((?!api|assets|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
 	],
 }
