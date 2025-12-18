@@ -66,6 +66,84 @@ src/
 
 **Critical Pre-build Step**: `tsx node/prebuild.ts` rebuilds redirect cache from bloom filters
 
+## Agility CMS MCP Server
+
+This project is configured with the **Agility CMS Model Context Protocol (MCP) server**, which provides AI coding assistants with direct access to your Agility CMS instance. This dramatically improves the development experience when working with Agility CMS content.
+
+### What the MCP Server Provides
+
+The Agility MCP server gives AI assistants the ability to:
+
+**Content Management:**
+- Browse and query content items from any container
+- Create, read, and update content items
+- Upload media assets to the media library
+- Work with nested and linked content
+
+**Schema Management:**
+- View all content models and component models
+- Get detailed field definitions for any model
+- Create or modify content models and components
+- View and manage containers (content lists)
+
+**Site Structure:**
+- Access sitemap/page structure
+- View and create pages (static, dynamic, folder, link)
+- See page models and their zone configurations
+- Work with multi-locale setups
+
+**Instance Information:**
+- View available Agility instances
+- See configured locales
+- Access instance metadata
+
+### How AI Assistants Use It
+
+When you ask an AI assistant to work with Agility CMS, it can:
+- Automatically fetch content model schemas before creating components
+- Create new content models, components, and containers directly in your CMS
+- Query existing content to understand data structures
+- Upload images and handle media assets
+- Create pages and configure sitemaps
+- Validate field types and requirements before generating code
+
+### Benefits for Development
+
+- **No context switching**: AI can access your CMS structure without you copying/pasting schemas
+- **Accurate code generation**: AI sees actual field definitions and types
+- **Content creation**: AI can populate test content or migrate data
+- **Schema management**: AI can help architect and implement new content models
+- **Type safety**: AI generates TypeScript interfaces that match your actual CMS schemas
+
+### Example Workflows
+
+1. **"Create a new Hero component in Agility CMS and build the React component for it"**
+   - AI fetches existing component models to understand patterns
+   - Creates the component model in Agility CMS with appropriate fields
+   - Generates the TypeScript interface matching the fields
+   - Creates the React component following project conventions
+   - Registers it in the component index
+
+2. **"Show me all blog posts and create a new one"**
+   - AI queries the posts container
+   - Shows you the existing posts
+   - Creates a new post with proper field structure
+
+3. **"What fields does the BentoSection component have?"**
+   - AI fetches the component model details from Agility
+   - Shows you the exact field structure without opening the CMS
+
+### MCP Server Configuration
+
+The MCP server is configured automatically when using AI assistants that support MCP (like Claude Code). The MCP server uses **OAuth authentication** to connect to your Agility CMS instance, providing secure access to your content and schema.
+
+**Authentication:**
+- The MCP server authenticates via OAuth (not API keys)
+- You'll authenticate through the Agility CMS login flow when first connecting
+- OAuth tokens are managed automatically by the MCP server
+
+**Note:** The project's API keys in `.env.local` (AGILITY_API_FETCH_KEY, AGILITY_API_PREVIEW_KEY) are used by the Next.js application for fetching content at runtime, not by the MCP server.
+
 ## Component Conventions
 
 - Use TypeScript for all components
@@ -511,6 +589,7 @@ import { unstable_ViewTransition as ViewTransition } from 'react'
 
 ## Development Notes
 
+- **Leverage the Agility MCP Server**: When working with AI assistants, use the MCP server to query CMS schemas, create content models, and manage content directly
 - Always check existing component patterns before creating new ones
 - Use the established TypeScript interfaces for consistency
 - Follow the Agility CMS SDK patterns for content fetching
