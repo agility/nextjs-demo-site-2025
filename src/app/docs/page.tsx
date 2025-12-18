@@ -2,6 +2,7 @@ import { getDocsTree, getAllDocFiles } from '@/lib/docs/getDocsFiles'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { Button } from '@/components/button'
+import { FaGithub } from 'react-icons/fa'
 
 export const metadata: Metadata = {
 	title: 'Documentation | Agility CMS Next.js Demo Site',
@@ -146,6 +147,49 @@ export default async function DocsIndexPage() {
 							</a>
 							<p className="text-sm text-gray-600 dark:text-gray-400">
 								Get a personalized walkthrough with our experts
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div className="relative overflow-hidden rounded-lg border border-gray-300 dark:border-gray-700 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 p-8 mb-8 ring-1 ring-gray-800/50 dark:ring-gray-800/50">
+					<div className="relative">
+						<div className="mb-4">
+							<div className="flex items-center gap-3 mb-3">
+								<FaGithub className="w-8 h-8 text-white flex-shrink-0" />
+								<h2 className="text-2xl font-semibold mt-0 text-white">Explore the Source Code</h2>
+							</div>
+							<p className="text-base text-gray-300 dark:text-gray-400 leading-relaxed">
+								This demo site is <strong className="text-white font-semibold">open source</strong> and available on GitHub. Browse the codebase,
+								submit issues, or contribute improvements to help make Agility CMS even better.
+							</p>
+						</div>
+						<div className="flex flex-col sm:flex-row sm:items-center gap-4">
+							<a
+								href="https://github.com/agility/nextjs-demo-site-2025"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group relative flex items-center justify-center gap-2 px-6 h-11 rounded-full font-semibold bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-gray-500/50 hover:scale-105 overflow-hidden no-underline"
+							>
+								<FaGithub className="w-5 h-5" />
+								<span className="font-semibold">View on GitHub</span>
+								<svg
+									className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+									/>
+								</svg>
+							</a>
+							<p className="text-sm text-gray-400 dark:text-gray-500">
+								github.com/agility/nextjs-demo-site-2025
 							</p>
 						</div>
 					</div>

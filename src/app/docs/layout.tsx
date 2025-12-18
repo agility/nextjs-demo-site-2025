@@ -13,19 +13,16 @@ export default async function DocsLayout({ children }: { children: ReactNode }) 
 			<DocsHeader />
 
 			{/* Main Content */}
-			<div className="relative mx-auto flex w-full max-w-7xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
+			<div className="mx-auto flex w-full max-w-7xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
 				{/* Sidebar Navigation */}
-				<div className="hidden lg:relative lg:block lg:flex-none">
-					<div className="absolute inset-y-0 right-0 w-[50vw] bg-gray-50 dark:hidden" />
-					<div className="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-gradient-to-t from-gray-800 dark:block" />
-					<div className="absolute top-28 right-0 bottom-0 hidden w-px bg-gray-800 dark:block" />
-					<aside className="sticky top-24 -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-x-hidden overflow-y-auto py-16 pr-8 pl-0.5 xl:w-72 xl:pr-16">
+				<div className="hidden lg:block lg:flex-none lg:self-start">
+					<aside className="sticky top-[5.5rem] w-64 py-16 pr-8 xl:w-72 xl:pr-16">
 						<DocsNav tree={tree} />
 					</aside>
 				</div>
 
 				{/* Main Content */}
-				<div className="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
+				<div className="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
 					{children}
 				</div>
 			</div>
