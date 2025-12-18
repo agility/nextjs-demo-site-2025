@@ -278,13 +278,30 @@ AI-powered search using Azure OpenAI and Algolia:
 
 ## 📚 Documentation
 
+### Quick Reference
 - [Cursor Rules](.cursorrules) - Comprehensive development guidelines
 - [Claude Context](CLAUDE.md) - Detailed project context
 - [Copilot Instructions](.github/copilot-instructions.md) - AI assistant guidelines
-- [View Transitions](docs/VIEW_TRANSITIONS.md) - View transition implementation
-- [Audience & Region System](docs/AUDIENCE_REGION_SYSTEM.md) - Personalization docs
-- [Multi-Locale Implementation](docs/MULTI_LOCALE_IMPLEMENTATION.md) - i18n details
-- [Environment Variables](docs/ENVIRONMENT_VARIABLES.md) - Env var reference
+
+### Full Documentation
+- **[📖 Documentation Index](docs/README.md)** - Complete documentation guide
+
+**Developer Docs:**
+- [Codebase Guide](docs/developer/codebase/README.md) - Project structure and implementation
+- [Environment Variables](docs/developer/ENVIRONMENT_VARIABLES.md) - Strongly typed env configuration
+- [Multi-Locale Implementation](docs/developer/MULTI_LOCALE_IMPLEMENTATION.md) - i18n setup and routing
+- [Audience & Region System](docs/developer/AUDIENCE_REGION_SYSTEM.md) - Personalization system
+- [View Transitions](docs/developer/VIEW_TRANSITIONS.md) - Page transition implementation
+
+**Agility CMS Training:**
+- [Content Editor Guide](docs/agility-cms/content-editor/README.md) - Creating and managing content
+- [Administrator Guide](docs/agility-cms/admin/README.md) - Instance configuration
+- [Architect Guide](docs/agility-cms/architect/README.md) - Architecture decisions
+- [URL Patterns](docs/agility-cms/AGILITY_CMS_URL_PATTERNS.md) - Agility CMS interface URLs
+
+**External Resources:**
+- [Official Agility CMS Docs](https://agilitycms.com/docs) - Agility CMS documentation
+- [Official Training Guide](https://agilitycms.com/docs/training-guide) - Generic Agility CMS training
 
 ## 🐛 Common Issues
 
