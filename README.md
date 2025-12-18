@@ -16,6 +16,20 @@ A production-ready Next.js demo site showcasing Agility CMS integration with Rea
 - **Type Safety** - Strongly-typed environment variables and CMS content
 - **Modern Stack** - Next.js 15.5.3, React 19, Tailwind CSS v4, TypeScript
 
+## 🤖 For AI Coding Assistants
+
+This project includes comprehensive instructions for AI coding assistants. **See [`AGENTS.md`](AGENTS.md)** for complete development guidelines, architecture patterns, CMS integration details, and coding conventions.
+
+The `AGENTS.md` file provides:
+- Complete project architecture and patterns
+- Agility CMS integration guidelines
+- Component conventions and standards
+- TypeScript patterns and type definitions
+- Development workflows and best practices
+- Common gotchas and debugging tips
+
+Supported AI assistants: Cursor, GitHub Copilot, Windsurf, Claude Code, OpenAI Codex, and Google Jules.
+
 ## 🚀 Quick Start
 
 ### Prerequisites
