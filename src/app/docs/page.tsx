@@ -156,8 +156,8 @@ export default async function DocsIndexPage() {
 					<div className="relative">
 						<div className="mb-4">
 							<div className="flex items-center gap-3 mb-3">
-								<FaGithub className="w-8 h-8 text-white flex-shrink-0" />
-								<h2 className="text-2xl font-semibold mt-0 text-white">Explore the Source Code</h2>
+								<FaGithub className="w-7 h-7 text-white flex-shrink-0" />
+								<div className="text-2xl font-semibold text-white leading-none">Explore the Source Code</div>
 							</div>
 							<p className="text-base text-gray-300 dark:text-gray-400 leading-relaxed">
 								This demo site is <strong className="text-white font-semibold">open source</strong> and available on GitHub. Browse the codebase,
