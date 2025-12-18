@@ -11,6 +11,8 @@ The audience and region selections are stored as query parameters in the URL:
 - These parameters persist across page navigation
 - Any component can read and update these values
 
+**Query Parameter Filtering**: The middleware only processes whitelisted query parameters (`audience`, `region`, `q`). Tracking parameters (e.g., Google Analytics `_gl`, `_ga`, `_gcl_au`) are automatically filtered out to prevent crashes from extremely long query strings. Only query strings under 500 characters are processed.
+
 ## Usage
 
 ### 1. In Client Components
