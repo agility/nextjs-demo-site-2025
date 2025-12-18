@@ -1,6 +1,7 @@
 import { getDocsTree, getAllDocFiles } from '@/lib/docs/getDocsFiles'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { Button } from '@/components/button'
 
 export const metadata: Metadata = {
 	title: 'Documentation | Agility CMS Next.js Demo Site',
@@ -75,7 +76,7 @@ export default async function DocsIndexPage() {
 				</p>
 			</div>
 
-			<div className="prose prose-lg dark:prose-invert max-w-none mb-12">
+			<div className="prose prose-lg dark:prose-invert max-w-none mb-12 prose-slate dark:text-gray-300 prose-headings:font-normal prose-lead:text-gray-600 dark:prose-lead:text-gray-400 prose-a:font-semibold prose-a:text-[#5800d4] dark:prose-a:text-purple-400 prose-a:no-underline prose-a:border-b prose-a:border-purple-300 dark:prose-a:border-purple-600 prose-a:pb-0.5 hover:prose-a:border-purple-500 dark:hover:prose-a:border-purple-400">
 				<p className="text-base text-gray-600 dark:text-gray-300 mb-6">
 					This documentation covers everything you need to understand, customize, and extend this
 					production-ready demo site built with Agility CMS and Next.js.
@@ -102,7 +103,7 @@ export default async function DocsIndexPage() {
 						href="https://agilitycms.com/docs/training-guide"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 font-semibold text-[#5800d4] dark:text-[#9333ea] hover:text-[#4c1d95] dark:hover:text-[#a855f7] transition-colors"
+						className="inline-flex items-center gap-2 font-semibold text-[#5800d4] dark:text-purple-300 dark:hover:text-purple-200 hover:text-[#4c1d95] transition-colors"
 					>
 						Visit Agility CMS Training Guide
 						<svg
@@ -122,7 +123,35 @@ export default async function DocsIndexPage() {
 					</a>
 				</div>
 
-				<h2 className="text-2xl font-semibold mb-6 mt-8">Documentation Sections</h2>
+				<div className="relative overflow-hidden rounded-lg border border-purple-200 dark:border-purple-800/50 bg-gradient-to-br from-purple-50 via-purple-50/30 to-white dark:from-purple-950/30 dark:via-gray-800/50 dark:to-gray-800/30 p-8 mb-8 ring-1 ring-purple-100/50 dark:ring-purple-900/30">
+					<div className="relative">
+						<div className="mb-4">
+							<h2 className="text-2xl font-semibold mb-3 mt-0 text-gray-900 dark:text-white">Ready to Try Agility CMS?</h2>
+							<p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+								Whether you're a <strong className="text-gray-900 dark:text-white font-semibold">developer</strong> looking to explore the codebase or a <strong className="text-gray-900 dark:text-white font-semibold">content editor</strong> wanting to see the editing experience,
+								our team can show you how Agility CMS works for your use case.
+							</p>
+						</div>
+						<div className="flex flex-col sm:flex-row sm:items-center gap-4">
+							<a
+								href="https://agilitycms.com/contact-us/get-a-demo"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group relative flex items-center justify-center px-6 h-11 rounded-full font-semibold bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 dark:from-purple-800 dark:via-purple-700 dark:to-indigo-800 hover:from-purple-500 hover:via-purple-400 hover:to-indigo-500 dark:hover:from-purple-700 dark:hover:via-purple-600 dark:hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 overflow-hidden no-underline"
+								style={{ color: '#ffffff' }}
+							>
+								{/* Continuous shimmer effect */}
+								<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent [animation:shimmer_3s_ease-in-out_infinite]"></span>
+								<span className="relative z-10 font-semibold text-white" style={{ lineHeight: '1' }}>Book a Demo</span>
+							</a>
+							<p className="text-sm text-gray-600 dark:text-gray-400">
+								Get a personalized walkthrough with our experts
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<h2 className="text-2xl font-semibold mb-6 mt-8 text-gray-900 dark:text-white">Documentation Sections</h2>
 			</div>
 
 			<div className="space-y-8">

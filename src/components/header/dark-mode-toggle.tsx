@@ -5,42 +5,71 @@ import { useState, useEffect } from "react";
 
 export const DarkModeToggle = () => {
 	const [darkMode, setDarkMode] = useState(false)
+	const [isManualOverride, setIsManualOverride] = useState(false)
+
 	useEffect(() => {
-		// set inital dark mode based on user preference
+		// Check if user has manually set a preference
+		const storedOverride = localStorage.getItem('darkModeOverride')
 		const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
 
-		function handleDarkModeChange(event: any) {
-			if (event.matches) {
-				// User prefers dark mode
-				setDarkMode(true)
-			} else {
-				// User prefers light mode
-				setDarkMode(false)
+		let initialDarkMode = false
+		let hasOverride = false
+
+		if (storedOverride !== null) {
+			// User has manually set a preference
+			initialDarkMode = storedOverride === 'true'
+			hasOverride = true
+		} else {
+			// Use system preference
+			initialDarkMode = darkModePreference.matches
+			hasOverride = false
+		}
+
+		setDarkMode(initialDarkMode)
+		setIsManualOverride(hasOverride)
+
+		// Apply immediately
+		document.documentElement.classList.toggle('dark', initialDarkMode)
+
+		function handleSystemPreferenceChange(event: any) {
+			// Check if override still exists (user might have cleared it)
+			const currentOverride = localStorage.getItem('darkModeOverride')
+			if (currentOverride === null) {
+				// No override, follow system preference
+				setDarkMode(event.matches)
+				setIsManualOverride(false)
+				document.documentElement.classList.toggle('dark', event.matches)
 			}
 		}
 
-		// Initial check for dark mode preference
-		handleDarkModeChange(darkModePreference);
-
-		// Listen for changes in dark mode preference
-		darkModePreference.addEventListener("change", handleDarkModeChange);
+		// Always listen for system preference changes
+		darkModePreference.addEventListener("change", handleSystemPreferenceChange);
 
 		return () => {
-			darkModePreference.removeEventListener("change", handleDarkModeChange);
+			darkModePreference.removeEventListener("change", handleSystemPreferenceChange);
 		}
 
 	}, [])
 
 	useEffect(() => {
-		//set the dark mode class on the html element
+		// Set the dark mode class on the html element
 		document.documentElement.classList.toggle('dark', darkMode)
 
-	}, [darkMode])
+		// When user manually toggles, mark as override and save
+		if (isManualOverride) {
+			localStorage.setItem('darkModeOverride', darkMode.toString())
+		}
+	}, [darkMode, isManualOverride])
+
+	const handleToggle = (checked: boolean) => {
+		setDarkMode(checked)
+		setIsManualOverride(true)
+	}
 
 	return (
 		<Switch
 			checked={darkMode}
-			onChange={setDarkMode}
+			onChange={handleToggle}
 			title="Toggle dark mode"
 			className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-300 dark:bg-gray-700 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:outline-hidden data-checked:bg-gray-600"
 		>

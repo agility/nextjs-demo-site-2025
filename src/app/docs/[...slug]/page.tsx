@@ -4,8 +4,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { CodeBlock } from '../CodeBlock'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -144,7 +143,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 	}
 
 	return (
-		<article className="max-w-4xl">
+		<article>
 			{/* Structured Data */}
 			<script
 				type="application/ld+json"
@@ -154,36 +153,22 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
 			/>
-			{/* Breadcrumbs */}
-			<nav className="mb-6" aria-label="Breadcrumb">
-				<ol className="flex items-center space-x-2 text-sm text-muted-foreground">
-					<li>
-						<Link href="/docs" className="hover:text-foreground">
-							Docs
-						</Link>
-					</li>
-					{breadcrumbs.map((crumb, index) => (
-						<li key={crumb.path} className="flex items-center">
-							<span className="mx-2">/</span>
-							{index === breadcrumbs.length - 1 ? (
-								<span className="text-foreground">{crumb.title}</span>
-							) : (
-								<Link href={crumb.path} className="hover:text-foreground">
-									{crumb.title}
-								</Link>
-							)}
-						</li>
-					))}
-				</ol>
-			</nav>
-
-			{/* Title - Skip if markdown content starts with an h1 heading */}
-			{!doc.content.trimStart().startsWith('# ') && (
-				<h1 className="text-4xl font-bold mb-6">{doc.title}</h1>
-			)}
+			{/* Header with section and title */}
+			<header className="mb-9 space-y-1">
+				{breadcrumbs.length > 0 && (
+					<p className="text-sm font-medium text-[#5800d4] dark:text-purple-400">
+						{breadcrumbs[0].title}
+					</p>
+				)}
+				{!doc.content.trimStart().startsWith('# ') && (
+					<h1 className="text-3xl tracking-tight text-gray-900 dark:text-white font-normal">
+						{doc.title}
+					</h1>
+				)}
+			</header>
 
 			{/* Content */}
-			<div className="prose prose-lg dark:prose-invert max-w-none">
+			<div className="prose prose-lg dark:prose-invert max-w-none prose-slate dark:text-gray-300 prose-headings:scroll-mt-28 prose-headings:font-normal prose-lead:text-gray-600 dark:prose-lead:text-gray-400 prose-a:font-semibold prose-a:text-[#5800d4] dark:prose-a:text-purple-400 prose-a:no-underline prose-a:border-b prose-a:border-purple-300 dark:prose-a:border-purple-600 prose-a:pb-0.5 hover:prose-a:border-purple-500 dark:hover:prose-a:border-purple-400 prose-pre:rounded-xl prose-pre:bg-gray-900 prose-pre:shadow-lg dark:prose-pre:bg-gray-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-gray-300/10 dark:prose-hr:border-gray-800">
 				<ReactMarkdown
 					remarkPlugins={[remarkGfm]}
 					components={{
@@ -191,16 +176,11 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 							const match = /language-(\w+)/.exec(className || '')
 							const isInline = !match
 							return !isInline && match ? (
-								<SyntaxHighlighter
-									style={vscDarkPlus}
-									language={match[1]}
-									PreTag="div"
-									{...props}
-								>
-									{String(children).replace(/\n$/, '')}
-								</SyntaxHighlighter>
+								<CodeBlock language={match[1]} {...props}>
+									{String(children)}
+								</CodeBlock>
 							) : (
-								<code className={className} {...props}>
+								<code className={`${className || ''} bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm font-mono`} {...props}>
 									{children}
 								</code>
 							)
