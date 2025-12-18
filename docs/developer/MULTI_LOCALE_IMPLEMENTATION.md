@@ -34,7 +34,12 @@ The middleware handles locale routing in this order:
 
 **Step 4:** Search params encoding
 
+- Only processes whitelisted query parameters (`audience`, `region`, `q`)
+- Filters out tracking parameters (e.g., Google Analytics `_gl`, `_ga`, `_gcl_au`) to prevent crashes from long query strings
+- Maximum query string length: 500 characters
 - Converts `?q=search` → `/path/~~~q=search~~~` for static optimization
+- Example: `/?audience=Enterprise&region=North%20America` → `/path/~~~audience=Enterprise&region=North%20America~~~`
+- Tracking params like `/?_gl=1*17zxss1*...` are silently ignored
 
 **Step 5:** Locale-based rewriting
 

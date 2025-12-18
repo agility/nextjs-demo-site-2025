@@ -121,21 +121,29 @@ export async function middleware(request: NextRequest) {
 		 * HANDLE SEARCH PARAMS *
 		 ************************/
 
-		//grab the search params and add them to the path so we can pass them on when rewriting
-		//this will help use keep static routing working for better performance
-		//otherwise, nextjs will treat the page as a dynamic route and we lose the performance benefits of static routing
-		//eg: /blog/?q=something -> /blog/~~~q=something~~~
-		//otherwise, Next.js will treat the page as a dynamic route and we lose the performance benefits of static routing
-		let searchParams = request.nextUrl.searchParams.toString()
-		let hasSearchParams = searchParams && searchParams.length > 0
-		if (!hasSearchParams) {
-			searchParams = ""
+		// Only process query parameters that are expected/used within the app
+		// This prevents issues with long tracking query strings (e.g., Google Analytics)
+		const ALLOWED_QUERY_PARAMS = ['audience', 'region', 'q'] // Whitelist of allowed query params
+		const MAX_QUERY_STRING_LENGTH = 500 // Maximum length for query string encoding
+
+		// Filter search params to only include whitelisted parameters
+		const filteredParams = new URLSearchParams()
+		for (const [key, value] of request.nextUrl.searchParams.entries()) {
+			if (ALLOWED_QUERY_PARAMS.includes(key.toLowerCase())) {
+				filteredParams.append(key, value)
+			}
 		}
 
-		if (searchParams && searchParams.length > 0) {
+		// Only encode if we have allowed params and they're within reasonable length
+		let searchParams = filteredParams.toString()
+		let hasSearchParams = searchParams && searchParams.length > 0 && searchParams.length <= MAX_QUERY_STRING_LENGTH
+
+		if (hasSearchParams) {
 			const searchParamPortion = `~~~${encodeURIComponent(searchParams)}~~~`
 			//if we have search params, we need to include them in the path like this /path/->/path/~~~searchParams~~~
 			pathname = pathname.endsWith("/") ? `${pathname}${searchParamPortion}` : `${pathname}/${searchParamPortion}`
+		} else {
+			searchParams = ""
 		}
 
 		/************************
@@ -168,6 +176,9 @@ export async function middleware(request: NextRequest) {
 			const searchParamUrl = new URL(pathname, baseUrl)
 			return NextResponse.rewrite(searchParamUrl)
 		}
+
+		// If we reach here, let Next.js handle the request normally
+		return NextResponse.next()
 
 	}
 

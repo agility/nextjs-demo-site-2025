@@ -183,6 +183,49 @@ The MCP server is configured automatically when using AI assistants that support
 - Import organization with prettier-plugin-organize-imports
 - 2-space indentation, semicolons, single quotes for JSX attributes
 
+## Documentation Maintenance
+
+**CRITICAL**: When making code changes, AI agents must also update relevant documentation to keep it in sync with the codebase.
+
+**Documentation Update Requirements:**
+- **Always update documentation** when modifying code that affects:
+  - Architecture patterns (middleware, routing, caching)
+  - API routes and endpoints
+  - Component patterns and conventions
+  - Configuration and environment variables
+  - Integration patterns (CMS, AI, analytics)
+  - Query parameters and search params handling
+  - Any behavior that users or developers need to know about
+
+**Documentation Locations:**
+- `AGENTS.md` - Main AI agent instructions (this file) - Update sections that describe how things work
+- `docs/developer/` - Developer documentation - Update relevant markdown files
+- `docs/architect/` - Architecture documentation - Update when architectural patterns change
+- `docs/content-editor/` - Content editor guides - Update when CMS components or workflows change
+- `docs/admin/` - Admin documentation - Update when configuration or setup changes
+
+**When to Update Documentation:**
+- Adding new features or functionality
+- Changing existing behavior or patterns
+- Modifying configuration requirements
+- Updating dependencies or technology stack
+- Fixing bugs that affect documented behavior
+- Adding new query parameters or API endpoints
+- Changing middleware or routing logic
+- Modifying caching strategies
+
+**How to Update:**
+1. Identify which documentation files are affected by your code changes
+2. Search for references to the changed functionality in documentation
+3. Update the relevant sections to reflect the new implementation
+4. Add examples or clarify explanations if needed
+5. Ensure consistency across all documentation files
+
+**Example**: If you modify middleware query string handling, update:
+- `AGENTS.md` - "Search Params Handling" section
+- `docs/developer/MULTI_LOCALE_IMPLEMENTATION.md` - Middleware processing steps
+- `docs/developer/AUDIENCE_REGION_SYSTEM.md` - Query parameter information
+
 ## CMS Integration Patterns
 
 ### Module Registration System
@@ -375,9 +418,14 @@ import { renderHTML } from "@agility/nextjs"
 - Internal routing always uses locale prefix, external URLs are clean
 
 **Search Params Handling**:
+- Middleware only processes whitelisted query parameters: `audience`, `region`, `q`
+- Filters out tracking parameters (e.g., Google Analytics `_gl`, `_ga`, `_gcl_au`) to prevent crashes from long query strings
+- Maximum query string length: 500 characters (prevents issues with extremely long tracking URLs)
 - Middleware encodes: `/blog?q=test` → `/blog/~~~q=test~~~`
+- Example: `/?audience=Enterprise&region=North%20America` → `/path/~~~audience=Enterprise&region=North%20America~~~`
 - `getAgilityPage()` decodes search params from slug array
 - Search params available in `globalData.searchParams` for all modules
+- Tracking params are silently ignored and won't cause routing issues
 
 ## Styling System
 
@@ -613,6 +661,7 @@ import { unstable_ViewTransition as ViewTransition } from 'react'
 
 ## Development Notes
 
+- **Documentation Maintenance**: **Always update relevant documentation** when making code changes. See the "Documentation Maintenance" section above for details.
 - **Leverage the Agility MCP Server**: When working with AI assistants, use the MCP server to query CMS schemas, create content models, and manage content directly
 - **In-Site Documentation**: Remember that the `/docs` route is demo-site-specific and not part of a normal Agility CMS site. It documents this demo's architecture and implementation.
 - Always check existing component patterns before creating new ones
