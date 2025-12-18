@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import { CodeBlock } from '../CodeBlock'
 
 export const revalidate = 3600 // Revalidate every hour
@@ -171,6 +172,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 			<div className="prose prose-lg dark:prose-invert max-w-none prose-slate dark:text-gray-300 prose-headings:scroll-mt-28 prose-headings:font-normal prose-lead:text-gray-600 dark:prose-lead:text-gray-400 prose-a:font-semibold prose-a:text-[#5800d4] dark:prose-a:text-purple-400 prose-a:no-underline prose-a:border-b prose-a:border-purple-300 dark:prose-a:border-purple-600 prose-a:pb-0.5 hover:prose-a:border-purple-500 dark:hover:prose-a:border-purple-400 prose-pre:rounded-xl prose-pre:bg-gray-900 prose-pre:shadow-lg dark:prose-pre:bg-gray-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-gray-300/10 dark:prose-hr:border-gray-800">
 				<ReactMarkdown
 					remarkPlugins={[remarkGfm]}
+					rehypePlugins={[rehypeRaw]}
 					components={{
 						code({ className, children, ...props }: any) {
 							const match = /language-(\w+)/.exec(className || '')

@@ -104,27 +104,87 @@ Client-side component that:
 
 ## Flow Diagram
 
-```
-User Request → Middleware
-                  ↓
-            Check Preview Mode
-                  ↓
-            Check Redirects
-                  ↓
-            Handle ?lang= param
-                  ↓
-            Encode Search Params
-                  ↓
-            Rewrite to /[locale]/path
-                  ↓
-            Next.js Router
-                  ↓
-            [locale]/[...slug]/page.tsx
-                  ↓
-            Fetch CMS Content (with locale)
-                  ↓
-            Render Page
-```
+<div class="my-8 p-6 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+  <div class="space-y-3">
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        User Request → Middleware
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Check Preview Mode
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Check Redirects
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Handle ?lang= param
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Encode Search Params
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Rewrite to /[locale]/path
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Next.js Router
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        [locale]/[...slug]/page.tsx
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Fetch CMS Content (with locale)
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="text-gray-600 dark:text-gray-400 text-lg">↓</div>
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium text-sm">
+        Render Page
+      </div>
+    </div>
+  </div>
+</div>
 
 ## Environment Setup
 
