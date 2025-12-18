@@ -183,6 +183,7 @@ export async function middleware(request: NextRequest) {
 
 	}
 
+	return NextResponse.next()
 }
 
 
@@ -199,6 +200,6 @@ export const config = {
 		 * - sitemap.xml (sitemap file)
 		 * - robots.txt (robots file)
 		 */
-		'/((?!api|assets|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+		'/((?!api|assets|_next/static|_next/image|favicon\\.ico|sitemap\\.xml|robots\\.txt).*)',
 	],
 }
