@@ -1,5 +1,16 @@
 # Algolia-Crawler-Verif: F3977A0FB53DDD41
 
-sitemap: https://nextjs-demo-site-2025.publishwithagility.com/sitemap.xml
+# Demo Site Robots Configuration
+# This demo site only allows indexing of the /docs section
+# In a production Agility CMS site, you would typically allow indexing of all pages
+# and generate the sitemap from Agility CMS pages via getSitemapFlat()
+
+sitemap: https://demo.agilitycms.com/sitemap.xml
 
 User-agent: *
+# Disallow all pages except /docs
+Disallow: /
+
+# Allow only the /docs section
+Allow: /docs
+Allow: /docs/

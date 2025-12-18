@@ -15,14 +15,14 @@ Codebase-specific documentation for developers working with this Next.js applica
 
 - **[Environment Variables](./ENVIRONMENT_VARIABLES.md)** - Strongly typed environment configuration
 - **[Multi-Locale Implementation](./MULTI_LOCALE_IMPLEMENTATION.md)** - Internationalization setup and routing
-- **[Audience & Region System](./AUDIENCE_REGION_SYSTEM.md)** - Personalization system with query parameters
+- **[Audience & Region System](./AUDIENCE_REGION_SYSTEM.md)** - Personalization system (query parameters for testing; edge-based detection in production)
 - **[View Transitions](./VIEW_TRANSITIONS.md)** - Page transition implementation using React's ViewTransition API
 
 ## Quick Links
 
 - **Official Agility CMS Docs**: [https://agilitycms.com/docs](https://agilitycms.com/docs)
 - **Official Developer Training**: [https://agilitycms.com/docs/training-guide](https://agilitycms.com/docs/training-guide)
-- **Demo Site**: [https://nextjs-demo-site-2025.publishwithagility.com/](https://nextjs-demo-site-2025.publishwithagility.com/)
+- **Demo Site**: [https://demo.agilitycms.com/](https://demo.agilitycms.com/)
 
 ## Technology Stack
 

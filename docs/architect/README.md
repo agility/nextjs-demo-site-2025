@@ -1,7 +1,6 @@
 # Demo Site: Architecture Overview
 
-> **Instance**: Demo Site (`13f09fe2-u`)
-> **Website**: https://nextjs-demo-site-2025.publishwithagility.com/
+> **Website**: https://demo.agilitycms.com/
 
 This guide provides instance-specific architectural information for the Demo Site. For generic Agility CMS architecture concepts, see the [official Agility CMS Training Guide](https://agilitycms.com/docs/training-guide).
 

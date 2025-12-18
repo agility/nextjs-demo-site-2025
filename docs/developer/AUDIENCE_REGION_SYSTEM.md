@@ -2,6 +2,8 @@
 
 This system allows you to store and access audience and region selections through URL query parameters throughout your Next.js application.
 
+> **Note**: The current query parameter approach is implemented for **testing purposes**. In production, a system would detect the user's region and audience at the edge (via middleware or edge functions) and then rewrite to the appropriate version of the site using query strings automatically, rather than requiring manual query parameter manipulation.
+
 ## How it works
 
 The audience and region selections are stored as query parameters in the URL:
@@ -281,3 +283,14 @@ The preview bar in `src/components/preview-bar.tsx` manages the query parameters
 3. **Server and client compatibility**: Works in both Server and Client Components
 4. **No additional dependencies**: Uses only Next.js built-in functionality
 5. **Clean separation**: Query parameter logic is abstracted into reusable hooks/utilities
+
+## Production Implementation
+
+In a production environment, the system would work differently:
+
+- **Edge Detection**: User's region and audience would be detected at the edge (middleware or edge functions) based on:
+  - IP geolocation for region detection
+  - User profile data, cookies, or authentication context for audience detection
+- **Automatic Rewriting**: The edge layer would automatically rewrite requests to include the appropriate query parameters
+- **Transparent to Users**: Users wouldn't need to manually add query parameters; the system would handle it automatically
+- **Testing**: The current query parameter approach allows developers and content editors to easily test different audience/region combinations by manually adding parameters to URLs

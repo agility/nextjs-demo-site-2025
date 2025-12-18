@@ -8,7 +8,7 @@ This guide covers deployment configuration for the Demo Site, including environm
 
 ```bash
 # Agility CMS Configuration
-AGILITY_GUID=13f09fe2-u
+AGILITY_GUID=your-instance-guid
 AGILITY_API_FETCH_KEY=your-fetch-key
 AGILITY_API_PREVIEW_KEY=your-preview-key
 AGILITY_SECURITY_KEY=your-security-key
