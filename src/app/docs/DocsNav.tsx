@@ -60,7 +60,7 @@ interface NavItemProps {
 	node: DocNode
 	level?: number
 	currentPathname: string
-	activeItemRef: React.RefObject<HTMLLIElement>
+	activeItemRef: React.RefObject<HTMLLIElement | null>
 }
 
 function NavItem({ node, level = 0, currentPathname, activeItemRef }: NavItemProps) {
@@ -79,12 +79,12 @@ function NavItem({ node, level = 0, currentPathname, activeItemRef }: NavItemPro
 			<Link
 				href={href}
 				className={`block px-3 py-2 text-sm rounded-md transition-colors ${isActive
-						? level === 0
-							? 'font-medium text-[#5800d4] dark:text-[#9333ea] bg-purple-50 dark:bg-purple-900/20'
-							: 'text-[#5800d4] dark:text-[#9333ea] bg-purple-50 dark:bg-purple-900/20'
-						: level === 0
-							? 'font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-							: 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+					? level === 0
+						? 'font-medium text-[#5800d4] dark:text-[#9333ea] bg-purple-50 dark:bg-purple-900/20'
+						: 'text-[#5800d4] dark:text-[#9333ea] bg-purple-50 dark:bg-purple-900/20'
+					: level === 0
+						? 'font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+						: 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
 					}`}
 			>
 				{node.title}
