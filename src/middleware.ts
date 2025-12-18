@@ -142,9 +142,15 @@ export async function middleware(request: NextRequest) {
 		 * LOCALE BASED ROUTING *
 		 ************************/
 
-		// Skip if already has locale prefix or is a static file
+		// Skip if already has locale prefix or is a static file or docs route
 		const hasLocalePrefix = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
 		const isStaticFile = pathname.includes('.') || pathname.startsWith('/_next')
+		const isDocsRoute = pathname.startsWith('/docs')
+
+		// Skip locale routing for docs routes
+		if (isDocsRoute) {
+			return NextResponse.next()
+		}
 
 		const baseUrl = request.nextUrl.origin
 

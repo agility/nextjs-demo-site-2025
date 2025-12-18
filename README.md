@@ -358,6 +358,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Tailwind CSS v4](https://tailwindcss.com/docs)
 - [React 19](https://react.dev)
 
+## 🌐 Live Demo
+
+- **Production Site**: [demo.agilitycms.com](https://demo.agilitycms.com)
+- **GitHub Repository**: [github.com/agility/nextjs-demo-site-2025](https://github.com/agility/nextjs-demo-site-2025)
+
 ---
 
-Built with ❤️ using Agility CMS and Next.js
+Built with ❤️ using [Agility CMS](https://agilitycms.com) and [Next.js](https://nextjs.org)

@@ -22,7 +22,7 @@ Codebase-specific documentation for developers working with this Next.js applica
 
 - **Official Agility CMS Docs**: [https://agilitycms.com/docs](https://agilitycms.com/docs)
 - **Official Developer Training**: [https://agilitycms.com/docs/training-guide](https://agilitycms.com/docs/training-guide)
-- **Demo Site**: [https://nextjs-demo-site-2025.publishwithagility.com/](https://nextjs-demo-site-2025.publishwithagility.com/)
+- **Demo Site**: [https://demo.agilitycms.com/](https://demo.agilitycms.com/)
 
 ## Technology Stack
 

@@ -6,10 +6,10 @@ This repository contains documentation for the Agility CMS Next.js Demo Site, or
 
 Instance-specific training materials for working with this Agility CMS instance. For generic Agility CMS concepts and training, see the [official Agility CMS Training Guide](https://agilitycms.com/docs/training-guide).
 
-- **[Content Editors](./agility-cms/content-editor/README.md)** - How to create and manage content in this instance
-- **[Administrators](./agility-cms/admin/README.md)** - Instance configuration and setup
-- **[Architects](./agility-cms/architect/README.md)** - Instance architecture and design decisions
-- **[URL Patterns](./agility-cms/AGILITY_CMS_URL_PATTERNS.md)** - Agility CMS interface URL structure
+- **[Content Editors](./content-editor/README.md)** - How to create and manage content in this instance
+- **[Administrators](./admin/README.md)** - Instance configuration and setup
+- **[Architects](./architect/README.md)** - Instance architecture and design decisions
+- **[URL Patterns](./AGILITY_CMS_URL_PATTERNS.md)** - Agility CMS interface URL structure
 
 ## 👨‍💻 Developer Documentation
 
@@ -25,7 +25,7 @@ Codebase-specific documentation for developers working with this Next.js applica
 
 - **Official Agility CMS Docs**: [https://agilitycms.com/docs](https://agilitycms.com/docs)
 - **Official Training Guide**: [https://agilitycms.com/docs/training-guide](https://agilitycms.com/docs/training-guide)
-- **Demo Site**: [https://nextjs-demo-site-2025.publishwithagility.com/](https://nextjs-demo-site-2025.publishwithagility.com/)
+- **Demo Site**: [https://demo.agilitycms.com/](https://demo.agilitycms.com/)
 
 ---
 

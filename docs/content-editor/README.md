@@ -1,7 +1,7 @@
 # Demo Site: Content Editor Guide
 
 > **Instance**: Demo Site (`13f09fe2-u`)
-> **Website**: https://nextjs-demo-site-2025.publishwithagility.com/
+> **Website**: https://demo.agilitycms.com/
 
 This guide provides instance-specific information for content editors working with the Demo Site. For generic Agility CMS concepts and workflows, see the [official Agility CMS Training Guide](https://agilitycms.com/docs/training-guide).
 

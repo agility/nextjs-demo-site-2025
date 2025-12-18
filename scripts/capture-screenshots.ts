@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const WEBSITE_URL = 'https://nextjs-demo-site-2025.publishwithagility.com/';
+const WEBSITE_URL = 'https://demo.agilitycms.com/';
 const SCREENSHOT_DIR = path.join(process.cwd(), 'docs/training-guide/screenshots');
 
 // Ensure screenshot directory exists

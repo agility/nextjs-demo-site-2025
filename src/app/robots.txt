@@ -1,5 +1,5 @@
 # Algolia-Crawler-Verif: F3977A0FB53DDD41
 
-sitemap: https://nextjs-demo-site-2025.publishwithagility.com/sitemap.xml
+sitemap: https://demo.agilitycms.com/sitemap.xml
 
 User-agent: *

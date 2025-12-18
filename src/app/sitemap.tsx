@@ -1,9 +1,11 @@
 import { getSitemapFlat } from "@/lib/cms/getSitemapFlat";
+import { getAllDocFiles } from "@/lib/docs/getDocsFiles";
 import type { MetadataRoute } from "next";
 import { locales, defaultLocale } from "@/lib/i18n/config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const allSitemapEntries: MetadataRoute.Sitemap = [];
+	const baseUrl = "https://demo.agilitycms.com";
 
 	// Generate sitemap entries for each locale
 	for (const locale of locales) {
@@ -27,7 +29,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}).map((path, index) => {
 			// For default locale, don't add locale prefix to URL
 			const localizedPath = locale === defaultLocale ? path : `/${locale}${path}`;
-			const baseUrl = "https://nextjs-demo-site-2025.publishwithagility.com";
 
 			return {
 				url: index === 0 && path === "/" ? baseUrl : `${baseUrl}${localizedPath}`,
@@ -39,6 +40,51 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 		allSitemapEntries.push(...localeEntries);
 	}
+
+	// Add docs pages to sitemap
+	const docFiles = getAllDocFiles();
+	const docsEntries: MetadataRoute.Sitemap = [];
+	const addedPaths = new Set<string>();
+
+	docFiles.forEach((file) => {
+		const isReadme = file.slug[file.slug.length - 1] === 'README';
+
+		if (isReadme) {
+			// For README files, add the folder path (without README)
+			const folderPath = file.slug.slice(0, -1).join('/');
+			if (!addedPaths.has(folderPath)) {
+				docsEntries.push({
+					url: `${baseUrl}/docs/${folderPath}`,
+					lastModified: new Date(),
+					changeFrequency: "weekly" as const,
+					priority: 0.8
+				});
+				addedPaths.add(folderPath);
+			}
+		} else {
+			// For regular files, add the file path
+			const filePath = file.slug.join('/');
+			if (!addedPaths.has(filePath)) {
+				docsEntries.push({
+					url: `${baseUrl}/docs/${filePath}`,
+					lastModified: new Date(),
+					changeFrequency: "weekly" as const,
+					priority: 0.8
+				});
+				addedPaths.add(filePath);
+			}
+		}
+	});
+
+	// Add docs index page
+	docsEntries.unshift({
+		url: `${baseUrl}/docs`,
+		lastModified: new Date(),
+		changeFrequency: "weekly" as const,
+		priority: 0.9
+	});
+
+	allSitemapEntries.push(...docsEntries);
 
 	return allSitemapEntries;
 }

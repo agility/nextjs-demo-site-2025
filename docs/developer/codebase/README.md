@@ -1,7 +1,7 @@
 # Demo Site: Developer Guide
 
 > **Instance**: Demo Site (`13f09fe2-u`)
-> **Website**: https://nextjs-demo-site-2025.publishwithagility.com/
+> **Website**: https://demo.agilitycms.com/
 
 This guide provides codebase-specific information for developers working with this Next.js application. For generic Agility CMS development concepts, see the [official Agility CMS Training Guide](https://agilitycms.com/docs/training-guide).
 
