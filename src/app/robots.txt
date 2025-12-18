@@ -8,12 +8,12 @@
 sitemap: https://demo.agilitycms.com/sitemap.xml
 
 User-agent: *
-# Allow robots.txt and sitemap.xml to be accessed by search engines
-Allow: /robots.txt
-Allow: /sitemap.xml
-
 # Disallow all pages except /docs
 Disallow: /
+
+# Allow robots.txt and sitemap.xml to be accessed by search engines (must come after Disallow)
+Allow: /robots.txt
+Allow: /sitemap.xml
 
 # Allow only the /docs section
 Allow: /docs
