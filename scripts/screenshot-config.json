@@ -1,0 +1,270 @@
+{
+  "instance": {
+    "guid": "13f09fe2-u",
+    "locale": "en-us",
+    "baseUrl": "https://app.agilitycms.com/instance/13f09fe2-u/en-us"
+  },
+  "screenshots": [
+    {
+      "id": "content-item-edit",
+      "priority": 1,
+      "filename": "16-content-item-edit-view.png",
+      "description": "Content Item Edit View - Form for creating/editing content items",
+      "url": "/content/list-38/listitem-92",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": "form, [data-testid='content-form']" }
+      ],
+      "notes": "Shows the form interface with fields. May need to click 'Edit' if viewing mode."
+    },
+    {
+      "id": "content-item-create",
+      "priority": 1,
+      "filename": "17-content-item-create-view.png",
+      "description": "Content Item Create View - Empty form for creating new content",
+      "url": "/content/list-38",
+      "actions": [
+        { "type": "wait", "time": 2 },
+        { "type": "click", "selector": "button:has-text('Add Content'), button:has-text('+'), [aria-label*='Add']" },
+        { "type": "wait", "time": 2 },
+        { "type": "waitFor", "selector": "form, input[type='text']" }
+      ],
+      "notes": "Click Add Content button, then capture the empty form"
+    },
+    {
+      "id": "component-picker",
+      "priority": 1,
+      "filename": "18-component-picker.png",
+      "description": "Component Picker - Interface for selecting components to add to a page",
+      "url": "/pages/page-2",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "click", "selector": "button:has-text('Add Component'), button:has-text('Add'), [aria-label*='Add Component']" },
+        { "type": "wait", "time": 2 },
+        { "type": "waitFor", "selector": "[role='dialog'], [role='menu'], .component-picker, .module-selector" }
+      ],
+      "notes": "Click Add Component button in a content zone, capture the picker modal/dropdown"
+    },
+    {
+      "id": "component-editor",
+      "priority": 1,
+      "filename": "19-component-editor-form.png",
+      "description": "Component Editor - Form for editing component content and fields",
+      "url": "/pages/page-2/item-75",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": "form, [data-testid='component-form']" }
+      ],
+      "notes": "Shows component edit form with fields. May need to click component first."
+    },
+    {
+      "id": "content-picker",
+      "priority": 1,
+      "filename": "20-content-picker.png",
+      "description": "Content Picker - Interface for linking content items to components",
+      "url": "/pages/page-2/item-75",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "click", "selector": "button[aria-label*='link'], button:has-text('Select'), input[type='text'][placeholder*='content'], [data-field-type='linkedcontent']" },
+        { "type": "wait", "time": 2 },
+        { "type": "waitFor", "selector": "[role='dialog'], .content-picker, .linked-content-picker" }
+      ],
+      "notes": "Click on a linked content field to open the picker"
+    },
+    {
+      "id": "page-content-zones",
+      "priority": 1,
+      "filename": "21-page-content-zones.png",
+      "description": "Page with Content Zones - Page editor showing content zones and components",
+      "url": "/pages/page-2",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": "[data-zone], .content-zone, .module-zone" }
+      ],
+      "notes": "Shows page editor with visible content zones and Add Component buttons"
+    },
+    {
+      "id": "rich-text-editor",
+      "priority": 2,
+      "filename": "22-rich-text-editor.png",
+      "description": "Rich Text Editor - Formatting toolbar and editing interface",
+      "url": "/content/list-38/listitem-92",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "click", "selector": "[contenteditable='true'], textarea, iframe[title*='editor'], .rich-text-editor" },
+        { "type": "wait", "time": 1 },
+        { "type": "waitFor", "selector": ".toolbar, [role='toolbar'], .editor-toolbar" }
+      ],
+      "notes": "Click into a rich text field to show the toolbar"
+    },
+    {
+      "id": "asset-manager",
+      "priority": 2,
+      "filename": "23-asset-manager.png",
+      "description": "Asset Manager - Image upload and selection interface",
+      "url": "/media/folder-0",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": ".asset-grid, .asset-list, [data-testid='assets']" }
+      ],
+      "notes": "Shows the asset library with upload options"
+    },
+    {
+      "id": "image-upload-dialog",
+      "priority": 2,
+      "filename": "24-image-upload-dialog.png",
+      "description": "Image Upload Dialog - Upload interface for media files",
+      "url": "/media/folder-0",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": "button:has-text('Upload'), [aria-label*='Upload']" },
+        { "type": "click", "selector": "button:has-text('Upload'), [aria-label*='Upload']" },
+        { "type": "wait", "time": 2 },
+        { "type": "waitFor", "selector": "[role='dialog']:has-text('Upload Assets'), .upload-dialog, input[type='file'], [aria-label*='Upload Assets']" }
+      ],
+      "notes": "Click upload button to show upload dialog. May need to wait for any existing modals to close first."
+    },
+    {
+      "id": "publishing-status",
+      "priority": 1,
+      "filename": "25-publishing-status.png",
+      "description": "Publishing Status - Draft/Published status indicators and workflow",
+      "url": "/content/list-38/listitem-92",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": "[data-status], .status-badge, button:has-text('Publish'), button:has-text('Draft')" }
+      ],
+      "notes": "Shows status badges and publish buttons"
+    },
+    {
+      "id": "api-keys-section",
+      "priority": 2,
+      "filename": "26-api-keys-section.png",
+      "description": "API Keys Section - Where to find and manage API keys",
+      "url": "/settings/apikeys",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": ".api-key, [data-testid='api-keys'], input[type='password'], button:has-text('Generate')" }
+      ],
+      "notes": "Shows API keys list and management interface"
+    },
+    {
+      "id": "user-management",
+      "priority": 2,
+      "filename": "27-user-management.png",
+      "description": "User Management - Interface for managing users and permissions",
+      "url": "/settings/usermanagement",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": ".user-list, [data-testid='users'], table, .user-item" }
+      ],
+      "notes": "Shows user list and management options"
+    },
+    {
+      "id": "permission-config",
+      "priority": 2,
+      "filename": "28-permission-configuration.png",
+      "description": "Permission Configuration - Interface for setting user permissions",
+      "url": "/settings/usermanagement",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "click", "selector": "button:has-text('Edit'), a:has-text('Edit'), [aria-label*='Edit']" },
+        { "type": "wait", "time": 2 },
+        { "type": "waitFor", "selector": "[data-permission], .permission-checkbox, input[type='checkbox'][name*='permission']" }
+      ],
+      "notes": "Click edit on a user to show permission settings"
+    },
+    {
+      "id": "page-model-definition",
+      "priority": 2,
+      "filename": "29-page-model-definition.png",
+      "description": "Page Model Definition - Configuration of page models and content zones",
+      "url": "/models/page-models/2",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": "form, [data-testid='page-model'], .content-zone-config" }
+      ],
+      "notes": "Shows page model definition with content zones"
+    },
+    {
+      "id": "content-model-fields",
+      "priority": 2,
+      "filename": "30-content-model-fields.png",
+      "description": "Content Model Field Configuration - Detailed field setup in content models",
+      "url": "/models/contentmodels/11",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": ".field-list, [data-testid='fields'], .field-item" }
+      ],
+      "notes": "Shows field list and configuration options"
+    },
+    {
+      "id": "component-model-fields",
+      "priority": 2,
+      "filename": "31-component-model-fields.png",
+      "description": "Component Model Field Configuration - Component model structure",
+      "url": "/models/component-models/40",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": ".field-list, [data-testid='fields'], .field-item" }
+      ],
+      "notes": "Shows component model fields and properties"
+    },
+    {
+      "id": "webhook-config",
+      "priority": 2,
+      "filename": "32-webhook-configuration.png",
+      "description": "Webhook Configuration - Interface for setting up webhooks",
+      "url": "/settings/webhooks",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": ".webhook-list, [data-testid='webhooks'], form" }
+      ],
+      "notes": "Shows webhook list and configuration"
+    },
+    {
+      "id": "preview-mode",
+      "priority": 2,
+      "filename": "33-preview-mode.png",
+      "description": "Preview Mode - Interface for previewing content before publishing",
+      "url": "/pages/page-2",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "click", "selector": "button:has-text('Preview'), button:has-text('Web Studio'), [aria-label*='Preview']" },
+        { "type": "wait", "time": 3 },
+        { "type": "waitFor", "selector": "iframe, .preview-container, [data-preview]" }
+      ],
+      "notes": "Click preview button to show preview interface"
+    },
+    {
+      "id": "content-list-filters",
+      "priority": 3,
+      "filename": "34-content-list-filters.png",
+      "description": "Content List with Filters - Search and filter functionality",
+      "url": "/content/list-38",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "click", "selector": "input[type='search'], input[placeholder*='Search'], button[aria-label*='Filter']" },
+        { "type": "wait", "time": 1 }
+      ],
+      "notes": "Shows search bar and filter options"
+    },
+    {
+      "id": "security-permissions",
+      "priority": 2,
+      "filename": "35-security-permissions.png",
+      "description": "Security/Permissions Configuration - Setting roles and permissions for content lists and pages",
+      "url": "/content/list-38",
+      "actions": [
+        { "type": "wait", "time": 3 },
+        { "type": "click", "selector": "button[aria-label*='Properties'], .properties-button, [data-testid='properties']" },
+        { "type": "wait", "time": 1 },
+        { "type": "click", "selector": "button:has-text('Security'), [aria-label*='Security'], .security-option" },
+        { "type": "wait", "time": 2 },
+        { "type": "waitFor", "selector": "[data-role], .role-assignment, .permission-settings, .security-settings" }
+      ],
+      "notes": "Click Properties panel, then Security option to show role/permission configuration. Workflows are configured through Security settings, not a separate workflow page."
+    }
+  ]
+}
+

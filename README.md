@@ -1,4 +1,4 @@
-# Agility CMS Next.js Demo Site 2025
+# Agility CMS Next.js Demo Site
 
 > Modern headless CMS website with AI-powered search, internationalization, and advanced caching
 
@@ -15,6 +15,20 @@ A production-ready Next.js demo site showcasing Agility CMS integration with Rea
 - **View Transitions** - Smooth page transitions using React ViewTransition API
 - **Type Safety** - Strongly-typed environment variables and CMS content
 - **Modern Stack** - Next.js 15.5.3, React 19, Tailwind CSS v4, TypeScript
+
+## 🤖 For AI Coding Assistants
+
+This project includes comprehensive instructions for AI coding assistants. **See [`AGENTS.md`](AGENTS.md)** for complete development guidelines, architecture patterns, CMS integration details, and coding conventions.
+
+The `AGENTS.md` file provides:
+- Complete project architecture and patterns
+- Agility CMS integration guidelines
+- Component conventions and standards
+- TypeScript patterns and type definitions
+- Development workflows and best practices
+- Common gotchas and debugging tips
+
+Supported AI assistants: Cursor, GitHub Copilot, Windsurf, Claude Code, OpenAI Codex, and Google Jules.
 
 ## 🚀 Quick Start
 
@@ -278,13 +292,32 @@ AI-powered search using Azure OpenAI and Algolia:
 
 ## 📚 Documentation
 
-- [Cursor Rules](.cursorrules) - Comprehensive development guidelines
-- [Claude Context](CLAUDE.md) - Detailed project context
-- [Copilot Instructions](.github/copilot-instructions.md) - AI assistant guidelines
-- [View Transitions](docs/VIEW_TRANSITIONS.md) - View transition implementation
-- [Audience & Region System](docs/AUDIENCE_REGION_SYSTEM.md) - Personalization docs
-- [Multi-Locale Implementation](docs/MULTI_LOCALE_IMPLEMENTATION.md) - i18n details
-- [Environment Variables](docs/ENVIRONMENT_VARIABLES.md) - Env var reference
+### Quick Reference
+- [AI Agent Instructions](AGENTS.md) - Comprehensive development guidelines (single source of truth)
+- [Cursor Rules](.cursorrules) - Cursor-specific file (references AGENTS.md)
+- [Copilot Instructions](.github/copilot-instructions.md) - GitHub Copilot-specific file (references AGENTS.md)
+- [Windsurf Rules](.windsurf/rules/project.md) - Windsurf-specific file (references AGENTS.md)
+- [Claude Context](CLAUDE.md) - Stub file pointing to AGENTS.md
+
+### Full Documentation
+- **[📖 Documentation Index](docs/README.md)** - Complete documentation guide
+
+**Developer Docs:**
+- [Codebase Guide](docs/developer/codebase/README.md) - Project structure and implementation
+- [Environment Variables](docs/developer/ENVIRONMENT_VARIABLES.md) - Strongly typed env configuration
+- [Multi-Locale Implementation](docs/developer/MULTI_LOCALE_IMPLEMENTATION.md) - i18n setup and routing
+- [Audience & Region System](docs/developer/AUDIENCE_REGION_SYSTEM.md) - Personalization system
+- [View Transitions](docs/developer/VIEW_TRANSITIONS.md) - Page transition implementation
+
+**Agility CMS Training:**
+- [Content Editor Guide](docs/agility-cms/content-editor/README.md) - Creating and managing content
+- [Administrator Guide](docs/agility-cms/admin/README.md) - Instance configuration
+- [Architect Guide](docs/agility-cms/architect/README.md) - Architecture decisions
+- [URL Patterns](docs/agility-cms/AGILITY_CMS_URL_PATTERNS.md) - Agility CMS interface URLs
+
+**External Resources:**
+- [Official Agility CMS Docs](https://agilitycms.com/docs) - Agility CMS documentation
+- [Official Training Guide](https://agilitycms.com/docs/training-guide) - Generic Agility CMS training
 
 ## 🐛 Common Issues
 
