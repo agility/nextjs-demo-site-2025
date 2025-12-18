@@ -279,9 +279,11 @@ AI-powered search using Azure OpenAI and Algolia:
 ## 📚 Documentation
 
 ### Quick Reference
-- [Cursor Rules](.cursorrules) - Comprehensive development guidelines
-- [Claude Context](CLAUDE.md) - Detailed project context
-- [Copilot Instructions](.github/copilot-instructions.md) - AI assistant guidelines
+- [AI Agent Instructions](AGENTS.md) - Comprehensive development guidelines (single source of truth)
+- [Cursor Rules](.cursorrules) - Cursor-specific file (references AGENTS.md)
+- [Copilot Instructions](.github/copilot-instructions.md) - GitHub Copilot-specific file (references AGENTS.md)
+- [Windsurf Rules](.windsurf/rules/project.md) - Windsurf-specific file (references AGENTS.md)
+- [Claude Context](CLAUDE.md) - Stub file pointing to AGENTS.md
 
 ### Full Documentation
 - **[📖 Documentation Index](docs/README.md)** - Complete documentation guide
