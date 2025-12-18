@@ -190,6 +190,15 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 								return <a {...props}>{children}</a>
 							}
 
+							// Handle hash anchor links (in-page navigation)
+							if (href.startsWith('#')) {
+								return (
+									<a href={href} {...props}>
+										{children}
+									</a>
+								)
+							}
+
 							// Handle absolute internal links (starting with /)
 							if (href.startsWith('/')) {
 								return (
@@ -200,7 +209,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 							}
 
 							// Handle external links (http://, https://, mailto:, etc.)
-							if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('#')) {
+							if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:')) {
 								return (
 									<a href={href} target="_blank" rel="noopener noreferrer" {...props}>
 										{children}
