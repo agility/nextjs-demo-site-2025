@@ -174,14 +174,28 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
 					remarkPlugins={[remarkGfm]}
 					rehypePlugins={[rehypeRaw]}
 					components={{
-						code({ className, children, ...props }: any) {
+						code({ inline, className, children, ...props }: any) {
 							const match = /language-(\w+)/.exec(className || '')
-							const isInline = !match
-							return !isInline && match ? (
-								<CodeBlock language={match[1]} {...props}>
-									{String(children)}
-								</CodeBlock>
-							) : (
+							const language = match ? match[1] : 'text'
+							const codeString = String(children)
+
+							// Check if it's a block-level code by:
+							// 1. inline prop is explicitly false, OR
+							// 2. content contains newlines (multi-line), OR
+							// 3. has a language class (from fenced code blocks)
+							const isBlockCode = inline === false || codeString.includes('\n') || !!match
+
+							// Block-level code (fenced code blocks)
+							if (isBlockCode && !inline) {
+								return (
+									<CodeBlock language={language} {...props}>
+										{codeString}
+									</CodeBlock>
+								)
+							}
+
+							// Inline code
+							return (
 								<code className={`${className || ''} bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm font-mono`} {...props}>
 									{children}
 								</code>
