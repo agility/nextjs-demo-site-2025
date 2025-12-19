@@ -52,17 +52,17 @@ export function DocsLayoutClient({ children, tree }: DocsLayoutClientProps) {
 			{/* Header */}
 			<DocsHeader onMenuToggle={toggleMobileMenu} isMenuOpen={isMobileMenuOpen} />
 
-			{/* Mobile Navigation Drawer */}
+			{/* Mobile Navigation Drawer - shows when < 1024px */}
 			{isMobileMenuOpen && (
 				<>
 					{/* Backdrop */}
 					<div
-						className="fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-200"
+						className="fixed inset-0 bg-black/50 z-40 block lg:hidden transition-opacity duration-200"
 						onClick={() => setIsMobileMenuOpen(false)}
 						aria-hidden="true"
 					/>
 					{/* Drawer */}
-					<aside className="mobile-nav-drawer fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-900 shadow-xl overflow-y-auto lg:hidden pt-20 transform transition-transform duration-300 ease-out">
+					<aside className="mobile-nav-drawer fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-900 shadow-xl overflow-y-auto block lg:hidden pt-20 transform transition-transform duration-300 ease-out">
 						<div className="px-4 py-6">
 							<DocsNav tree={tree} />
 						</div>
@@ -72,7 +72,7 @@ export function DocsLayoutClient({ children, tree }: DocsLayoutClientProps) {
 
 			{/* Main Content */}
 			<div className="mx-auto flex w-full max-w-7xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
-				{/* Desktop Sidebar Navigation */}
+				{/* Desktop Sidebar Navigation - shows when >= 1024px */}
 				<div className="hidden lg:block lg:flex-none lg:self-start">
 					<aside className="sticky top-[5.5rem] w-64 py-16 pr-8 xl:w-72 xl:pr-16">
 						<DocsNav tree={tree} />

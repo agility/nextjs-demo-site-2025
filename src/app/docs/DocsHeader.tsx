@@ -31,11 +31,11 @@ export function DocsHeader({ onMenuToggle, isMenuOpen }: DocsHeaderProps) {
 				}`}
 		>
 			<div className="relative flex grow basis-0 items-center gap-4">
-				{/* Mobile menu button */}
+				{/* Mobile menu button - shows when < 1024px */}
 				{onMenuToggle && (
 					<button
 						onClick={onMenuToggle}
-						className="lg:hidden p-2 -ml-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+						className="block lg:hidden p-2 -ml-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
 						aria-label="Toggle navigation menu"
 						aria-expanded={isMenuOpen}
 					>
@@ -65,7 +65,7 @@ export function DocsHeader({ onMenuToggle, isMenuOpen }: DocsHeaderProps) {
 					href="https://demo.agilitycms.com"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-sm sm:text-base hidden sm:inline transition-colors"
+					className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-sm sm:text-base hidden lg:inline transition-colors"
 				>
 					View Demo Site
 				</Link>
@@ -73,7 +73,7 @@ export function DocsHeader({ onMenuToggle, isMenuOpen }: DocsHeaderProps) {
 					href="https://agilitycms.com/docs/training-guide"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-xs sm:text-sm transition-colors"
+					className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-xs sm:text-sm transition-colors hidden lg:inline"
 				>
 					<span className="hidden sm:inline">Training Guide</span>
 					<span className="sm:hidden">Training</span>
@@ -82,7 +82,7 @@ export function DocsHeader({ onMenuToggle, isMenuOpen }: DocsHeaderProps) {
 					href="https://agilitycms.com"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-xs sm:text-sm transition-colors hidden md:inline"
+					className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-xs sm:text-sm transition-colors hidden lg:inline"
 				>
 					Back to Agility CMS
 				</Link>
